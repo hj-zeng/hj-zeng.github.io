@@ -13,17 +13,13 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
-
-defaults:
-  run:
-    working-directory: ${{ github.workspace }}
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: 0.139.0
+      HUGO_VERSION: 0.147.6
     steps:
       - name: Install Hugo CLI
         run: |
