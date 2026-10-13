@@ -48,7 +48,7 @@ menu:
 # PaperMod 主题参数
 params:
   homeInfoParams:
-    Title: "hj-zeng'log"
+    Title: "👋 Welcome to hj-zeng'Log"
     Content: "欢迎！这里是我整理的技术笔记与学习记录。"
 
   socialIcons:
