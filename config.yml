@@ -2,7 +2,7 @@
 baseURL: "https://hj-zeng.github.io/"
 languageCode: "zh-cn"
 defaultContentLanguage: "zh-cn"
-title: "hj-zeng"
+title: "hj-zeng'log"
 theme: "PaperMod"
 enableGitInfo: false
 enableRobotsTXT: true
@@ -48,7 +48,7 @@ menu:
 # PaperMod 主题参数
 params:
   homeInfoParams:
-    Title: "hj-zeng 的笔记"
+    Title: "hj-zeng'log"
     Content: "欢迎！这里是我整理的技术笔记与学习记录。"
 
   socialIcons:
