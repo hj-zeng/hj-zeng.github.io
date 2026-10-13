@@ -1,8 +1,8 @@
 ---
-title: "[slime] 权重转换逻辑"
+title: "slime 权重转换逻辑"
 date: 2026-10-13
 draft: false
-tags: ["slime", "权重更新", "rl"]
+tags: ["RL", "slime", "权重更新"]
 math: false
 toc: true
 summary: "slime 权重更新两类 UpdateWeightFromDistributed / UpdateWeightFromTensor 的实现逻辑。"
