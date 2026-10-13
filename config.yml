@@ -1,0 +1,107 @@
+# 站点基础配置
+baseURL: "https://hj-zeng.github.io/"
+languageCode: "zh-cn"
+defaultContentLanguage: "zh-cn"
+title: "hj-zeng"
+theme: "PaperMod"
+enableGitInfo: false
+enableRobotsTXT: true
+enableEmoji: true
+pagination:
+  pagerSize: 10
+
+# Markdown 渲染
+markup:
+  highlight:
+    style: dracula
+    lineNos: false
+    noClasses: false
+  goldmark:
+    renderer:
+      unsafe: true
+    extensions:
+      passthrough:
+        delimiters:
+          block: [['\[', '\]'], ['$$', '$$']]
+          inline: [['\(', '\)'], ['$', '$']]
+
+# 菜单 / 导航
+menu:
+  main:
+    - identifier: notes
+      name: 笔记
+      url: /notes/
+      weight: 1
+    - identifier: tags
+      name: 标签
+      url: /tags/
+      weight: 2
+    - identifier: search
+      name: 搜索
+      url: /search/
+      weight: 3
+    - identifier: about
+      name: 关于
+      url: /about/
+      weight: 4
+
+# PaperMod 主题参数
+params:
+  homeInfoParams:
+    Title: "hj-zeng 的笔记"
+    Content: "欢迎！这里是我整理的技术笔记与学习记录。"
+
+  socialIcons:
+    - name: github
+      url: "https://github.com/hj-zeng"
+
+  # 搜索
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    keys: ["title", "permalink", "summary", "content"]
+
+  # 显示设置
+  ShowReadingTime: true
+  ShowWordCount: true
+  ShowBreadCrumbs: true
+  ShowPostNavLinks: true
+  ShowCodeCopyButtons: true
+  ShowToc: true
+  TocSide: "right"
+
+  # 编辑链接（改成你自己的仓库）
+  editPost:
+    URL: "https://github.com/hj-zeng/hj-zeng.github.io/edit/main/content"
+    Text: "编辑本文"
+    appendFilePath: true
+
+  # 首页信息
+  description: "hj-zeng 的个人笔记站"
+  author: "hj-zeng"
+  defaultTheme: auto
+  hideFooterContent: true
+
+# 输出格式（搜索页需要）
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+# 隐私 / SEO
+privacy:
+  googleAnalytics:
+    disable: true
+
+taxonomies:
+  tag: tags
+  category: categories
+
+# 笔记区：/notes 下所有文章作为笔记列表
+permalinks:
+  notes: /notes/:slugorcontentbasename/
