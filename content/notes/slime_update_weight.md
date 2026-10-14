@@ -1,8 +1,8 @@
 ---
 title: "slime 权重转换逻辑"
-date: 2026-10-13
+date: 2026-06-05
 draft: false
-weight: 1
+weight: 90
 tags: ["RL", "slime", "权重更新"]
 math: false
 toc: true
