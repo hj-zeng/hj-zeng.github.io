@@ -2,6 +2,7 @@
 title: "用 Hugo + PaperMod 搭建笔记站"
 date: 2026-10-13
 draft: false
+weight: 2
 tags: ["hugo", "博客", "教程"]
 categories: ["工具"]
 math: true
