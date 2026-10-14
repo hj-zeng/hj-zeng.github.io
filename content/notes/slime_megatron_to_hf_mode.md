@@ -6,7 +6,7 @@ weight: 88
 tags: ["RL", "slime", "权重转换"]
 math: false
 toc: true
-summary: "slime 参数 megatron_to_hf_mode 的 bridge 与 raw 两种模式在模型构建和权重迭代导出阶段的区别与细节梳理。"
+summary: "slime 中将 megatron 权重转为 hf 权重时 bridge 与 raw 两种模式区别梳理。"
 ---
 
 # 一、slime 权重转换方式
