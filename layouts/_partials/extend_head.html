@@ -1,0 +1,16 @@
+{{- /* mermaid 图表渲染 */ -}}
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    if (typeof mermaid === "undefined") return;
+    mermaid.initialize({ startOnLoad: false, theme: "default", securityLevel: "loose" });
+    document.querySelectorAll('pre code.language-mermaid').forEach(function (codeEl) {
+      var pre = codeEl.parentNode;
+      var div = document.createElement("div");
+      div.className = "mermaid";
+      div.textContent = codeEl.textContent;
+      pre.parentNode.replaceChild(div, pre);
+    });
+    mermaid.run();
+  });
+</script>
