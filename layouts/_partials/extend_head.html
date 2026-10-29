@@ -1,9 +1,25 @@
 {{- /* mermaid 图表渲染 */ -}}
 <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<style>
+  /* 长流程图按自然尺寸渲染，超宽时横向滚动，避免文字被缩放压扁或溢出截断 */
+  .mermaid { overflow-x: auto; }
+  .mermaid svg { max-width: none; height: auto; }
+</style>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     if (typeof mermaid === "undefined") return;
-    mermaid.initialize({ startOnLoad: false, theme: "default", securityLevel: "loose" });
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: "default",
+      securityLevel: "loose",
+      flowchart: {
+        useMaxWidth: false,    /* 不强制缩放到容器宽度 */
+        wrappingWidth: 800,    /* 节点文字到该宽度自动换行 */
+        htmlLabels: true,
+        nodeSpacing: 50,
+        rankSpacing: 50
+      }
+    });
     document.querySelectorAll('pre code.language-mermaid').forEach(function (codeEl) {
       var pre = codeEl.parentNode;
       var div = document.createElement("div");
