@@ -1,5 +1,5 @@
 ---
-title: "slime 权重转换逻辑"
+title: "slime 权重更新: actor -> rollout"
 date: 2026-06-05
 draft: false
 weight: 90

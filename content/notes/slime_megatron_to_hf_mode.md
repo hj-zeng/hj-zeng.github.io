@@ -1,5 +1,5 @@
 ---
-title: "slime megatron 权重转为 hf 权重的转换方式"
+title: "slime megatron -> hf 转换方式: bridge & raw"
 date: 2026-06-06
 draft: false
 weight: 88
