@@ -31,15 +31,15 @@ LM 的生成方式是自回归的：
 
 <div style="text-align:center">
 
-$$p(x) = \prod_t p(x_t \mid x_{<t}) \qquad (2)$$
+$$p(x) = \prod_t p(x_t \mid x_{&lt;t}) \qquad (2)$$
 
 </div>
 
 每一步生成都可以映射为 MDP 中的一步：
 
-* **state**：当前 token 序列 $x_{<t}$
+* **state**：当前 token 序列 $x_{&lt;t}$
 * **action**：生成的 token $x_t$
-* **policy**：$p_\theta(x_t \mid x_{<t})$
+* **policy**：$p_\theta(x_t \mid x_{&lt;t})$
 
 关键性质：**似然可分解、可解析计算**。$p_\theta(x)$ 逐 token 分解为条件概率之积，可以直接计算，因此策略梯度可以写成 token 级别的 REINFORCE 形式：
 
@@ -49,7 +49,7 @@ $$\nabla_\theta J(\theta) = \mathbb{E}\left[R(x)\,\nabla_\theta \log p_\theta(x)
 
 </div>
 
-其中 $\log p_\theta(x) = \sum_t \log p_\theta(x_t \mid x_{<t})$；重要性采样比 $\frac{p_\theta(x)}{p_{\theta_{\text{old}}}(x)}$ 也可以逐 token 精确计算，这正是 PPO / GRPO 可以直接应用于 LLM 的原因。
+其中 $\log p_\theta(x) = \sum_t \log p_\theta(x_t \mid x_{&lt;t})$；重要性采样比 $\frac{p_\theta(x)}{p_{\theta_{\text{old}}}(x)}$ 也可以逐 token 精确计算，这正是 PPO / GRPO 可以直接应用于 LLM 的原因。
 
 ## Diffusion：去噪建模
 
@@ -79,9 +79,9 @@ $$p(x_0) = \sum_{\text{所有路径}} p(\text{路径}) = \int p(x_0, z_{1:T})\,d
 | 对比维度 | LLM RL | Diffusion RL |
 |:---|:---|:---|
 | 生成方式 | 自回归，逐 token 生成 | 多步去噪，路径 $x_T \to x_0$ |
-| 状态 state | 已有 token 序列 $x_{<t}$ | 三元组 $(c, t, x_t)$ |
+| 状态 state | 已有 token 序列 $x_{&lt;t}$ | 三元组 $(c, t, x_t)$ |
 | 动作 action | 下一个 token $x_t$ | 下一步去噪结果 $x_{t-1}$ |
-| 策略 $\pi$ | $p_\theta(x_t \mid x_{<t})$ | $p_\theta(x_{t-1} \mid x_t, c)$ |
+| 策略 $\pi$ | $p_\theta(x_t \mid x_{&lt;t})$ | $p_\theta(x_{t-1} \mid x_t, c)$ |
 | 似然可计算性 | 可分解、可解析计算 | 高维积分，无封闭解 |
 | 重要性采样比 | 逐 token 精确计算 | 需用路径联合概率或 ELBO 近似 |
 | 代表性算法 | PPO / GRPO / DPO | DDPO / Diffusion-DPO / DRaFT / AWM / DiffusionNFT |
@@ -916,7 +916,7 @@ flowchart LR
 
 <div style="text-align:center">
 
-$$s(X) = \sum_{r \in M} w(r)\,p(r_n = r \mid X, R_{<n}) \qquad (44)$$
+$$s(X) = \sum_{r \in M} w(r)\,p(r_n = r \mid X, R_{&lt;n}) \qquad (44)$$
 
 </div>
 
@@ -939,7 +939,7 @@ Edit-R1 把 MLLM 当成"打分分布模型"，用 score token 的 logit 期望�
 如果一个 group 满足：
 
 * mean $> \mu$
-* variance $< \sigma$
+* variance $&lt; \sigma$
 
 则该 group 的梯度直接丢弃，不参与优化。
 
