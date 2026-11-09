@@ -131,7 +131,7 @@ flowchart LR
 - 图注块放在文档顶层（前后空行隔开），不要嵌进列表项；
 - 批量转换时只动图片标记本身：代码块、行内代码、frontmatter、`<div>`/`<br/>` 等 HTML 里的 `![](...)` 不要误伤；
 - 用构建 + 渲染抽查验证：每张图下方出现 `<p style="color:#888; ...">` 图注行。
-- **图片标记的括号必须配对**：`![alt](path "title")` 的 alt 里半角 `(` 必须配 `)`、全角 `（` 配 `）`，不要混用——`(Image source: https://...）` 这类括号不配对会让 markdown 解析把 title 吞进 `src`（渲染后出现 `<img src=".../imageN.png &quot;...` 的破损路径）。批量转换图片标记时先检查 alt 括号配对，渲染后抽查 `src` 属性不含 `&quot;` 或 title 文本。
+- **图片标记的括号必须配对**：`![alt](path "title")` 的 **alt 和 title 里**括号都要配对（半角 `(` 配 `)`、全角 `（` 配 `）`，不要混用）——`(Image source: https://...）` 这类括号不配对、或 title 内含 `(...)`，会让 markdown 解析把 title 吞进 `src`（渲染后出现 `<img src=".../imageN.png &quot;...` 的破损路径）。批量转换图片标记时先检查 alt/title 括号配对，渲染后抽查 `src` 属性不含 `&quot;` 或 title 文本。
 
 ### 4. 润色拗口/繁琐的句子
 

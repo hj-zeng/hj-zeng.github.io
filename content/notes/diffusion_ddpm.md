@@ -18,7 +18,7 @@ diffusion 的通用思想是：1. **正向扩散（Forward diffusion）**：把�
 
 
 <div style="text-align:center; margin:1em 0;">
-<img src="/images/diffusion_ddpm/image1.png &quot;生成模型对比 (Image source: https://zhuanlan.zhihu.com/p/525106459" alt="生成模型对比" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<img src="/images/diffusion_ddpm/image1.png" alt="生成模型对比" style="display:block; margin:0 auto; max-width:100%; height:auto;">
 <p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">生成模型对比<br>Image source: <a href="https://zhuanlan.zhihu.com/p/525106459">https://zhuanlan.zhihu.com/p/525106459</a></p>
 </div>
 

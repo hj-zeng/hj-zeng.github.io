@@ -13,7 +13,7 @@ summary: "slime data buffer 实现梳理：data_source 定义（RolloutDataSourc
 
 
 <div style="text-align:center; margin:1em 0;">
-<img src="/images/slime_databuffer/image1.png &quot;slime data buffer 整体架构图 (Image source: https://github.com/THUDM/slime" alt="slime data buffer 整体架构图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<img src="/images/slime_databuffer/image1.png" alt="slime data buffer 整体架构图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
 <p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">slime data buffer 整体架构图<br>Image source: <a href="https://github.com/THUDM/slime">https://github.com/THUDM/slime</a></p>
 </div>
 
