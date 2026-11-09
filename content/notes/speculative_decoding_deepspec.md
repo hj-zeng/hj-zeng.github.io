@@ -9,7 +9,7 @@ toc: true
 summary: "DeepSpec 框架解读：训练部分的代码结构、关键概念（block_size/anchor/loss_mask）与 Qwen3DSparkModel 实现、block 并行预测与 flex_attention、验证部分的 eval 结构与回调、损失计算（CE/L1/Confidence 分布式归一化），以及 DFlash/Eagle3/MTP 算法对比。"
 ---
 
-# 一、训练部分
+# 训练部分
 
 ## 代码结构
 
@@ -69,7 +69,7 @@ def _build_draft_model(self, *, target_config, model_args):
     )
     return Qwen3DSparkModel(draft_config)
 ```
-model_args 定义在 DeepSpec/config/dspark/dspark_qwen3_4b.py
+model_args 定义在 DeepSpec/config/dspark/dspark_qwen3_4b.py。
 
 target config 来自目标模型的模型文件：
 
@@ -78,7 +78,7 @@ target_config = AutoConfig.from_pretrained(
     model_args.target_model_name_or_path,
 )
 ```
-Qwen3DSparkModel 定义在 DeepSpec/deepspec/modeling/dspark/qwen3/modeling.py，继承自 transformers.models.qwen3.modeling_qwen3.Qwen3PreTrainedModel
+Qwen3DSparkModel 定义在 DeepSpec/deepspec/modeling/dspark/qwen3/modeling.py，继承自 transformers.models.qwen3.modeling_qwen3.Qwen3PreTrainedModel。
 
 ## 关键概念
 
@@ -179,7 +179,7 @@ self.confidence_head = AcceptRatePredictor(input_dim=input_dim)
 > 预测每个草稿位的接受率；若 `confidence_head_with_markov` 则额外拼接 markov 的 prev-token embedding，输入维度 `hidden_size + markov_rank`
 ### initialize_embeddings_and_head
 
-输入 `embed_tokens` 和 `lm_head`（nn.Module）；初始化 token embedding 和 lm head
+输入 `embed_tokens` 和 `lm_head`（nn.Module）；初始化 token embedding 和 lm head。
 
 ### compute_logits
 
@@ -453,7 +453,7 @@ k = torch.cat([k_ctx, k_noise], dim=1)                # ctx_len + q_len = 12 + 1
 ```python
  create_block_mask(..., Q_LEN=num_blocks*block_size, KV_LEN=seq_len + num_blocks*block_size)
 ```
-RoPE 也是这么对齐的：position_embeddings 由长度 27 的 full_position_ids 算出，k 用全部 27 个，q 用尾部 15 个——这就是 modeling.py 重写 `apply_rotary_pos_emb`（其中 `cos[..., -q_len:, :]`）的原因
+RoPE 也是这么对齐的：position_embeddings 由长度 27 的 full_position_ids 算出，k 用全部 27 个，q 用尾部 15 个——这就是 modeling.py 重写 `apply_rotary_pos_emb`（其中 `cos[..., -q_len:, :]`）的原因。
 
 画出这个 15 × 27 矩阵：
 
@@ -518,7 +518,7 @@ p(x₁..x₇ | ctx) ≈ p(x₁|ctx) · p(x₂|ctx) · ... · p(x₇|ctx)
 
 2. **markov head 是补偿条件独立的手段**
 
-条件独立会产生「各自最优但组合不合法」的输出。补救办法是在 **logits 层**加一个依赖前驱 token 的低秩 bias
+条件独立会产生「各自最优但组合不合法」的输出。补救办法是在 **logits 层**加一个依赖前驱 token 的低秩 bias。
 
 ```python
 prev_token_ids = first_prev_token_ids
@@ -579,15 +579,15 @@ block_hidden = model._forward_backbone(
 |空 tile 跳过|有|**无**|
 |结果正确性|✓|✓|
 
-对本项目来说，就是 `3584 × 7680` 的 float 矩阵每层都要物化，且 0.2% 稀疏度的块对角区域被老老实实算完——跑得动，但慢且吃显存
+对本项目来说，就是 `3584 × 7680` 的 float 矩阵每层都要物化，且 0.2% 稀疏度的块对角区域被老老实实算完——跑得动，但慢且吃显存。
 
-# 二、验证部分
+# 验证部分
 
 ## eval 
 
 ### eval 总体结构
 
-BaseEvaluator 的结构主要是：1. init 时 build_model；2. 数据指标的处理；3. evaluate 进行投机解码验证
+BaseEvaluator 的结构主要是：1. init 时 build_model；2. 数据指标的处理；3. evaluate 进行投机解码验证。
 
 
 
@@ -638,7 +638,7 @@ generate_decoding_sample  函数：
 </div>
 
 
-其中构建草稿的 `init_context`、更新草稿状态的 `update`、草稿生成的 `propose` 以及置信头校准都是调用的回调函数
+其中构建草稿的 `init_context`、更新草稿状态的 `update`、草稿生成的 `propose` 以及置信头校准都是调用的回调函数。
 
 
 
@@ -872,7 +872,7 @@ for step_idx in range(proposal_len):
 
 DSpark 损失 = `α_ce·CE + α_l1·L1 + α_conf·Confidence`：CE 让草稿 token 逼近目标真值，L1 拉近草稿与目标的完整分布（直接优化接受率），Confidence 用 BCE 让置信头去预测「1−TV」形式的接受率。所有项都按 `eval_mask`（可加位置衰减）加权，并采用**本地分子 / 全局分母 × world_size** 的分布式归一化，保证多卡梯度严格等价于单卡全量训练。
 
-# 三、损失计算
+# 损失计算
 
 ## loss 计算
 
@@ -975,7 +975,7 @@ DSparkForwardOutput
                        ce_α·CE + l1_α·L1 + conf_α·Conf  ──► backward_loss
 
 ```
-# 四、dflash 和 eagle3 算法
+# dflash 和 eagle3 算法
 
 DeepSpec 里 DFlash / Eagle3 和 DSpark 走的是**同一套三段式流水线**，唯一区别就是换 config 文件——算法由 config 里的 `trainer_cls`（训练）和 draft 的 `architectures[0]`（评测）来分发，`train.py` / `eval.py` 入口完全通用。
 
@@ -997,7 +997,7 @@ DeepSpec 里 DFlash / Eagle3 和 DSpark 走的是**同一套三段式流水线**
 
 Eagle3 用独立的 trainer 和 modeling，训练范式是 TTT（test-time-training，多步展开），没有 markov/confidence 那套。
 
-Qwen3Eagle3Trainer 和 Qwen3DSparkTrainer 一样，都继承自 BaseTrainer，实现的方法都是 `_build_draft_model` 和 `run_batch`，只是底下调用的子方法不一样
+Qwen3Eagle3Trainer 和 Qwen3DSparkTrainer 一样，都继承自 BaseTrainer，实现的方法都是 `_build_draft_model` 和 `run_batch`，只是底下调用的子方法不一样。
 
 ### Qwen3Eagle3Model eagle3 的 forward 实现
 
@@ -1021,7 +1021,7 @@ Qwen3Eagle3Trainer 和 Qwen3DSparkTrainer 一样，都继承自 BaseTrainer，�
 
 |**维度**|**Eagle3**|**DSpark**|
 |:---|:---|:---|
-|训练 forward|TTT 展开时逐步 `update`/`get_seq_length`；还有 `extend_draft_cache`做单步推进|训练 forward **不走 cache，**一次性算完所有 block|
+|训练 forward|TTT 展开时逐步 `update`/`get_seq_length`；还有 `extend_draft_cache`做单步推进|训练 forward **不走 cache**，一次性算完所有 block|
 |KV 来源|标准自注意力，K/V 来自自身 hidden（拼了 input_embeds，维度 `2*hidden`）逐步累积到 cache|无 cache 累积；K/V 由 target_hidden_states(context) 与 noise(hidden) **当场拼接**，context 部分就相当于"固定 KV"，但不落 cache|
 |cache_position|显式计算并传入|不涉及|
 
@@ -1089,4 +1089,4 @@ MTP = Multi-Token Prediction（多 token 预测），代表工作是 Meta 的“
 |适用对象|只有"生来带 MTP"的模型（如 DeepSeek-V3）|**任意**已有 target（Qwen3-4B/8B/14B、Gemma 等）|
 |特征输入|MTP 模块吃主干 hidden|draft 吃 target 多层 hidden 拼接（`target_layer_ids`）|
 
-一句话：MTP 是“target 内建、随基座一起练出来的原生多 token 预测能力”；Eagle/DFlash/DSpark 是“对冻结 target 事后加练的外挂 draft”。前者是模型自带属性，后者是可插拔适配层
+一句话：MTP 是“target 内建、随基座一起练出来的原生多 token 预测能力”；Eagle/DFlash/DSpark 是“对冻结 target 事后加练的外挂 draft”。前者是模型自带属性，后者是可插拔适配层。

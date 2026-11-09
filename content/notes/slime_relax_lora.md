@@ -12,7 +12,7 @@ summary: "relax 框架 LoRA 训练/推理权重同步机制：PEFT 包装、merg
 
 slime 当前还没有 lora 训练的支持（2026.10.23），relax（小红书） 和 miles（radixark） 是 slime 衍生出来的两个框架，具备 lora 支持，本文探索 relax lora 机制。
 
-## 1. Train 侧适配（PEFT 包装）
+## Train 侧适配（PEFT 包装）
 
 唯一注入点在 model_provider.py：
 
@@ -61,7 +61,7 @@ critic backbone 走 LoRA adapter（省显存），**价值头全秩训练**。
 
 > 价值头不是 adapter、也不参与 rollout 的 merge-sync（只有 actor sync 到 SGLang），所以让它可训练不会污染 rollout 权重路径。
 > 目前（2026.10.23） Relax 对 PPO-lora 没有适配，需要手动适配，这里采用的是 critic backbone 采用 lora adapter 的路线。
-## 2. Rollout 侧适配的两种方式
+## Rollout 侧适配的两种方式
 
 训练与推理用的是两套不同的权重表示：
 
@@ -104,7 +104,7 @@ flowchart TB
     classDef start fill:#E8F0FE,stroke:#4285F4,stroke-width:2px,color:#1a1a1a
     class START start
 ```
-### 2.1 merge-mode —— 推理侧无感知
+### merge-mode —— 推理侧无感知
 
 推理引擎当成普通整模型加载，**完全不知道有 LoRA**。关键是在权重同步链路里，把每个
 base 权重和它配对的 adapter 在 **Megatron 分片空间里** 折成
@@ -113,7 +113,7 @@ base 权重和它配对的 adapter 在 **Megatron 分片空间里** 折成
 * 优点：推理侧零改动，支持分布式（fully-async）rollout
 * 代价：每步同步 **全量权重**（和全参训练一样大）
 
-### 2.2 adapter-mode —— 推理侧原生 LoRA
+### adapter-mode —— 推理侧原生 LoRA
 
 base 权重 **只在首次同步一次**，之后每步只推 **adapter 增量**。推理引擎用
 SGLang 原生 LoRA API（`--enable-lora`，`dp_size==1`，`max_loras_per_batch=1`）
@@ -124,7 +124,7 @@ SGLang 原生 LoRA API（`--enable-lora`，`dp_size==1`，`max_loras_per_batch=1
 * 约束：colocate 下 base 靠 SGLang 的 `enable_weights_cpu_backup` 跨 sleep/wake 恢复；
 * colocate 的 tensor 传输用 `load_lora_adapter_from_tensors`；fully-async 用 `update_lora_from_distributed`。
 
-## 3. 权重传输：LoRA 训练权重怎么传到 rollout 侧
+## 权重传输：LoRA 训练权重怎么传到 rollout 侧
 
 先交代一个贯穿全程的事实：rollout 同步读的不是模型的 live 权重，而是
 TensorBackuper 备份的权重字典。
@@ -136,7 +136,7 @@ TensorBackuper 备份的权重字典。
 
 权重传输与训练侧 lora 权重存在的模式和共卡/分卡部署方式有关系。下面按**模式 × 部署**拆开讲数据流。
 
-### 3.1 merge-mode × colocate
+### merge-mode × colocate
 
 编排入口 update_weight_from_tensor.py
 
@@ -197,7 +197,7 @@ flowchart TB
     class S4,S5,S6 merge
     class S7 pass
 ```
-### 3.2 merge-mode × fully-async
+### merge-mode × fully-async
 
 逻辑同上，但折叠和传输在独立的权重服务里，见下图：
 
@@ -215,7 +215,7 @@ flowchart TB
     class A,B,C merge
     class D send
 ```
-### 3.3 adapter-mode × colocate
+### adapter-mode × colocate
 
 ```mermaid
 flowchart TB
@@ -265,7 +265,7 @@ flowchart TB
 切自己的分片，所以必须序列化 **host 张量**（CUDA-IPC handle 过不了 GPU-隔离的 worker
  fan-out）。
 
-### 3.4 adapter-mode × fully-async
+### adapter-mode × fully-async
 
 base 一次性 NCCL broadcast；adapter 走如下路径：
 
@@ -286,7 +286,7 @@ flowchart TB
     class B,C meta
     class D,E sglang
 ```
-### 3.5 SGLang 引擎侧接口
+### SGLang 引擎侧接口
 
 |**方法**|**用途**|
 |:---|:---|
@@ -297,7 +297,7 @@ flowchart TB
 引擎启动时 adapter-mode 需配置 `enable_lora=True` / `max_lora_rank` /
 `lora_target_modules`（SGLang flavor 命名） / `max_loras_per_batch=1`。
 
-### 3.6 一张图看清三条路径
+### 一张图看清三条路径
 
 ```mermaid
 flowchart TB

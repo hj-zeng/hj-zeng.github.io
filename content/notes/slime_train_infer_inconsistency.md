@@ -28,7 +28,7 @@ summary: "slime 训推不一致处理：TIS/MIS 重要性采样修正与三策�
 
 <div style="text-align:center">
 
-$$L^{CLIP}(\theta) = \mathbb{E}_t\left[\min\left(\frac{\pi_\theta(a_t \mid s_t)}{\pi_{\text{old}}(a_t \mid s_t)}\hat{A}_t,\ \operatorname{clip}\left(\frac{\pi_\theta(a_t \mid s_t)}{\pi_{\text{old}}(a_t \mid s_t)},\ 1-\epsilon,\ 1+\epsilon\right)\hat{A}_t\right)\right]$$
+$$L^{CLIP}(\theta) = \mathbb{E}_t\left[\min\left(\frac{\pi_\theta(a_t \mid s_t)}{\pi_{\text{old}}(a_t \mid s_t)}\hat{A}_t,\ \operatorname{clip}\left(\frac{\pi_\theta(a_t \mid s_t)}{\pi_{\text{old}}(a_t \mid s_t)},\ 1-\epsilon,\ 1+\epsilon\right)\hat{A}_t\right)\right] \qquad (1)$$
 
 </div>
 
@@ -38,7 +38,7 @@ $$L^{CLIP}(\theta) = \mathbb{E}_t\left[\min\left(\frac{\pi_\theta(a_t \mid s_t)}
 
 <div style="text-align:center">
 
-$$L(\theta) = \mathbb{E}_{a \sim \pi_{\text{sample}}}\left[\min\left(\frac{\pi_{\text{learn}}(a \mid s)}{\pi_{\text{sample}}(a \mid s)}\hat{A},\ \operatorname{clip}\left(\frac{\pi_{\text{learn}}(a \mid s)}{\pi_{\text{sample}}(a \mid s)},\ 1-\epsilon,\ 1+\epsilon\right)\hat{A}\right)\right]$$
+$$L(\theta) = \mathbb{E}_{a \sim \pi_{\text{sample}}}\left[\min\left(\frac{\pi_{\text{learn}}(a \mid s)}{\pi_{\text{sample}}(a \mid s)}\hat{A},\ \operatorname{clip}\left(\frac{\pi_{\text{learn}}(a \mid s)}{\pi_{\text{sample}}(a \mid s)},\ 1-\epsilon,\ 1+\epsilon\right)\hat{A}\right)\right] \qquad (2)$$
 
 </div>
 
@@ -65,7 +65,7 @@ $$L(\theta) = \mathbb{E}_{a \sim \pi_{\text{sample}}}\left[\min\left(\frac{\pi_{
 
 <div style="text-align:center">
 
-$$\mathbb{E}_{a \sim \pi_{\text{sampler}}(\theta)}\left[R(a) \cdot \nabla_\theta \log \pi_{\text{learner}}(a, \theta)\right]$$
+$$\mathbb{E}_{a \sim \pi_{\text{sampler}}(\theta)}\left[R(a) \cdot \nabla_\theta \log \pi_{\text{learner}}(a, \theta)\right] \qquad (3)$$
 
 </div>
 
@@ -73,7 +73,7 @@ $$\mathbb{E}_{a \sim \pi_{\text{sampler}}(\theta)}\left[R(a) \cdot \nabla_\theta
 
 <div style="text-align:center">
 
-$$\mathbb{E}_{a \sim \pi_{\text{sampler}}(\theta)}\left[\frac{\pi_{\text{learner}}(a, \theta)}{\pi_{\text{sampler}}(a, \theta)} \cdot R(a) \cdot \nabla_\theta \log \pi_{\text{learner}}(a, \theta)\right]$$
+$$\mathbb{E}_{a \sim \pi_{\text{sampler}}(\theta)}\left[\frac{\pi_{\text{learner}}(a, \theta)}{\pi_{\text{sampler}}(a, \theta)} \cdot R(a) \cdot \nabla_\theta \log \pi_{\text{learner}}(a, \theta)\right] \qquad (4)$$
 
 </div>
 
@@ -81,7 +81,7 @@ $$\mathbb{E}_{a \sim \pi_{\text{sampler}}(\theta)}\left[\frac{\pi_{\text{learner
 
 <div style="text-align:center">
 
-$$\mathbb{E}_{a \sim \pi_{\text{sampler}}(\theta)}\left[\underbrace{\min\left(\frac{\pi_{\text{learner}}(a, \theta)}{\pi_{\text{sampler}}(a, \theta)},\ C\right)}_{\text{截断的重要性比率}} \cdot R(a) \cdot \nabla_\theta \log \pi_{\text{learner}}(a, \theta)\right]$$
+$$\mathbb{E}_{a \sim \pi_{\text{sampler}}(\theta)}\left[\underbrace{\min\left(\frac{\pi_{\text{learner}}(a, \theta)}{\pi_{\text{sampler}}(a, \theta)},\ C\right)}_{\text{截断的重要性比率}} \cdot R(a) \cdot \nabla_\theta \log \pi_{\text{learner}}(a, \theta)\right] \qquad (5)$$
 
 </div>
 
@@ -91,7 +91,7 @@ $$\mathbb{E}_{a \sim \pi_{\text{sampler}}(\theta)}\left[\underbrace{\min\left(\f
 
 <div style="text-align:center">
 
-$$\mathbb{E}_{a \sim \pi_{\text{sampler}}(\theta_{\mathrm{old}})}\left[\underbrace{\min\left(\frac{\pi_{\text{learner}}(a, \theta_{\mathrm{old}})}{\pi_{\text{sampler}}(a, \theta_{\mathrm{old}})},\ C\right)}_{\text{截断的重要性比率}} \cdot \nabla_\theta \min\left(\frac{\pi_{\text{learner}}(a, \theta)}{\pi_{\text{learner}}(a, \theta_{\mathrm{old}})}\,\hat A,\ \mathrm{clip}\left(\frac{\pi_{\text{learner}}(a, \theta)}{\pi_{\text{learner}}(a, \theta_{\mathrm{old}})},\ 1-\epsilon,\ 1+\epsilon\right)\,\hat A\right)\right]$$
+$$\mathbb{E}_{a \sim \pi_{\text{sampler}}(\theta_{\mathrm{old}})}\left[\underbrace{\min\left(\frac{\pi_{\text{learner}}(a, \theta_{\mathrm{old}})}{\pi_{\text{sampler}}(a, \theta_{\mathrm{old}})},\ C\right)}_{\text{截断的重要性比率}} \cdot \nabla_\theta \min\left(\frac{\pi_{\text{learner}}(a, \theta)}{\pi_{\text{learner}}(a, \theta_{\mathrm{old}})}\,\hat A,\ \mathrm{clip}\left(\frac{\pi_{\text{learner}}(a, \theta)}{\pi_{\text{learner}}(a, \theta_{\mathrm{old}})},\ 1-\epsilon,\ 1+\epsilon\right)\,\hat A\right)\right] \qquad (6)$$
 
 </div>
 

@@ -14,7 +14,7 @@ summary: "ADAFLASH 论文总结：扩散草稿模型双向注意力带来的领�
 
 ## 一句话总结
 
-扩散草稿模型（DFlash 一类）的**双向注意力**在带来并行草稿生成的同时，引入了草稿质量的**高方差**；固定草稿模型 + 恒定验证长度的静态推测系统因此退化。ADAFLASH 用两个组件做**在线自适应**：**同策略蒸馏（OPD）**持续把草稿模型适配到部署分布，**自适应长度头**动态截断验证长度；配合异步训练—推理基础设施，相对标准 AR 解码最高取得 **5.3×** 加速，高并发下吞吐比此前 SOTA 高约 **66%**。
+扩散草稿模型（DFlash 一类）的**双向注意力**在带来并行草稿生成的同时，引入了草稿质量的**高方差**；固定草稿模型 + 恒定验证长度的静态推测系统因此退化。ADAFLASH 用两个组件做**在线自适应**：**同策略蒸馏**（OPD）持续把草稿模型适配到部署分布，**自适应长度头**动态截断验证长度；配合异步训练—推理基础设施，相对标准 AR 解码最高取得 **5.3×** 加速，高并发下吞吐比此前 SOTA 高约 **66%**。
 
 ## 背景与核心问题
 
@@ -33,7 +33,7 @@ summary: "ADAFLASH 论文总结：扩散草稿模型双向注意力带来的领�
 
 <div style="text-align:center">
 
-$$\ell_{\text{OPD}} = \alpha\, \ell_{\text{hard}} + (1-\alpha)\, \ell^{\text{clip}}_{\text{rkl}}, \qquad \ell_{\text{hard}} = -\frac{1}{k}\sum_{i=1}^{k} \log q_w(x_i^\star \mid x_{&lt;t+i})$$
+$$\ell_{\text{OPD}} = \alpha\, \ell_{\text{hard}} + (1-\alpha)\, \ell^{\text{clip}}_{\text{rkl}}, \qquad \ell_{\text{hard}} = -\frac{1}{k}\sum_{i=1}^{k} \log q_w(x_i^\star \mid x_{&lt;t+i}) \qquad (1)$$
 
 </div>
 
@@ -41,7 +41,7 @@ $$\ell_{\text{OPD}} = \alpha\, \ell_{\text{hard}} + (1-\alpha)\, \ell^{\text{cli
 
 <div style="text-align:center">
 
-$$\ell^{\text{clip}}_{\text{rkl}} = \frac{1}{k}\sum_{i=1}^{k}\sum_{y \in \mathcal{V}} \min\left\{ q_w(y \mid x_{&lt;t}, z)_i \log \frac{q_w(y \mid x_{&lt;t}, z)_i}{p_v(y \mid x_{&lt;t+i})},\ \delta \right\}$$
+$$\ell^{\text{clip}}_{\text{rkl}} = \frac{1}{k}\sum_{i=1}^{k}\sum_{y \in \mathcal{V}} \min\left\{ q_w(y \mid x_{&lt;t}, z)_i \log \frac{q_w(y \mid x_{&lt;t}, z)_i}{p_v(y \mid x_{&lt;t+i})},\ \delta \right\} \qquad (2)$$
 
 </div>
 
@@ -51,7 +51,7 @@ $$\ell^{\text{clip}}_{\text{rkl}} = \frac{1}{k}\sum_{i=1}^{k}\sum_{y \in \mathca
 
 <div style="text-align:center">
 
-$$\hat{k}_t = \mathrm{clamp}\big(\lfloor \hat{a}_t \cdot k \rfloor,\ 1,\ k\big),$$
+$$\hat{k}_t = \mathrm{clamp}\big(\lfloor \hat{a}_t \cdot k \rfloor,\ 1,\ k\big), \qquad (3)$$
 
 </div>
 

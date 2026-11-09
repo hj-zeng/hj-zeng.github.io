@@ -85,7 +85,7 @@ flowchart LR
 
 <div style="text-align:center">
 
-$$a_t = \begin{cases} \arg\max_a Q(a), & \text{以概率 } 1-\epsilon \\ \text{随机选择动作 } a, & \text{以概率 } \epsilon \end{cases}$$
+$$a_t = \begin{cases} \arg\max_a Q(a), & \text{以概率 } 1-\epsilon \\ \text{随机选择动作 } a, & \text{以概率 } \epsilon \end{cases} \qquad (1)$$
 
 </div>
 
@@ -133,7 +133,7 @@ $$a_t = \begin{cases} \arg\max_a Q(a), & \text{以概率 } 1-\epsilon \\ \text{�
 
 “同策略/异策略”与“同步/异步”方法的关系
 
-**同步与异步（Synchronous / Asynchronous）**是描述训练并行方式的维度，先简单介绍：
+**同步与异步**（Synchronous / Asynchronous）是描述训练并行方式的维度，先简单介绍：
 
 * **同步（Synchronous）**：多个并行 worker 各自与环境交互收集一批经验，收集齐后**统一汇总、同步更新**一次模型参数，再继续下一轮。所有 worker 始终基于同一份最新参数做决策。优点是更新稳定、实现简单；缺点是**最慢的 worker 会拖慢整体**。
 * **异步（Asynchronous）**：多个 worker **各自独立**地与环境交互、各自计算梯度并更新共享模型参数，彼此不等待。不同 worker 使用的可能是不同步的旧参数，天然引入多样性（近似于探索）。优点是吞吐高、训练快；缺点是更新不一致、稳定性稍差。
@@ -158,7 +158,7 @@ $$a_t = \begin{cases} \arg\max_a Q(a), & \text{以概率 } 1-\epsilon \\ \text{�
 
 <div style="text-align:center">
 
-$$P(S_{t+1}=s_{t+1}\mid S_t=s_t) = P(S_{t+1}=s_{t+1}\mid S_t=s_t, S_{t-1}=s_{t-1}, \ldots, S_0=s_0)$$
+$$P(S_{t+1}=s_{t+1}\mid S_t=s_t) = P(S_{t+1}=s_{t+1}\mid S_t=s_t, S_{t-1}=s_{t-1}, \ldots, S_0=s_0) \qquad (2)$$
 
 </div>
 
@@ -168,7 +168,7 @@ $$P(S_{t+1}=s_{t+1}\mid S_t=s_t) = P(S_{t+1}=s_{t+1}\mid S_t=s_t, S_{t-1}=s_{t-1
 
 ## 马尔可夫决策过程
 
-马尔可夫决策过程在马尔可夫链的基础上引入了动作 $A$ 和奖励 $R$ 的概念，不仅包含状态之间的**转移概率 $P$**，还包含每个状态下可采取的**动作**及**对应的奖励**。马尔可夫决策过程由四元组 $(S,A,P,R)$ 构成，分别表示：状态、动作、转移概率、奖励
+马尔可夫决策过程在马尔可夫链的基础上引入了动作 $A$ 和奖励 $R$ 的概念，不仅包含状态之间的**转移概率 $P$**，还包含每个状态下可采取的**动作**及**对应的奖励**。马尔可夫决策过程由四元组 $(S,A,P,R)$ 构成，分别表示：状态、动作、转移概率、奖励。
 
 
 
@@ -176,7 +176,7 @@ $$P(S_{t+1}=s_{t+1}\mid S_t=s_t) = P(S_{t+1}=s_{t+1}\mid S_t=s_t, S_{t-1}=s_{t-1
 
 <div style="text-align:center">
 
-$$P(s', r \mid s, a) = \Pr\{S_{t+1}=s', R_{t+1}=r \mid S_t=s, A_t=a\}$$
+$$P(s', r \mid s, a) = \Pr\{S_{t+1}=s', R_{t+1}=r \mid S_t=s, A_t=a\} \qquad (3)$$
 
 </div>
 
@@ -184,11 +184,11 @@ $$P(s', r \mid s, a) = \Pr\{S_{t+1}=s', R_{t+1}=r \mid S_t=s, A_t=a\}$$
 
 **马尔可夫决策过程的状态转移不仅取决于上一个状态，还受到执行动作的影响。**
 
-马尔可夫决策过程与马尔可夫链：马尔可夫决策过程具有主动性，决策者可以通过采取行动来影响**系统状态的转移**；马尔可夫链则是被动的，系统状态的转移不受决策者控制。马尔可夫决策过程适用于需要选择策略以优化长期回报的场景，马尔可夫链则适用于建模**不包含决策过程**的系统状态转移
+马尔可夫决策过程与马尔可夫链：马尔可夫决策过程具有主动性，决策者可以通过采取行动来影响**系统状态的转移**；马尔可夫链则是被动的，系统状态的转移不受决策者控制。马尔可夫决策过程适用于需要选择策略以优化长期回报的场景，马尔可夫链则适用于建模**不包含决策过程**的系统状态转移。
 
 # 价值函数与贝尔曼方程
 
-在强化学习中，智能体通过与环境持续交互以**最大化回报（上面说的是最大化累计奖励）**，而**价值函数（Value Function）**为智能体评估**不同状态或动作的未来回报提供支持**。
+在强化学习中，智能体通过与环境持续交互以**最大化回报（上面说的是最大化累计奖励）**，而**价值函数**（Value Function）为智能体评估**不同状态或动作的未来回报提供支持**。
 
 在强化学习中，智能体优化的目标是回报，而非**单一时间步的奖励** $R$，回报反映的是**长期收益**，需要正确区分。计算折扣回报时通常引入折扣因子 $\gamma$ 对未来奖励加权。
 
@@ -202,7 +202,7 @@ $$P(s', r \mid s, a) = \Pr\{S_{t+1}=s', R_{t+1}=r \mid S_t=s, A_t=a\}$$
 
 <div style="text-align:center">
 
-$$G_t = R_{t+1} + R_{t+2} + \cdots + R_n$$
+$$G_t = R_{t+1} + R_{t+2} + \cdots + R_n \qquad (4)$$
 
 </div>
 
@@ -221,7 +221,7 @@ $$G_t = R_{t+1} + R_{t+2} + \cdots + R_n$$
 
 <div style="text-align:center">
 
-$$G_t = r_{t+1} + \gamma r_{t+2} + \gamma^2 r_{t+3} + \cdots = \sum_{k=0}^{\infty} \gamma^k r_{t+k+1}$$
+$$G_t = r_{t+1} + \gamma r_{t+2} + \gamma^2 r_{t+3} + \cdots = \sum_{k=0}^{\infty} \gamma^k r_{t+k+1} \qquad (5)$$
 
 </div>
 
@@ -237,7 +237,7 @@ $G_t$ 可以写成迭代的形式：
 
 <div style="text-align:center">
 
-$$G_t = r_{t+1} + \gamma r_{t+2} + \gamma^2 r_{t+3} + \cdots = r_{t+1} + \gamma G_{t+1}$$
+$$G_t = r_{t+1} + \gamma r_{t+2} + \gamma^2 r_{t+3} + \cdots = r_{t+1} + \gamma G_{t+1} \qquad (6)$$
 
 </div>
 
@@ -255,7 +255,7 @@ $$G_t = r_{t+1} + \gamma r_{t+2} + \gamma^2 r_{t+3} + \cdots = r_{t+1} + \gamma 
 
 <div style="text-align:center">
 
-$$Q_\pi(s,a) = \mathbb{E}_{\pi}[G_t \mid S_t=s,A_t=a] = \mathbb{E}_{\pi}\big[\sum_{k=0}^{\infty}\gamma^k r_{t+k+1} \mid S_t=s,A_t=a\big] = \mathbb{E}_{\pi}\big[r_{t+1} + \gamma r_{t+2} + \cdots + \gamma^k r_{t+k+1} \mid S_t=s,A_t=a\big]$$
+$$Q_\pi(s,a) = \mathbb{E}_{\pi}[G_t \mid S_t=s,A_t=a] = \mathbb{E}_{\pi}\big[\sum_{k=0}^{\infty}\gamma^k r_{t+k+1} \mid S_t=s,A_t=a\big] = \mathbb{E}_{\pi}\big[r_{t+1} + \gamma r_{t+2} + \cdots + \gamma^k r_{t+k+1} \mid S_t=s,A_t=a\big] \qquad (7)$$
 
 </div>
 
@@ -268,7 +268,7 @@ $$Q_\pi(s,a) = \mathbb{E}_{\pi}[G_t \mid S_t=s,A_t=a] = \mathbb{E}_{\pi}\big[\su
 
 <div style="text-align:center">
 
-$$V_\pi(s) = \mathbb{E}_{\pi}[G_t \mid S_t=s] = \mathbb{E}_{\pi}\big[\sum_{k=0}^{\infty}\gamma^k r_{t+k+1} \mid S_t=s\big]$$
+$$V_\pi(s) = \mathbb{E}_{\pi}[G_t \mid S_t=s] = \mathbb{E}_{\pi}\big[\sum_{k=0}^{\infty}\gamma^k r_{t+k+1} \mid S_t=s\big] \qquad (8)$$
 
 </div>
 
@@ -285,7 +285,7 @@ $$V_\pi(s) = \mathbb{E}_{\pi}[G_t \mid S_t=s] = \mathbb{E}_{\pi}\big[\sum_{k=0}^
 
 <div style="text-align:center">
 
-$$V_*(s) = \max_\pi V_\pi(s)$$
+$$V_*(s) = \max_\pi V_\pi(s) \qquad (9)$$
 
 </div>
 
@@ -295,7 +295,7 @@ $$V_*(s) = \max_\pi V_\pi(s)$$
 
 <div style="text-align:center">
 
-$$Q_*(s,a) = \max_\pi Q_\pi(s,a)$$
+$$Q_*(s,a) = \max_\pi Q_\pi(s,a) \qquad (10)$$
 
 </div>
 
@@ -316,7 +316,7 @@ $$Q_*(s,a) = \max_\pi Q_\pi(s,a)$$
 
 <div style="text-align:center">
 
-$$V_\pi(s) = \sum_a \pi(a\mid s) \sum_{s',r} p(s',r\mid s,a)\,[r+\gamma V_\pi(s')]$$
+$$V_\pi(s) = \sum_a \pi(a\mid s) \sum_{s',r} p(s',r\mid s,a)\,[r+\gamma V_\pi(s')] \qquad (11)$$
 
 </div>
 
@@ -339,7 +339,7 @@ $$V_\pi(s) = \sum_a \pi(a\mid s) \sum_{s',r} p(s',r\mid s,a)\,[r+\gamma V_\pi(s'
 
 <div style="text-align:center">
 
-$$Q_\pi(s,a) = \sum_{s',r} p(s',r\mid s,a)\, [r + \gamma \sum_{a'}\pi(a'\mid s')\,Q_\pi(s',a')]$$
+$$Q_\pi(s,a) = \sum_{s',r} p(s',r\mid s,a)\, [r + \gamma \sum_{a'}\pi(a'\mid s')\,Q_\pi(s',a')] \qquad (12)$$
 
 </div>
 
@@ -349,7 +349,7 @@ $$Q_\pi(s,a) = \sum_{s',r} p(s',r\mid s,a)\, [r + \gamma \sum_{a'}\pi(a'\mid s')
 
 <div style="text-align:center">
 
-$$V_*(s) = \max_a \sum_{s',r} p(s',r\mid s,a)\,[r+\gamma V_*(s')]$$
+$$V_*(s) = \max_a \sum_{s',r} p(s',r\mid s,a)\,[r+\gamma V_*(s')] \qquad (13)$$
 
 </div>
 
@@ -358,7 +358,7 @@ $$V_*(s) = \max_a \sum_{s',r} p(s',r\mid s,a)\,[r+\gamma V_*(s')]$$
 
 <div style="text-align:center">
 
-$$Q_*(s,a) = \sum_{s',r} p(s',r\mid s,a)\big[r + \gamma \max_{a'} Q_*(s',a')\big]$$
+$$Q_*(s,a) = \sum_{s',r} p(s',r\mid s,a)\big[r + \gamma \max_{a'} Q_*(s',a')\big] \qquad (14)$$
 
 </div>
 
@@ -372,7 +372,7 @@ $$Q_*(s,a) = \sum_{s',r} p(s',r\mid s,a)\big[r + \gamma \max_{a'} Q_*(s',a')\big
 
 <div style="text-align:center">
 
-$$V_\pi(s) = \sum_a \pi(a\mid s)\, Q_\pi(s,a)$$
+$$V_\pi(s) = \sum_a \pi(a\mid s)\, Q_\pi(s,a) \qquad (15)$$
 
 </div>
 
@@ -384,7 +384,7 @@ $$V_\pi(s) = \sum_a \pi(a\mid s)\, Q_\pi(s,a)$$
 
 <div style="text-align:center">
 
-$$Q_\pi(s,a) = \sum_{s',r} p(s',r\mid s,a)\, [r + \gamma V_\pi(s')]$$
+$$Q_\pi(s,a) = \sum_{s',r} p(s',r\mid s,a)\, [r + \gamma V_\pi(s')] \qquad (16)$$
 
 </div>
 
@@ -493,7 +493,7 @@ TD 方法的核心思想是利用当前的价值估计来更新价值函数，�
 
 <div style="text-align:center">
 
-$$V(s_t) \leftarrow V(s_t) + \alpha[r_{t+1} + \gamma V(s_{t+1}) - V(s_t)]$$
+$$V(s_t) \leftarrow V(s_t) + \alpha[r_{t+1} + \gamma V(s_{t+1}) - V(s_t)] \qquad (17)$$
 
 </div>
 
@@ -532,14 +532,14 @@ TD 误差衡量了当前价值估计与 TD 目标之间的差异，它反映了�
 
 <div style="text-align:center">
 
-$$G_t^{(n)} = r_{t+1} + \gamma r_{t+2} + \cdots + \gamma^{n-1} r_{t+n} + \gamma^n V(s_{t+n})$$
+$$G_t^{(n)} = r_{t+1} + \gamma r_{t+2} + \cdots + \gamma^{n-1} r_{t+n} + \gamma^n V(s_{t+n}) \qquad (18)$$
 
 </div>
 
 
 <div style="text-align:center">
 
-$$V(s_t) \leftarrow V(s_t) + \alpha\big[G_t^{(n)} - V(s_t)\big]$$
+$$V(s_t) \leftarrow V(s_t) + \alpha\big[G_t^{(n)} - V(s_t)\big] \qquad (19)$$
 
 </div>
 
@@ -551,7 +551,7 @@ TD（lambda）是以一种更优雅的方式结合 DP 和蒙特卡洛方法，�
 
 <div style="text-align:center">
 
-$$V(s_t) \leftarrow V(s_t) + \alpha[G_t^\lambda - V(s_t)]$$
+$$V(s_t) \leftarrow V(s_t) + \alpha[G_t^\lambda - V(s_t)] \qquad (20)$$
 
 </div>
 
@@ -559,7 +559,7 @@ $$V(s_t) \leftarrow V(s_t) + \alpha[G_t^\lambda - V(s_t)]$$
 
 <div style="text-align:center">
 
-$$G_t^\lambda = (1-\lambda) \sum_{n=1}^{T-t-1} G_{t:t+n} + \lambda^{T-t-1} G_t$$
+$$G_t^\lambda = (1-\lambda) \sum_{n=1}^{T-t-1} G_{t:t+n} + \lambda^{T-t-1} G_t \qquad (21)$$
 
 </div>
 
@@ -729,7 +729,7 @@ DQN 的训练与传统的 Q-learning 算法类似，目标都是学习最优动�
 
 <div style="text-align:center">
 
-$$\text{loss} = (Q_{\text{target}} - Q_{\text{pred}})^2 = (y_t - Q(s_t,a_t;\theta))^2$$
+$$\text{loss} = (Q_{\text{target}} - Q_{\text{pred}})^2 = (y_t - Q(s_t,a_t;\theta))^2 \qquad (22)$$
 
 </div>
 
@@ -737,7 +737,7 @@ $$\text{loss} = (Q_{\text{target}} - Q_{\text{pred}})^2 = (y_t - Q(s_t,a_t;\thet
 
 <div style="text-align:center">
 
-$$\text{loss} = (Q_{\text{target}} - Q_{\text{pred}})^2 = (r_{t+1} + \gamma \max_{a'} Q(s_{t+1},a';\theta) - Q(s_t,a_t;\theta))^2$$
+$$\text{loss} = (Q_{\text{target}} - Q_{\text{pred}})^2 = (r_{t+1} + \gamma \max_{a'} Q(s_{t+1},a';\theta) - Q(s_t,a_t;\theta))^2 \qquad (23)$$
 
 </div>
 

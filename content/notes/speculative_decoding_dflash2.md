@@ -45,7 +45,7 @@ DFlash 并行、独立地预测每个位置，单个预测单独看都合理，�
 
 <div style="text-align:center">
 
-$$S_t(a,b) = U_t(b) + \langle A(a) \odot H(h_t), B(b) \rangle.$$
+$$S_t(a,b) = U_t(b) + \langle A(a) \odot H(h_t), B(b) \rangle. \qquad (1)$$
 
 </div>
 
@@ -106,7 +106,7 @@ DFlash 的 attention 已经指明了修复方向。它干两件事：读**块之
 
 <div style="text-align:center">
 
-$$\operatorname{Conv}_k(x)_t = k_{t,0} \odot x_t + k_{t,1} \odot x_{t-1}.$$
+$$\operatorname{Conv}_k(x)_t = k_{t,0} \odot x_t + k_{t,1} \odot x_{t-1}. \qquad (2)$$
 
 </div>
 

@@ -36,7 +36,7 @@ GAN 的缺陷：训练不稳定，容易受噪声影响。
 
 <div style="text-align:center">
 
-$$q(x_t \mid x_{t-1}) = \mathcal{N}(x_t; \sqrt{1-\beta_t}\, x_{t-1}, \beta_t I)$$
+$$q(x_t \mid x_{t-1}) = \mathcal{N}(x_t; \sqrt{1-\beta_t}\, x_{t-1}, \beta_t I) \qquad (1)$$
 
 </div>
 
@@ -50,7 +50,7 @@ $$q(x_t \mid x_{t-1}) = \mathcal{N}(x_t; \sqrt{1-\beta_t}\, x_{t-1}, \beta_t I)$
 
 <div style="text-align:center">
 
-$$z = u_\theta + \sigma_\theta \odot \epsilon$$
+$$z = u_\theta + \sigma_\theta \odot \epsilon \qquad (2)$$
 
 </div>
 
@@ -62,7 +62,7 @@ $$z = u_\theta + \sigma_\theta \odot \epsilon$$
 
 <div style="text-align:center">
 
-$$x_t = \sqrt{\bar{\alpha}_t}\, x_0 + \sqrt{1-\bar{\alpha}_t}\, z_t, \qquad z_t \sim \mathcal{N}(0, I)$$
+$$x_t = \sqrt{\bar{\alpha}_t}\, x_0 + \sqrt{1-\bar{\alpha}_t}\, z_t, \qquad z_t \sim \mathcal{N}(0, I) \qquad (3)$$
 
 </div>
 
@@ -74,7 +74,7 @@ $$x_t = \sqrt{\bar{\alpha}_t}\, x_0 + \sqrt{1-\bar{\alpha}_t}\, z_t, \qquad z_t 
 
 <div style="text-align:center">
 
-$$p_\theta(x_{t-1} \mid x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \Sigma_\theta(x_t, t))$$
+$$p_\theta(x_{t-1} \mid x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \Sigma_\theta(x_t, t)) \qquad (4)$$
 
 </div>
 
@@ -86,7 +86,7 @@ $$p_\theta(x_{t-1} \mid x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \Sigma_\
 
 <div style="text-align:center">
 
-$$q(x_{t-1} \mid x_t, x_0) = \mathcal{N}(x_{t-1}; \tilde{\mu}_t(x_t, x_0), \tilde{\beta}_t I)$$
+$$q(x_{t-1} \mid x_t, x_0) = \mathcal{N}(x_{t-1}; \tilde{\mu}_t(x_t, x_0), \tilde{\beta}_t I) \qquad (5)$$
 
 </div>
 
@@ -94,7 +94,7 @@ $$q(x_{t-1} \mid x_t, x_0) = \mathcal{N}(x_{t-1}; \tilde{\mu}_t(x_t, x_0), \tild
 
 <div style="text-align:center">
 
-$$\tilde{\mu}_t(x_t, x_0) = \frac{\sqrt{\alpha_{t-1}}(1-\alpha_t)}{1-\bar{\alpha}_t} x_0 + \frac{\sqrt{\alpha_t}(1-\alpha_{t-1})}{1-\bar{\alpha}_t} x_t, \qquad \tilde{\beta}_t = \frac{1-\bar{\alpha}_{t-1}}{1-\bar{\alpha}_t} \beta_t$$
+$$\tilde{\mu}_t(x_t, x_0) = \frac{\sqrt{\alpha_{t-1}}(1-\alpha_t)}{1-\bar{\alpha}_t} x_0 + \frac{\sqrt{\alpha_t}(1-\alpha_{t-1})}{1-\bar{\alpha}_t} x_t, \qquad \tilde{\beta}_t = \frac{1-\bar{\alpha}_{t-1}}{1-\bar{\alpha}_t} \beta_t \qquad (6)$$
 
 </div>
 
@@ -102,7 +102,7 @@ $$\tilde{\mu}_t(x_t, x_0) = \frac{\sqrt{\alpha_{t-1}}(1-\alpha_t)}{1-\bar{\alpha
 
 <div style="text-align:center">
 
-$$\mu_\theta(x_t, t) = \frac{1}{\sqrt{\alpha_t}}\left(x_t - \frac{\beta_t}{\sqrt{1-\bar{\alpha}_t}} z_\theta(x_t, t)\right)$$
+$$\mu_\theta(x_t, t) = \frac{1}{\sqrt{\alpha_t}}\left(x_t - \frac{\beta_t}{\sqrt{1-\bar{\alpha}_t}} z_\theta(x_t, t)\right) \qquad (7)$$
 
 </div>
 
@@ -110,7 +110,7 @@ $$\mu_\theta(x_t, t) = \frac{1}{\sqrt{\alpha_t}}\left(x_t - \frac{\beta_t}{\sqrt
 
 <div style="text-align:center">
 
-$$x_{t-1} = \mu_\theta(x_t, t) + \sigma_\theta(x_t, t)\, z, \qquad z \sim \mathcal{N}(0, I)$$
+$$x_{t-1} = \mu_\theta(x_t, t) + \sigma_\theta(x_t, t)\, z, \qquad z \sim \mathcal{N}(0, I) \qquad (8)$$
 
 </div>
 
@@ -144,7 +144,7 @@ flowchart LR
 
 <div style="text-align:center">
 
-$$L = \mathbb{E}_{x_0, t, \epsilon}\left[\left\|\epsilon - \epsilon_\theta\left(\sqrt{\bar{\alpha}_t}\, x_0 + \sqrt{1-\bar{\alpha}_t}\, \epsilon,\ t\right)\right\|^2\right]$$
+$$L = \mathbb{E}_{x_0, t, \epsilon}\left[\left\|\epsilon - \epsilon_\theta\left(\sqrt{\bar{\alpha}_t}\, x_0 + \sqrt{1-\bar{\alpha}_t}\, \epsilon,\ t\right)\right\|^2\right] \qquad (9)$$
 
 </div>
 
@@ -179,9 +179,9 @@ $$L = \mathbb{E}_{x_0, t, \epsilon}\left[\left\|\epsilon - \epsilon_\theta\left(
 
 ## 为什么 DDPM 需要 1000 个 step
 
-ODE（常微分方程）：没有随机性，系统的变化是完全确定的
+ODE（常微分方程）：没有随机性，系统的变化是完全确定的。
 
-SDE（随机微分方程）：在 ODE 的基础上加上随机噪声
+SDE（随机微分方程）：在 ODE 的基础上加上随机噪声。
 
 * 从建模角度看，DDPM 是离散化的 SDE，步数越多对连续过程的近似越好
 * 前向过程是一个马尔可夫链，通过逐步加入小噪声将数据分布推向标准高斯
@@ -202,7 +202,7 @@ DDIM 的主要思路：
 
 <div style="text-align:center">
 
-$$\sigma_t^2 = \beta_t, \qquad \sigma_t^2 = \tilde{\beta}_t = \frac{1-\bar{\alpha}_{t-1}}{1-\bar{\alpha}_t}\beta_t \quad \text{(DDPM)}; \qquad \sigma_t(\eta)^2 = \eta\, \beta_t \quad \text{(DDIM)}$$
+$$\sigma_t^2 = \beta_t, \qquad \sigma_t^2 = \tilde{\beta}_t = \frac{1-\bar{\alpha}_{t-1}}{1-\bar{\alpha}_t}\beta_t \quad \text{(DDPM)}; \qquad \sigma_t(\eta)^2 = \eta\, \beta_t \quad \text{(DDIM)} \qquad (10)$$
 
 </div>
 
@@ -220,7 +220,7 @@ DDIM：近似 ODE
 
 <div style="text-align:center">
 
-$$x_{t-1} = \sqrt{\bar{\alpha}_{t-1}}\, \hat{x}_0 + \sqrt{1-\bar{\alpha}_{t-1}}\left(\eta z + \sqrt{1-\eta^2}\, \epsilon_\theta(x_t, t)\right), \qquad z \sim \mathcal{N}(0, I)$$
+$$x_{t-1} = \sqrt{\bar{\alpha}_{t-1}}\, \hat{x}_0 + \sqrt{1-\bar{\alpha}_{t-1}}\left(\eta z + \sqrt{1-\eta^2}\, \epsilon_\theta(x_t, t)\right), \qquad z \sim \mathcal{N}(0, I) \qquad (11)$$
 
 </div>
 
@@ -229,11 +229,11 @@ $$x_{t-1} = \sqrt{\bar{\alpha}_{t-1}}\, \hat{x}_0 + \sqrt{1-\bar{\alpha}_{t-1}}\
 
 第二项是随机部分：$\sqrt{1-\bar{\alpha}_{t-1}}\left(\eta z + \sqrt{1-\eta^2}\, \epsilon_\theta(x_t, t)\right)$
 
-$\hat{x}_0$ 是模型估计出的干净图像，但并不是模型直接预测的，而是通过模型预测的噪声反推出来的
+$\hat{x}_0$ 是模型估计出的干净图像，但并不是模型直接预测的，而是通过模型预测的噪声反推出来的。
 
 <div style="text-align:center">
 
-$$\hat{x}_0 = \frac{x_t - \sqrt{1-\bar{\alpha}_t}\, \epsilon_\theta(x_t, t)}{\sqrt{\bar{\alpha}_t}}$$
+$$\hat{x}_0 = \frac{x_t - \sqrt{1-\bar{\alpha}_t}\, \epsilon_\theta(x_t, t)}{\sqrt{\bar{\alpha}_t}} \qquad (12)$$
 
 </div>
 
@@ -391,7 +391,7 @@ t = x_t.new_ones([x_T.shape[0], ], dtype=torch.long) * time_step
 
 <div style="text-align:center">
 
-$$mean = c_1[t] \cdot x_t - c_2[t] \cdot \mathrm{eps}$$
+$$mean = c_1[t] \cdot x_t - c_2[t] \cdot \mathrm{eps} \qquad (13)$$
 
 </div>
 
@@ -399,7 +399,7 @@ $$mean = c_1[t] \cdot x_t - c_2[t] \cdot \mathrm{eps}$$
 
 <div style="text-align:center">
 
-$$\mathrm{eps} = model(x_t, t)$$
+$$\mathrm{eps} = model(x_t, t) \qquad (14)$$
 
 </div>
 
@@ -407,7 +407,7 @@ $$\mathrm{eps} = model(x_t, t)$$
 
 <div style="text-align:center">
 
-$$x_t = mean + \sqrt{var} \cdot noise$$
+$$x_t = mean + \sqrt{var} \cdot noise \qquad (15)$$
 
 </div>
 
@@ -493,7 +493,7 @@ if np.random.rand() < 0.1: #掩盖掉一部分
 
 <div style="text-align:center">
 
-$$mean = c_1[t] \cdot x_t - c_2[t] \cdot \mathrm{eps}$$
+$$mean = c_1[t] \cdot x_t - c_2[t] \cdot \mathrm{eps} \qquad (16)$$
 
 </div>
 

@@ -15,8 +15,8 @@ summary: "slime MoE 训推不一致处理：路由决策与专家计算两类不
 
 MoE 计算过程包括两个阶段：
 
-1. **Dispatch：**Router 算出每个 token 要去往哪个专家；把 token 发送到该专家所在 rank
-2. **Combine：**专家计算完成，把 token 输出发回 token 原始所在 rank，恢复原来的 batch 排布
+1. **Dispatch**：Router 算出每个 token 要去往哪个专家；把 token 发送到该专家所在 rank
+2. **Combine**：专家计算完成，把 token 输出发回 token 原始所在 rank，恢复原来的 batch 排布
 
 为了缓解专家负载均衡，通常会采用 top-k 策略：
 
@@ -146,19 +146,19 @@ RoutingReplay.all_routing_replays.append(self) # all_routing_replays 是全局�
 
 * `assert_all_consumed`
 
-assert 检测：防止 PP/VP 切分错位导致路由索引没被消费
+assert 检测：防止 PP/VP 切分错位导致路由索引没被消费。
 
 * `pop_forward`
 
-取出第 `forward_index` 份索引，`forward_index += 1`，转 int32 搬到 GPU
+取出第 `forward_index` 份索引，`forward_index += 1`，转 int32 搬到 GPU。
 
 * `pop_backward`
 
-取出第 `backward_index` 份索引，`backward_index += 1`，转 int32 搬到 GPU
+取出第 `backward_index` 份索引，`backward_index += 1`，转 int32 搬到 GPU。
 
 * `clear`、`clear_forward`
 
-复位本层 `forward_index`、`backward_index`、`top_indices_list`，供下一轮 rollout 重用
+复位本层 `forward_index`、`backward_index`、`top_indices_list`，供下一轮 rollout 重用。
 
 * `clear_all`、`clear_all_forward`
 

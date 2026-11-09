@@ -630,8 +630,8 @@ samples.append(
 
 两者的关键差异在于：
 
-* 预训练基于**干净条件（clean conditioning）**的前向过程；
-* DDPO 基于**带噪条件（noisy conditioning）**的反向离散化过程。
+* 预训练基于**干净条件**（clean conditioning）的前向过程；
+* DDPO 基于**带噪条件**（noisy conditioning）的反向离散化过程。
 
 论文证明了 DDPO 实际上是一种**带有噪声目标**的隐式得分/流匹配形式，这会导致方差增加并减缓收敛速度。
 

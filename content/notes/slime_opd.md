@@ -20,7 +20,7 @@ KL 散度（Kullback-Leibler Divergence），又称相对熵，是用来衡量�
 
 <div style="text-align:center">
 
-$$D_{KL}(p \parallel q_\theta) = -\mathbb{E}_{x \sim p}\left[\log q_\theta(x)\right] - H(p)$$
+$$D_{KL}(p \parallel q_\theta) = -\mathbb{E}_{x \sim p}\left[\log q_\theta(x)\right] - H(p) \qquad (1)$$
 
 </div>
 
@@ -43,7 +43,7 @@ $$D_{KL}(p \parallel q_\theta) = -\mathbb{E}_{x \sim p}\left[\log q_\theta(x)\ri
 
 <div style="text-align:center">
 
-$$D_{KL}(q_\theta \parallel p) = -\mathbb{E}_{x \sim q_\theta}\left[\log p\right] - H(q_\theta)$$
+$$D_{KL}(q_\theta \parallel p) = -\mathbb{E}_{x \sim q_\theta}\left[\log p\right] - H(q_\theta) \qquad (2)$$
 
 </div>
 
@@ -79,7 +79,7 @@ $$D_{KL}(q_\theta \parallel p) = -\mathbb{E}_{x \sim q_\theta}\left[\log p\right
 
 <div style="text-align:center">
 
-$$L_{SD}(\theta) = \mathbb{E}_{(x,y) \sim D}\left[D_{KL}\left(P_T(\cdot \mid y_{&lt;n}, x) \parallel P_S^\theta(\cdot \mid y_{&lt;n}, x)\right)\right]$$
+$$L_{SD}(\theta) = \mathbb{E}_{(x,y) \sim D}\left[D_{KL}\left(P_T(\cdot \mid y_{&lt;n}, x) \parallel P_S^\theta(\cdot \mid y_{&lt;n}, x)\right)\right] \qquad (3)$$
 
 </div>
 
@@ -122,7 +122,7 @@ OPD 比较的不是最终生成的 token，而是两个模型对整个词表的�
 
 <div style="text-align:center">
 
-$$L_{opd} = \sum_{t=1}^{T} D_{KL}\left(p_T(\cdot \mid x, y_{&lt;t}) \parallel p_S(\cdot \mid x, y_{&lt;t})\right)$$
+$$L_{opd} = \sum_{t=1}^{T} D_{KL}\left(p_T(\cdot \mid x, y_{&lt;t}) \parallel p_S(\cdot \mid x, y_{&lt;t})\right) \qquad (4)$$
 
 </div>
 
@@ -170,7 +170,7 @@ OPD 让 student 在自身当前策略采样出的 response token 上进行训练
 $$D_{\mathrm{KL}}\left(\pi_\theta(\cdot \mid h_t) \parallel \pi_T(\cdot \mid h_t)\right)
 = \mathbb{E}_{a_t \sim \pi_\theta(\cdot \mid h_t)}\left[
 \log \pi_\theta(a_t \mid h_t) - \log \pi_T(a_t \mid h_t)
-\right].$$
+\right]. \qquad (5)$$
 
 </div>
 
@@ -181,7 +181,7 @@ slime 不会枚举整个词表来计算这个期望。对每个采样到的 toke
 <div style="text-align:center">
 
 $$\hat d_t = \log \pi_\theta(a_t \mid h_t) - \log \pi_T(a_t \mid h_t),
-\qquad a_t \sim \pi_\theta(\cdot \mid h_t),$$
+\qquad a_t \sim \pi_\theta(\cdot \mid h_t), \qquad (6)$$
 
 </div>
 
@@ -189,7 +189,7 @@ $$\hat d_t = \log \pi_\theta(a_t \mid h_t) - \log \pi_T(a_t \mid h_t),
 
 <div style="text-align:center">
 
-$$\hat A_t = A_t - \lambda_{\mathrm{opd}}\hat d_t.$$
+$$\hat A_t = A_t - \lambda_{\mathrm{opd}}\hat d_t. \qquad (7)$$
 
 </div>
 
@@ -251,12 +251,12 @@ teacher 模型通过 `--opd-teacher-load` 直接加载进 Megatron，teacher log
 ### SGLang Teacher
 
 ```bash
-# 1. 下载模型与数据
+# 下载模型与数据
 hf download Qwen/Qwen3-32B --local-dir /root/Qwen3-32B
 hf download Qwen/Qwen3-8B --local-dir /root/Qwen3-8B
 hf download --repo-type dataset zhuzilin/dapo-math-17k --local-dir /root/dapo-math-17k
 
-# 2. 转换 student 模型
+# 转换 student 模型
 cd /root/slime
 source scripts/models/qwen3-8B.sh
 PYTHONPATH=/root/Megatron-LM python tools/convert_hf_to_torch_dist.py \
@@ -264,15 +264,15 @@ PYTHONPATH=/root/Megatron-LM python tools/convert_hf_to_torch_dist.py \
     --hf-checkpoint /root/Qwen3-8B \
     --save /root/Qwen3-8B_torch_dist
 
-# 3. 运行
+# 运行
 bash examples/on_policy_distillation/run-qwen3-8B-opd.sh
 ```
 
 ### Megatron Teacher
 
 ```bash
-# 1. 将 student 与 teacher 模型都转换为 Megatron 格式
-# 2. 运行
+# 将 student 与 teacher 模型都转换为 Megatron 格式
+# 运行
 bash examples/on_policy_distillation/run-qwen3-8B-opd-megatron.sh
 ```
 
@@ -308,7 +308,7 @@ SGLang 返回的“输入序列每个 token 的 log-prob”列表，每个元素
 
 OPD 只在 student 自己生成的 response 上做 KL 惩罚，prompt 段的 log-prob 不能用。用 `[-response_length:]` 从尾部截取正好等于 response 长度的那段。
 
-**两个函数的调用：**通过命令行指定
+**两个函数的调用**：通过命令行指定
 
 ```shell
 --custom-rm-path slime.rollout.on_policy_distillation.reward_func

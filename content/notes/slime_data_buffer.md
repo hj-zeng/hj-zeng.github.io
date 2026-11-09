@@ -66,7 +66,7 @@ self.dataset = Dataset(
 1. 如果当前 dataset 有足够的数据，则直接获取，并确定好 sample_offset
 2. 如果当前 dataset 数据不够了，则获取下一个 epoch 的数据，并把 epoch_id + 1
 
-最后展开成 group 是因为 GRPO 需要 n_samples_per_prompt 个数据，展开过程会给每一个数据标记 sample_index
+最后展开成 group 是因为 GRPO 需要 n_samples_per_prompt 个数据，展开过程会给每一个数据标记 sample_index。
 
 上面的 epoch_id 是为了确保可复现性，`Dataset.shuffle` 的种子是 `seed + new_epoch_id` 且总是从 `origin_samples` 重排，所以给定 epoch_id 顺序可复现，这也是 `load` 只存 `epoch_id` 就能恢复顺序的原因。
 
@@ -82,7 +82,7 @@ self.sample_offset = num_samples
 
 * **save & load**
 
-save 为保存数据，逻辑如下，对应的 load 为读取数据
+save 为保存数据，逻辑如下，对应的 load 为读取数据。
 
 ```python
 state_dict = {
@@ -103,7 +103,7 @@ path = os.path.join(self.args.save, f"rollout/global_dataset_state_dict_{rollout
 
 * **get_samples**
 
-逻辑是先从 buffer 里获取，dataset（父类 RolloutDataSource 的 get_samples）作为兜底方案
+逻辑是先从 buffer 里获取，dataset（父类 RolloutDataSource 的 get_samples）作为兜底方案。
 
 ```python
 samples = self._get_samples_from_buffer(num_samples)
@@ -116,7 +116,7 @@ samples += super().get_samples(num_samples=num_samples)
 
 * **_get_samples_from_buffer**
 
-调用 buffer_filter 方法从 buffer 中获取数据
+调用 buffer_filter 方法从 buffer 中获取数据。
 
 ```python
 samples = self.buffer_filter(self.args, None, self.buffer, num_samples)
@@ -134,7 +134,7 @@ def pop_first(args, rollout_id, buffer: list[list[Sample]], num_samples: int) ->
 
 * **add_samples**
 
-覆盖了父类 add_samples 方法（父类没有实现）
+覆盖了父类 add_samples 方法（父类没有实现）。
 
 ```python
 for i in range(0, len(samples)):
@@ -200,9 +200,9 @@ if self.args.custom_convert_samples_to_train_data_path is not None:
     2. state.submit_generate_tasks 提交生成任务
     3. 等待生成完成
 
-```python
-done, state.pendings = await asyncio.wait(state.pendings, return_when=asyncio.FIRST_COMPLETED)
-```
+    ```python
+    done, state.pendings = await asyncio.wait(state.pendings, return_when=asyncio.FIRST_COMPLETED)
+    ```
 
     4. 循环已经完成的任务，添加到 data list
 
@@ -221,7 +221,7 @@ done, state.pendings = await asyncio.wait(state.pendings, return_when=asyncio.FI
 
 * **数据返回**
 
-generate_rollout_async 返回的是 RolloutFnTrainOutput 和 aborted_samples（list[list[Sample]]，对应被 abort 的样本）；后者添加到 data_source，下次 get_samples 优先从 abort 的样本中取
+generate_rollout_async 返回的是 RolloutFnTrainOutput 和 aborted_samples（list[list[Sample]]，对应被 abort 的样本）；后者添加到 data_source，下次 get_samples 优先从 abort 的样本中取。
 
 RolloutFnTrainOutput 类型里包含了 `list[list[Sample]]` 的类型：
 
@@ -231,7 +231,7 @@ class RolloutFnTrainOutput:
     metrics: dict[str, Any] = None
 ```
 
-这也是生成后由 **_convert_samples_to_train_data / _split_train_data_by_dp** 处理的 data 的数据类型
+这也是生成后由 **_convert_samples_to_train_data / _split_train_data_by_dp** 处理的 data 的数据类型。
 
 ### RolloutManager sglang 产生数据后的后处理
 

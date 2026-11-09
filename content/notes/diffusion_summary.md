@@ -31,7 +31,7 @@ summary: "扩散模型总结：SDE 建模与三种预测模型（噪声 / score 
 
 <div style="text-align:center">
 
-$$dx = f(x, t)\,dt + g(t)\,dw_t$$
+$$dx = f(x, t)\,dt + g(t)\,dw_t \qquad (1)$$
 
 </div>
 
@@ -59,7 +59,7 @@ $$dx = f(x, t)\,dt + g(t)\,dw_t$$
 
 <div style="text-align:center">
 
-$$dx = \left[f(x, t) - g(t)^2\nabla_x \log p_t(x)\right]dt + g(t)\,d\hat{w}_t$$
+$$dx = \left[f(x, t) - g(t)^2\nabla_x \log p_t(x)\right]dt + g(t)\,d\hat{w}_t \qquad (2)$$
 
 </div>
 
@@ -95,7 +95,7 @@ DDPM 的正向扩散可以表示为：
 
 <div style="text-align:center">
 
-$$x_t = \alpha_t x_0 + \sigma_t \epsilon, \qquad \epsilon \sim \mathcal{N}(0, I)$$
+$$x_t = \alpha_t x_0 + \sigma_t \epsilon, \qquad \epsilon \sim \mathcal{N}(0, I) \qquad (3)$$
 
 </div>
 
@@ -140,7 +140,7 @@ Score matching 先学 score，再通过 reverse SDE 间接得到速度场。
 
 <div style="text-align:center">
 
-$$L_{DSM} = \mathbb{E}_{x_0, t, \epsilon}\left[\left\|s_\theta(x_t, t) - \nabla_{x_t} \log p(x_t \mid x_0)\right\|^2\right]$$
+$$L_{DSM} = \mathbb{E}_{x_0, t, \epsilon}\left[\left\|s_\theta(x_t, t) - \nabla_{x_t} \log p(x_t \mid x_0)\right\|^2\right] \qquad (4)$$
 
 </div>
 
@@ -148,7 +148,7 @@ $$L_{DSM} = \mathbb{E}_{x_0, t, \epsilon}\left[\left\|s_\theta(x_t, t) - \nabla_
 
 <div style="text-align:center">
 
-$$\nabla_{x_t} \log p(x_t \mid x_0) = -\frac{x_t - x_0}{\sigma(t)^2} = -\frac{1}{\sigma(t)}\epsilon$$
+$$\nabla_{x_t} \log p(x_t \mid x_0) = -\frac{x_t - x_0}{\sigma(t)^2} = -\frac{1}{\sigma(t)}\epsilon \qquad (5)$$
 
 </div>
 
@@ -156,7 +156,7 @@ $$\nabla_{x_t} \log p(x_t \mid x_0) = -\frac{x_t - x_0}{\sigma(t)^2} = -\frac{1}
 
 <div style="text-align:center">
 
-$$L_{DSM} = \mathbb{E}_{x_0, t, \epsilon}\left[\left\|s_\theta(x_t, t) + \frac{1}{\sigma(t)}\epsilon\right\|^2\right]$$
+$$L_{DSM} = \mathbb{E}_{x_0, t, \epsilon}\left[\left\|s_\theta(x_t, t) + \frac{1}{\sigma(t)}\epsilon\right\|^2\right] \qquad (6)$$
 
 </div>
 
@@ -170,7 +170,7 @@ $$L_{DSM} = \mathbb{E}_{x_0, t, \epsilon}\left[\left\|s_\theta(x_t, t) + \frac{1
 
 <div style="text-align:center">
 
-$$L_{FM} = \mathbb{E}_{x_t, t}\left[\left\|v_\theta(x_t, t) - v^*(x_t, t)\right\|^2\right]$$
+$$L_{FM} = \mathbb{E}_{x_t, t}\left[\left\|v_\theta(x_t, t) - v^*(x_t, t)\right\|^2\right] \qquad (7)$$
 
 </div>
 
@@ -182,7 +182,7 @@ $$L_{FM} = \mathbb{E}_{x_t, t}\left[\left\|v_\theta(x_t, t) - v^*(x_t, t)\right\
 
 <div style="text-align:center">
 
-$$\frac{dx}{dt} = f(x, t) - \frac{1}{2}g(t)^2\nabla_x \log p_t(x)$$
+$$\frac{dx}{dt} = f(x, t) - \frac{1}{2}g(t)^2\nabla_x \log p_t(x) \qquad (8)$$
 
 </div>
 
@@ -192,7 +192,7 @@ $$\frac{dx}{dt} = f(x, t) - \frac{1}{2}g(t)^2\nabla_x \log p_t(x)$$
 
 <div style="text-align:center">
 
-$$dx = v_\theta(x, t)\,dt = \left(f(x, t) - \frac{1}{2}g(t)^2\nabla_x \log p_t(x)\right)dt$$
+$$dx = v_\theta(x, t)\,dt = \left(f(x, t) - \frac{1}{2}g(t)^2\nabla_x \log p_t(x)\right)dt \qquad (9)$$
 
 </div>
 
@@ -200,7 +200,7 @@ $$dx = v_\theta(x, t)\,dt = \left(f(x, t) - \frac{1}{2}g(t)^2\nabla_x \log p_t(x
 
 <div style="text-align:center">
 
-$$dx = v_\theta(x, t)\,dt + g(t)\,dw'_t = \left(f(x, t) - \frac{1}{2}g(t)^2\nabla_x \log p_t(x)\right)dt + g(t)\,dw'_t$$
+$$dx = v_\theta(x, t)\,dt + g(t)\,dw'_t = \left(f(x, t) - \frac{1}{2}g(t)^2\nabla_x \log p_t(x)\right)dt + g(t)\,dw'_t \qquad (10)$$
 
 </div>
 
@@ -218,7 +218,7 @@ $$dx = v_\theta(x, t)\,dt + g(t)\,dw'_t = \left(f(x, t) - \frac{1}{2}g(t)^2\nabl
 
 <div style="text-align:center">
 
-$$p_\theta(x_{0:T}) = p(x_T)\prod_{i=1}^{T}p(x_{i-1} \mid x_i)$$
+$$p_\theta(x_{0:T}) = p(x_T)\prod_{i=1}^{T}p(x_{i-1} \mid x_i) \qquad (11)$$
 
 </div>
 
@@ -226,7 +226,7 @@ $$p_\theta(x_{0:T}) = p(x_T)\prod_{i=1}^{T}p(x_{i-1} \mid x_i)$$
 
 <div style="text-align:center">
 
-$$p(x_{t-1} \mid x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \Sigma_\theta(x_t, t))$$
+$$p(x_{t-1} \mid x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \Sigma_\theta(x_t, t)) \qquad (12)$$
 
 </div>
 
@@ -234,7 +234,7 @@ $$p(x_{t-1} \mid x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \Sigma_\theta(x
 
 <div style="text-align:center">
 
-$$q(x_{1:T} \mid x_0) = \prod_{i=1}^{T}q(x_i \mid x_{i-1})$$
+$$q(x_{1:T} \mid x_0) = \prod_{i=1}^{T}q(x_i \mid x_{i-1}) \qquad (13)$$
 
 </div>
 
@@ -244,7 +244,7 @@ $$q(x_{1:T} \mid x_0) = \prod_{i=1}^{T}q(x_i \mid x_{i-1})$$
 
 <div style="text-align:center">
 
-$$q(x_t \mid x_{t-1}) = \mathcal{N}(x_t; \sqrt{1-\beta_t}\, x_{t-1}, \beta_t I)$$
+$$q(x_t \mid x_{t-1}) = \mathcal{N}(x_t; \sqrt{1-\beta_t}\, x_{t-1}, \beta_t I) \qquad (14)$$
 
 </div>
 
@@ -252,7 +252,7 @@ $$q(x_t \mid x_{t-1}) = \mathcal{N}(x_t; \sqrt{1-\beta_t}\, x_{t-1}, \beta_t I)$
 
 <div style="text-align:center">
 
-$$q(x_t \mid x_0) = \mathcal{N}(x_t; \sqrt{\bar{\alpha}_t}\, x_0, (1-\bar{\alpha}_t)I)$$
+$$q(x_t \mid x_0) = \mathcal{N}(x_t; \sqrt{\bar{\alpha}_t}\, x_0, (1-\bar{\alpha}_t)I) \qquad (15)$$
 
 </div>
 
@@ -262,7 +262,7 @@ $$q(x_t \mid x_0) = \mathcal{N}(x_t; \sqrt{\bar{\alpha}_t}\, x_0, (1-\bar{\alpha
 
 <div style="text-align:center">
 
-$$p(x_{t-1} \mid x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \sigma_t^2 I)$$
+$$p(x_{t-1} \mid x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \sigma_t^2 I) \qquad (16)$$
 
 </div>
 
@@ -280,7 +280,7 @@ $$p(x_{t-1} \mid x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \sigma_t^2 I)$$
 
 <div style="text-align:center">
 
-$$dx = f(x, t)\,dt + g(t)\,dw_t$$
+$$dx = f(x, t)\,dt + g(t)\,dw_t \qquad (17)$$
 
 </div>
 
@@ -292,27 +292,27 @@ $$dx = f(x, t)\,dt + g(t)\,dw_t$$
 
 <div style="text-align:center">
 
-$$x_t = \alpha(t)x_0 + \sigma(t)\epsilon, \qquad \alpha^2(t) + \sigma^2(t) = 1$$
+$$x_t = \alpha(t)x_0 + \sigma(t)\epsilon, \qquad \alpha^2(t) + \sigma^2(t) = 1 \qquad (18)$$
 
 </div>
 
-**特点：**数据方差不变、噪声逐步"替换"信号
+**特点**：数据方差不变、噪声逐步"替换"信号
 
 **2. 方差爆炸型（VE）**
 
 <div style="text-align:center">
 
-$$x_t = x_0 + \sigma(t)\epsilon, \qquad \alpha(t) = 1$$
+$$x_t = x_0 + \sigma(t)\epsilon, \qquad \alpha(t) = 1 \qquad (19)$$
 
 </div>
 
-**特点：**信号不衰减、噪声随时间爆炸、score 学习更直接
+**特点**：信号不衰减、噪声随时间爆炸、score 学习更直接
 
 **3. 线性扩散模型**
 
 <div style="text-align:center">
 
-$$x_t = (1-t)x_0 + tx_1, \qquad x_0 \sim p_{noise}, x_1 \sim p_{data}$$
+$$x_t = (1-t)x_0 + tx_1, \qquad x_0 \sim p_{noise}, x_1 \sim p_{data} \qquad (20)$$
 
 </div>
 
@@ -320,7 +320,7 @@ $$x_t = (1-t)x_0 + tx_1, \qquad x_0 \sim p_{noise}, x_1 \sim p_{data}$$
 
 <div style="text-align:center">
 
-$$x_t = \cos\left(\frac{1}{2}\pi t\right)x_0 + \sin\left(\frac{1}{2}\pi t\right)\epsilon$$
+$$x_t = \cos\left(\frac{1}{2}\pi t\right)x_0 + \sin\left(\frac{1}{2}\pi t\right)\epsilon \qquad (21)$$
 
 </div>
 
@@ -356,7 +356,7 @@ $$x_t = \cos\left(\frac{1}{2}\pi t\right)x_0 + \sin\left(\frac{1}{2}\pi t\right)
 
 <div style="text-align:center">
 
-$$\log p(x \mid c) = \log p(c \mid x) + \log p(x) - \log p(c)$$
+$$\log p(x \mid c) = \log p(c \mid x) + \log p(x) - \log p(c) \qquad (22)$$
 
 </div>
 
@@ -364,7 +364,7 @@ $$\log p(x \mid c) = \log p(c \mid x) + \log p(x) - \log p(c)$$
 
 <div style="text-align:center">
 
-$$\nabla_x \log p(x \mid c) = \nabla_x \log p(c \mid x) + w\,\nabla_x \log p(x)$$
+$$\nabla_x \log p(x \mid c) = \nabla_x \log p(c \mid x) + w\,\nabla_x \log p(x) \qquad (23)$$
 
 </div>
 
@@ -374,7 +374,7 @@ DDPM 中，每一步的分类器引导采样可以描述为：
 
 <div style="text-align:center">
 
-$$x_{t-1} \sim \mathcal{N}\left(\mu_\theta(x_t, t) + w\,\Sigma_\theta(x_t, t)\nabla_x \log p(x \mid c), \Sigma_\theta\right)$$
+$$x_{t-1} \sim \mathcal{N}\left(\mu_\theta(x_t, t) + w\,\Sigma_\theta(x_t, t)\nabla_x \log p(x \mid c), \Sigma_\theta\right) \qquad (24)$$
 
 </div>
 
@@ -382,7 +382,7 @@ $$x_{t-1} \sim \mathcal{N}\left(\mu_\theta(x_t, t) + w\,\Sigma_\theta(x_t, t)\na
 
 <div style="text-align:center">
 
-$$\mu_\theta(x_t, t) \to \mu_\theta(x_t, t) + w\,\Sigma_\theta(x_t, t)\nabla_x \log p(x \mid c)$$
+$$\mu_\theta(x_t, t) \to \mu_\theta(x_t, t) + w\,\Sigma_\theta(x_t, t)\nabla_x \log p(x \mid c) \qquad (25)$$
 
 </div>
 
@@ -394,7 +394,7 @@ $$\mu_\theta(x_t, t) \to \mu_\theta(x_t, t) + w\,\Sigma_\theta(x_t, t)\nabla_x \
 
 <div style="text-align:center">
 
-$$\log p(c \mid x) = \log p(x \mid c) + \log p(c) - \log p(x)$$
+$$\log p(c \mid x) = \log p(x \mid c) + \log p(c) - \log p(x) \qquad (26)$$
 
 </div>
 
@@ -406,7 +406,7 @@ $$\begin{aligned}
 \nabla_x\left[\log p(x \mid c) + w\,\log p(c \mid x)\right]
 &= \nabla_x\left[\log p(x \mid c) + w\left(\log p(x \mid c) - \log p(x)\right)\right] \\
 &= \nabla_x\left[(1 + w)\log p(x \mid c) - w\,\log p(x)\right]
-\end{aligned}$$
+\end{aligned} \qquad (27)$$
 
 </div>
 
@@ -414,7 +414,7 @@ $$\begin{aligned}
 
 <div style="text-align:center">
 
-$$L(\theta) = (1 - p_{uncond})\mathbb{E}\left[\left\|\epsilon_\theta(x_t, t, c) - \epsilon\right\|^2\right] + p_{uncond}\,\mathbb{E}\left[\left\|\epsilon_\theta(x_t, t, \text{NULL}) - \epsilon\right\|^2\right]$$
+$$L(\theta) = (1 - p_{uncond})\mathbb{E}\left[\left\|\epsilon_\theta(x_t, t, c) - \epsilon\right\|^2\right] + p_{uncond}\,\mathbb{E}\left[\left\|\epsilon_\theta(x_t, t, \text{NULL}) - \epsilon\right\|^2\right] \qquad (28)$$
 
 </div>
 
@@ -430,7 +430,7 @@ training-free 加速采样方法独立于扩散模型的训练过程，即仅改
 
 <div style="text-align:center">
 
-$$dx = f(x, t)\,dt + g(t)\,dw_t$$
+$$dx = f(x, t)\,dt + g(t)\,dw_t \qquad (29)$$
 
 </div>
 
@@ -438,7 +438,7 @@ $$dx = f(x, t)\,dt + g(t)\,dw_t$$
 
 <div style="text-align:center">
 
-$$dx = \left[f(x, t) - g(t)^2\nabla_x \log p_t(x)\right]dt + g(t)\,d\hat{w}_t$$
+$$dx = \left[f(x, t) - g(t)^2\nabla_x \log p_t(x)\right]dt + g(t)\,d\hat{w}_t \qquad (30)$$
 
 </div>
 
@@ -448,7 +448,7 @@ $$dx = \left[f(x, t) - g(t)^2\nabla_x \log p_t(x)\right]dt + g(t)\,d\hat{w}_t$$
 
 <div style="text-align:center">
 
-$$dx = f(x, t)\,dt - \frac{1}{2}g^2(t)\nabla_x \log p_t(x)\,dt$$
+$$dx = f(x, t)\,dt - \frac{1}{2}g^2(t)\nabla_x \log p_t(x)\,dt \qquad (31)$$
 
 </div>
 
@@ -458,7 +458,7 @@ $$dx = f(x, t)\,dt - \frac{1}{2}g^2(t)\nabla_x \log p_t(x)\,dt$$
 
 <div style="text-align:center">
 
-$$dx = f(x, t)\,dt + \frac{g^2(t)}{\sigma_t}\epsilon_\theta\,dt$$
+$$dx = f(x, t)\,dt + \frac{g^2(t)}{\sigma_t}\epsilon_\theta\,dt \qquad (32)$$
 
 </div>
 
@@ -466,7 +466,7 @@ $$dx = f(x, t)\,dt + \frac{g^2(t)}{\sigma_t}\epsilon_\theta\,dt$$
 
 <div style="text-align:center">
 
-$$x_{t_i} = \frac{\alpha_{t_i}}{\alpha_{t_{i-1}}}x_{t_{i-1}} - \alpha_{t_i}\int_{\lambda_{i-1}}^{\lambda_i} e^{-\lambda}\hat{\epsilon}_\theta(\hat{x}_\lambda, \lambda)\,d\lambda$$
+$$x_{t_i} = \frac{\alpha_{t_i}}{\alpha_{t_{i-1}}}x_{t_{i-1}} - \alpha_{t_i}\int_{\lambda_{i-1}}^{\lambda_i} e^{-\lambda}\hat{\epsilon}_\theta(\hat{x}_\lambda, \lambda)\,d\lambda \qquad (33)$$
 
 </div>
 

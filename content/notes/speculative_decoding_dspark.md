@@ -9,13 +9,13 @@ toc: true
 summary: "DSpark 论文解读：投机解码背景与 DFlash 改进、三个加速杠杆、半自回归生成（Markov/RNN 头）、置信度头 + 硬件感知前缀调度的高效验证、训练损失与实验分析。"
 ---
 
-## 1. 背景
+## 背景
 
 大语言模型以自回归方式生成文本，推理时延与**输出长度**成正比，由此带来了低 GPU 利用率和高用户感知等待时间。投机解码提供了一种原理性的解决方案：一个轻量草稿模型提出**一整块候选 token**，全尺寸目标模型通过**拒绝采样**在**单次前向传播**中验证整块，接受与目标分布一致的**最长前缀**，并追加一个 **bonus token**。由于验证是并行的、且接受规则精确保持目标分布，投机解码可以在不损失任何生成质量的前提下加速生成。
 
 > **bonus token == anchor token**：指目标模型在上一解码轮次生成的最后一个 token。
 
-### 1.1 投机解码分类
+### 投机解码分类
 
 * 自回归
 
@@ -25,7 +25,7 @@ summary: "DSpark 论文解读：投机解码背景与 DFlash 改进、三个加�
 
 并行草稿模型在**单次前向传播**中产出全部 $\gamma$ 个草稿 token。这使得可以在时延不成比例增长的情况下使用大得多的块（例如 $\gamma=16$）。
 
-### 1.2 DFlash
+### DFlash
 
 
 
@@ -66,19 +66,19 @@ $K_i = [W_{K_i}H_\text{ctx}; W_{K_i}H_d], \quad V_i = [W_{V_i}H_\text{ctx}; W_{V
 * 在每个掩码块内，随机抽取一部分干净响应标记（黄色）作为锚点，而掩码标记 $m$（绿色）则标记用于并行预测的位置。
 * 不可见标记（白色）表示注意力掩码，它在训练过程中确保因果一致性并防止块间信息泄露。
 
-### 1.3 投机解码的三个杠杆
+### 投机解码的三个杠杆
 
 记 $\tau$ 为每周期被接受的 token 数，$T_\text{draft}$ 与 $T_\text{verify}$ 分别为草稿与验证过程的实际耗时，则每生成 token 的平均时延为：
 
 <div style="text-align:center">
 
-$$L = \frac{T_\text{draft} + T_\text{verify}}{\tau}$$
+$$L = \frac{T_\text{draft} + T_\text{verify}}{\tau} \qquad (1)$$
 
 </div>
 
 因此提升加速比归结为三个杠杆：降低 $T_\text{draft}$（草稿更快）、提高 $\tau$（草稿更准）、或降低有效 $T_\text{verify}$（验证更聪明）。
 
-## 2. 方法
+## 方法
 
 DSpark 从两个方向改进 DFlash：让草稿生成更准（半自回归——Markov 头/RNN 头），以及让验证更聪明（置信度头 + 硬件利用率自适应）。
 
@@ -97,14 +97,14 @@ DSpark 从两个方向改进 DFlash：让草稿生成更准（半自回归——
 * 以 D 为输入，DSpark 采用重型并行主干（Parallel Block）和轻量级顺序头部（Sequential Block）来生成草稿标记 EFGH 及其相应的置信度分数 $c_1,\dots,c_4$。
 * 硬件感知前缀调度器评估这些分数，保留前缀 EFG 并丢弃低置信度标记 H。最后，目标模型并行验证调度的前缀。E 和 F 被接受，而 G 被拒绝，这促使模型生成一个更正的标记 $G^*$ 以完成当前轮次。
 
-### 2.1 半自回归生成
+### 半自回归生成
 
 * **并行阶段。** DFlash 对整块执行一次前向传播，产出隐状态 $h_1,\dots,h_\gamma$ 和基础 logits $U_1,\dots,U_\gamma$。DSpark 对原始 DFlash 主干只做一处小改动：不再输入一个 anchor token 加 $\gamma$ 个 mask token、仅预测 mask 位置，而是把 anchor 自身当作第一个预测位置，于是 $\gamma$ 个输入 token（anchor + $\gamma-1$ 个 mask）产出 $\gamma$ 个草稿 logits。这在保持相近草稿质量的同时减少了草稿计算。
 * **序列化阶段。** 序列化阶段为基础 logits 补上一个依赖前缀的**转移偏置** $B_k(x_0, x_{&lt;k}, x_k)$，使每个草稿位置都能以块内先前采样的 token 为条件。做法是通过自回归分解诱导出一个因果的块分布：
 
 <div style="text-align:center">
 
-$$P(X \mid x_0) = \prod_{k=1}^{\gamma} p_k(x_k \mid x_0, x_{&lt;k}), \quad p_k(v \mid x_0, x_{&lt;k}) = \frac{\exp(U_k(v) + B_k(x_0, x_{&lt;k}, v))}{\sum_{u \in \mathcal{V}} \exp(U_k(u) + B_k(x_0, x_{&lt;k}, u))}$$
+$$P(X \mid x_0) = \prod_{k=1}^{\gamma} p_k(x_k \mid x_0, x_{&lt;k}), \quad p_k(v \mid x_0, x_{&lt;k}) = \frac{\exp(U_k(v) + B_k(x_0, x_{&lt;k}, v))}{\sum_{u \in \mathcal{V}} \exp(U_k(u) + B_k(x_0, x_{&lt;k}, u))} \qquad (2)$$
 
 </div>
 
@@ -114,7 +114,7 @@ $$P(X \mid x_0) = \prod_{k=1}^{\gamma} p_k(x_k \mid x_0, x_{&lt;k}), \quad p_k(v
 
 <div style="text-align:center">
 
-$$B(x_{k-1}, \cdot) = W_1[x_{k-1}]\,W_2 \in \mathbb{R}^V$$
+$$B(x_{k-1}, \cdot) = W_1[x_{k-1}]\,W_2 \in \mathbb{R}^V \qquad (3)$$
 
 </div>
 
@@ -124,13 +124,13 @@ $$B(x_{k-1}, \cdot) = W_1[x_{k-1}]\,W_2 \in \mathbb{R}^V$$
 
 <div style="text-align:center">
 
-$$s_k = \sigma(W_g z_k) \odot s_{k-1} + \big(1 - \sigma(W_g z_k)\big) \odot \tanh(W_c z_k), \quad B_k(x_{&lt;k}, \cdot) = W_2^\top \tanh(W_o z_k)$$
+$$s_k = \sigma(W_g z_k) \odot s_{k-1} + \big(1 - \sigma(W_g z_k)\big) \odot \tanh(W_c z_k), \quad B_k(x_{&lt;k}, \cdot) = W_2^\top \tanh(W_o z_k) \qquad (4)$$
 
 </div>
 
 其中 $W_g, W_c, W_o \in \mathbb{R}^{r \times (2r+d)}$ 由单个线性投影联合参数化，再拆分为门、候选和输出三部分。状态 $s_0$ 初始化为零。
 
-### 2.2 高效验证
+### 高效验证
 
 半自回归架构使 DSpark 能高效生成大尺寸草稿块。然而，产出更多草稿 token 并不会自动转化为更高的端到端加速。不加区分地验证整个草稿块实际上会拖累整体系统吞吐，在高并发场景下尤为明显。
 
@@ -141,7 +141,7 @@ $$s_k = \sigma(W_g z_k) \odot s_{k-1} + \big(1 - \sigma(W_g z_k)\big) \odot \tan
 
 因此，要完全释放大草稿块的潜力，需要一个统一机制，把目标模型算力只导向期望收益为正的 token。DSpark 通过耦合两个部件实现这一点：预测**前缀存活**概率的置信度头，以及基于当前**系统负载**动态确定最优验证长度的硬件感知前缀调度器。
 
-#### 2.2.1 置信度头
+#### 置信度头
 
 置信度头为每个草稿位置 $k$ 输出一个标量 $c_k \in (0,1)$。关键在于，$c_k$ 建模的是“在块内所有前序 token 都已被接受的条件下，位置 $k$ 的草稿 token 能通过目标验证”的条件概率。其架构是一个轻量线性投影后接 sigmoid：
 
@@ -151,7 +151,7 @@ $c_k = \sigma\big(w^\top [h_k; W_1[x_{k-1}]]\big)$
 
 <div style="text-align:center">
 
-$$c_k^* = 1 - \tfrac{1}{2}\|p_{d_k} - p_{t_k}\|_1$$
+$$c_k^* = 1 - \tfrac{1}{2}\|p_{d_k} - p_{t_k}\|_1 \qquad (5)$$
 
 </div>
 
@@ -163,7 +163,7 @@ DSpark 的硬件感知调度方法精确地需要**累积接受概率**的绝对
 
 为此 DSpark 引入**序列化温度缩放**（Sequential Temperature Scaling, STS）。由于每个 $c_i$ 建模的是条件概率，链式法则决定了一个草稿前缀被接受的联合概率可分解为**累积乘积** $\prod_{i \le k} c_i$。利用一个留出验证集，STS 从左到右逐位置地校准该联合概率。具体来说，在每个位置 $k \in \{1,\dots,\gamma\}$，做一次简单的一维网格搜索，找到使累积乘积的期望校准误差（ECE）最小的最优温度标量，同时保持所有前序位置已校准的分数不变。
 
-#### 2.2.2 关于最优温度标量的一个例子
+#### 关于最优温度标量的一个例子
 
 温度系数是一个正实数（$T_k > 0$），每个草稿位置 $k$ 一个，共 $\gamma$ 个。它作用在置信度头的 raw logit 上：
 
@@ -191,7 +191,7 @@ $c_k = \mathrm{sigmoid}(\mathrm{logit}_k / T_k)$
 
 ECE 随 $T$ 先降后升，呈 U 形，$T_k^* = 2.3$ 是谷底。这就是「最优温度标量」。
 
-#### 2.2.3 硬件负载感知器
+#### 硬件负载感知器
 
 验证一个草稿 token 是否有效严重依赖于当前系统负载。DSpark 把验证长度选择建模为一个全局吞吐最大化问题。
 
@@ -239,9 +239,9 @@ ECE 随 $T$ 先降后升，呈 U 形，$T_k^* = 2.3$ 是谷底。这就是「最
 
 5. 返回
 
-## 3. 训练和实验
+## 训练和实验
 
-### 3.1 损失函数
+### 损失函数
 
 训练目标由三项组成：交叉熵损失 $\mathcal{L}_\text{ce}$、分布匹配损失 $\mathcal{L}_\text{tv}$ 和置信度损失 $\mathcal{L}_\text{conf}$。三者都按位置加权 $w_k = \exp(-(k-1)/\gamma)$，以强调块内靠前的位置——在基于前缀的验证下，它们对期望接受长度贡献更大。
 
@@ -249,7 +249,7 @@ ECE 随 $T$ 先降后升，呈 U 形，$T_k^* = 2.3$ 是谷底。这就是「最
 
 <div style="text-align:center">
 
-$$\mathcal{L}_\text{ce} = -\sum_{k=1}^{\gamma} w_k \log p_{d_k}(x_k^*)$$
+$$\mathcal{L}_\text{ce} = -\sum_{k=1}^{\gamma} w_k \log p_{d_k}(x_k^*) \qquad (6)$$
 
 </div>
 
@@ -259,7 +259,7 @@ $$\mathcal{L}_\text{ce} = -\sum_{k=1}^{\gamma} w_k \log p_{d_k}(x_k^*)$$
 
 <div style="text-align:center">
 
-$$\mathcal{L}_\text{tv} = \sum_{k=1}^{\gamma} w_k \|p_{d_k} - p_{t_k}\|_1$$
+$$\mathcal{L}_\text{tv} = \sum_{k=1}^{\gamma} w_k \|p_{d_k} - p_{t_k}\|_1 \qquad (7)$$
 
 </div>
 
@@ -269,7 +269,7 @@ $$\mathcal{L}_\text{tv} = \sum_{k=1}^{\gamma} w_k \|p_{d_k} - p_{t_k}\|_1$$
 
 <div style="text-align:center">
 
-$$\mathcal{L}_\text{conf} = -\sum_{k=1}^{\gamma} w_k \big[c_k^* \log c_k + (1-c_k^*)\log(1-c_k)\big]$$
+$$\mathcal{L}_\text{conf} = -\sum_{k=1}^{\gamma} w_k \big[c_k^* \log c_k + (1-c_k^*)\log(1-c_k)\big] \qquad (8)$$
 
 </div>
 
@@ -277,11 +277,11 @@ $$\mathcal{L}_\text{conf} = -\sum_{k=1}^{\gamma} w_k \big[c_k^* \log c_k + (1-c_
 
 <div style="text-align:center">
 
-$$\mathcal{L} = \alpha_\text{ce}\mathcal{L}_\text{ce} + \alpha_\text{tv}\mathcal{L}_\text{tv} + \alpha_\text{conf}\mathcal{L}_\text{conf}$$
+$$\mathcal{L} = \alpha_\text{ce}\mathcal{L}_\text{ce} + \alpha_\text{tv}\mathcal{L}_\text{tv} + \alpha_\text{conf}\mathcal{L}_\text{conf} \qquad (9)$$
 
 </div>
 
-### 3.2 训练流程
+### 训练流程
 
 ```mermaid
 flowchart TB
@@ -370,9 +370,9 @@ flowchart TB
     classDef store fill:#e8f5e9,stroke:#388e3c,color:#1b5e20
 ```
 
-### 3.3 实验分析
+### 实验分析
 
-#### 3.3.1 每个位置的接受率
+#### 每个位置的接受率
 
 
 
@@ -389,7 +389,7 @@ DSpark 的优势在于起点高，且随着长度增加衰减更慢。
 * **后段位置上独立性的局限。** 考察曲线尾部（位置 2 到 7），暴露出独立并行生成的固有局限。随着前面的 token 锁定了一条特定语义路径，后续 token 自然变得更可预测。Eagle3 这类自回归模型有效利用了这种条件确定性，在块内更深处仍能维持甚至提升条件接受率（例如闲聊上从 0.53 升到 0.74）。相反，DFlash 出现迅速的接受率衰减，代码上从 0.87 降到 0.78，闲聊上从 0.72 降到 0.63。由于每个并行位置是在所有可能的前序 token 上做边缘化、而非以确切的采样前缀为条件，模型常常提出**不一致的后缀组合**。
 * **用半自回归缓解后缀衰减。** 上述分析指明了一个清晰的架构目标：把并行主干在首 token 上的高容量，与自回归模型在后续 token 上的依赖建模结合起来。这直接激励了 DSpark 的半自回归设计。DSpark 继承了深层并行草稿模型的高初始接受率（例如数学上起点 0.93），同时其轻量序列化头缓解了并行生成典型的迅速接受率衰减。通过化解这一取舍，DSpark 在整个草稿块上都维持了高且稳定的条件接受率。
 
-#### 3.3.2 半自回归的影响
+#### 半自回归的影响
 
 * 从草稿模型结构（模型深度）角度看：
 
@@ -421,7 +421,7 @@ DSpark 在每一种提议长度上都稳定优于 DFlash，更重要的是性能
 
 上图中最右侧的图（左起第 4 张）报告了每轮引擎时延——包含一次目标验证传播、并行草稿块前向、以及串行采样循环——在 batch size 为 128 下测得。为防止序列长度偏差，报告的时延是不同上下文长度（$\{512, 1024, 2048, 4096\}$ token）下的算术平均。由于在该 batch size 下目标模型主导了验证计算时间，序列化块的时延开销可以忽略。因此，把草稿长度从 4 扩到 16，相对 DFlash 基线只给整轮时延增加 0.2% 到 1.3%，却带来最高 30% 的接受长度提升。
 
-#### 3.3.3 置信度头的影响
+#### 置信度头的影响
 
 
 

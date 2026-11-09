@@ -9,11 +9,11 @@ toc: true
 summary: "slime 中将 megatron 权重转为 hf 权重时 bridge 与 raw 两种模式区别梳理。"
 ---
 
-# 一、slime 权重转换方式
+# slime 权重转换方式
 
 slime 参数`megatron_to_hf_mode` 的 `bridge` 和 `raw` 两种模式影响的是 **Megatron 模型权重导出为 HuggingFace 格式**的方式，涉及两个阶段：**模型构建 (model provider)** 和 **权重迭代导出 (weight iterator)**。
 
-## 1.1 bridge 模式
+## bridge 模式
 
 bridge 模式通过借助 megatron-bridge 实现权重转换。
 
@@ -32,7 +32,7 @@ bridge 模式通过借助 megatron-bridge 实现权重转换。
 * Bridge 持有 HF ↔ Megatron 参数名/形状的映射关系，**自动处理 TP all-gather、PP/EP 通信**，直接导出 HF 格式权重
 * 手动补充一些后处理：RMSNorm `+1.0` 还原、conv1d 维度 squeeze、量化等
 
-## 1.2 raw 模式
+## raw 模式
 
 raw 模式主要在slime 侧自主实现；并且raw 模式初始时需要指定 megatron的权重。
 
@@ -45,12 +45,12 @@ raw 模式主要在slime 侧自主实现；并且raw 模式初始时需要指定
 
 **权重导出**
 
-不依赖 bridge，**手动收集** Megatron 模型的 `named_parameters`，构建 `ParamInfo`（含 TP/PP/EP 分片元信息）
+不依赖 bridge，**手动收集** Megatron 模型的 `named_parameters`，构建 `ParamInfo`（含 TP/PP/EP 分片元信息）。
 
 * 手动做 PP broadcast → EP broadcast → TP all-gather 拼回完整参数
 * 然后调用 `convert_to_hf()` 做 Megatron → HF 的参数名/形状转换
 
-## 1.3 核心对比
+## 核心对比
 
 |****|**bridge**|**raw**|
 |:---|:---|:---|
@@ -62,9 +62,9 @@ raw 模式主要在slime 侧自主实现；并且raw 模式初始时需要指定
 
 简单说：**bridge 是"自动挡"**，让 `megatron-bridge` 库帮你搞定模型结构和权重映射；**raw 是"手动挡"**，所有映射和通信逻辑都要自己写。对于已支持 bridge 的模型（如 Qwen 系列），bridge 模式更省心；对于 bridge 尚未覆盖的模型或需要深度定制的场景，raw 模式更灵活。
 
-# 二、细节梳理
+# 细节梳理
 
-## 2.1 两种模式 get_model_provider_func 的区别
+## 两种模式 get_model_provider_func 的区别
 
 `get_model_provider_func` 的作用是**根据启动参数，返回一个 Megatron 框架所需的 `model_provider` 闭包函数**。Megatron 训练框架在初始化时会调用这个 provider 来构建模型实例。slime 有三种方式返回 provider：
 
@@ -74,7 +74,7 @@ get_model_provider_func(args, role)
   ├─ ② megatron_to_hf_mode == "bridge" → bridge provider
   └─ ③ 默认 → raw GPTModel provider
 ```
-### 2.1.1 bridge 模式产生 provider 
+### bridge 模式产生 provider 
 
 大体分为两步，首先声明一个bridge类，然后再利用bridge 类生成 provider。
 
@@ -109,7 +109,7 @@ get_model_provider_func(args, role)
 |`rms_norm_eps`|`layernorm_epsilon`|LayerNorm epsilon|
 |...|...|还有MoE、MLA、MTP等字段|
 
-### 2.1.2 raw 模式产生 provider 
+### raw 模式产生 provider 
 
 1. 构建模型时调用 model_provider 函数，返回的是 GPTModel 对象
 2. 判断是否指定了 args.spec
@@ -133,7 +133,7 @@ self._hf_weight_iterator = HfWeightIteratorBase.create(
     args=args, model=model, model_name=model_name, quantization_config=quantization_config
 )
 ```
-HfWeightIteratorBridge 和HfWeightIteratorDirect 都继承HfWeightIteratorBase 类，各自实现 **get_hf_weight_chunks** 方法
+HfWeightIteratorBridge 和HfWeightIteratorDirect 都继承HfWeightIteratorBase 类，各自实现 **get_hf_weight_chunks** 方法。
 
 get_hf_weight_chunks 的调用栈：
 

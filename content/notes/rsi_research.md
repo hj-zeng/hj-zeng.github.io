@@ -127,7 +127,7 @@ flowchart TD
 ```
 ## RSI 发展路径
 
-论文：The Last AI Built by Humans: Toward Genuine Recursive Self-Improvement，给出 RSI 的发展路线图
+论文：The Last AI Built by Humans: Toward Genuine Recursive Self-Improvement，给出 RSI 的发展路线图。
 
 
 
@@ -205,7 +205,7 @@ flowchart TD
     class A1,A2,HC1,HC2,HC3,HS1,HS2,HM1,HM2,HF1,HF2,M1 work
     class J1,J2 work
 ```
-下面讨论的工作不区分到底是不是RSI，只要对RSI有促进意义都是本次讨论的范围
+下面讨论的工作不区分到底是不是RSI，只要对RSI有促进意义都是本次讨论的范围。
 
 # 算法/任务层的 RSI
 
@@ -241,7 +241,7 @@ Autoresearch 的工作：让 AI agent（如 Claude Code）像人类研究员一�
 </div>
 
 
-**AlphaEvolve =**自动寻找更优程序的搜索系统；
+**AlphaEvolve** = 自动寻找更优程序的搜索系统；
 
 1. 用户定义：用户提供 prompt 模板、模型选择、**评估代码**、初始程序，以及**哪些代码组件可以被演化**。
 2. prompt 构造：从程序数据库中选取程序，构建丰富提示
@@ -404,9 +404,9 @@ Meta-Harness 优化的对象是决定「哪些信息应当被存储、检索并�
 2. **跑评估**：把新提出的 Harness 拿去跑实际任务，收集成绩和轨迹。
 3. **更新文件系统**：把这一轮的所有产物，代码、分数、推理过程、执行日志，全部写回文件系统，供下一轮查阅，不断循环
 
-关键：proposer 可以看到所有的文件系统反馈，而不是压缩后的信息
+关键：proposer 可以看到所有的文件系统反馈，而不是压缩后的信息。
 
-可以理解为meta-harness 是一个外层搜索算法，搜索对象不是模型权重，而是 harness 代码
+可以理解为meta-harness 是一个外层搜索算法，搜索对象不是模型权重，而是 harness 代码。
 
 
 
@@ -416,7 +416,7 @@ Meta-Harness 优化的对象是决定「哪些信息应当被存储、检索并�
 </div>
 
 
-line4-line6 是冷启动，论文冷启动直接拿该 domain 已有的几个公开强 baseline harness 原样组成一个集合作为初始 population，跑一遍评估把 filesystem 铺底，然后交给 proposer 迭代搜索
+line4-line6 是冷启动，论文冷启动直接拿该 domain 已有的几个公开强 baseline harness 原样组成一个集合作为初始 population，跑一遍评估把 filesystem 铺底，然后交给 proposer 迭代搜索。
 
 #### Skill 层面
 
@@ -429,7 +429,7 @@ policy 变强 → 暴露新失败 → 蒸馏新技能 → 反哺 policy
 
 
 <div style="text-align:center; margin:1em 0;">
-<img src="/images/rsi_research/image11.png &quot;SkillRL 框架 (Image source:https://arxiv.org/abs/2602.08234" alt="SkillRL 框架" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<img src="/images/rsi_research/image11.png" alt="SkillRL 框架" style="display:block; margin:0 auto; max-width:100%; height:auto;">
 <p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">SkillRL 框架<br>Image source: <a href="https://arxiv.org/abs/2602.08234">https://arxiv.org/abs/2602.08234</a></p>
 </div>
 
@@ -440,12 +440,12 @@ policy 变强 → 暴露新失败 → 蒸馏新技能 → 反哺 policy
 
 **SkillOpt**
 
-SkillOpt 借鉴了训练模型的方式，实现 Skill 的自动优化：文本==参数权重
+SkillOpt 借鉴了训练模型的方式，实现 Skill 的自动优化：文本==参数权重。
 
 
 
 <div style="text-align:center; margin:1em 0;">
-<img src="/images/rsi_research/image12.png &quot;SkillOpt 框架图 (Image source:https://arxiv.org/abs/2605.23904" alt="SkillOpt 框架图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<img src="/images/rsi_research/image12.png" alt="SkillOpt 框架图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
 <p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">SkillOpt 框架图<br>Image source: <a href="https://arxiv.org/abs/2605.23904">https://arxiv.org/abs/2605.23904</a></p>
 </div>
 
@@ -467,7 +467,7 @@ MemRL 由结构化记忆库、两阶段检索机制、非参数化强化学习�
 
 
 <div style="text-align:center; margin:1em 0;">
-<img src="/images/rsi_research/image13.png &quot;MemRL 框架 (Image source:https://arxiv.org/abs/2601.03192" alt="MemRL 框架" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<img src="/images/rsi_research/image13.png" alt="MemRL 框架" style="display:block; margin:0 auto; max-width:100%; height:auto;">
 <p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">MemRL 框架<br>Image source: <a href="https://arxiv.org/abs/2601.03192">https://arxiv.org/abs/2601.03192</a></p>
 </div>
 
@@ -480,14 +480,14 @@ MemRL 的 Q 来源于把经典 Q-learning 的"动作价值"重新绑定到记忆
 
 **JitRL**
 
-JitRL（Just-In-Time Reinforcement Learning），即时强化学习：不重新训练、不更新任何梯度，而是在推理时检索历史经验、现场估计动作优势，并把优势直接加到模型输出的 logits 上
+JitRL（Just-In-Time Reinforcement Learning），即时强化学习：不重新训练、不更新任何梯度，而是在推理时检索历史经验、现场估计动作优势，并把优势直接加到模型输出的 logits 上。
 
 JitRL 与传统 RL 的区别：不更新模型参数、类TTT思想：
 
 
 
 <div style="text-align:center; margin:1em 0;">
-<img src="/images/rsi_research/image14.png &quot;JitRL 与RL 的区别 (Image source:https://arxiv.org/abs/2601.18510" alt="JitRL 与RL 的区别" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<img src="/images/rsi_research/image14.png" alt="JitRL 与RL 的区别" style="display:block; margin:0 auto; max-width:100%; height:auto;">
 <p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">JitRL 与RL 的区别<br>Image source: <a href="https://arxiv.org/abs/2601.18510">https://arxiv.org/abs/2601.18510</a></p>
 </div>
 
@@ -499,7 +499,7 @@ JitRL** **推理：检索轨迹 -> 计算优势 -> 修正模型推理输出
 
 
 <div style="text-align:center; margin:1em 0;">
-<img src="/images/rsi_research/image15.png &quot;JitRL 框架图 (Image source:https://arxiv.org/abs/2601.18510" alt="JitRL 框架图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<img src="/images/rsi_research/image15.png" alt="JitRL 框架图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
 <p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">JitRL 框架图<br>Image source: <a href="https://arxiv.org/abs/2601.18510">https://arxiv.org/abs/2601.18510</a></p>
 </div>
 
@@ -583,7 +583,7 @@ Agentic Harness Engineering 作者认为 harness 演化的瓶颈在于**可观�
 
 强调：
 
-1. **组件可观测性：**每个可编辑的 harness 组件在文件系统中有一个表示，使动作空间显式且可追踪。一个 harness 包含 7 个组件：系统提示、工具描述、工具实现、中间件、技能、子 Agent 配置和长期记忆。每种失败模式被映射到一个组件。
+1. **组件可观测性**：每个可编辑的 harness 组件在文件系统中有一个表示，使动作空间显式且可追踪。一个 harness 包含 7 个组件：系统提示、工具描述、工具实现、中间件、技能、子 Agent 配置和长期记忆。每种失败模式被映射到一个组件。
 2. **经验可观测性**：分析和总结大量原始轨迹为证据与失败模式的层级结构。每个 harness 生成 $k$ 条轨迹。一个"Agent 调试器"分析轨迹并生成每任务分析报告。把百万级 raw trajectory tokens 蒸馏成分层、可下钻的证据语料，而不是直接喂原始日志。
 3. **决策可观测性**：每次编辑都配有一个对下一轮的预测以供验证。在新一轮任务集上跑出任务级指标。把实测结果与之前的预测对照——如果预测被证伪，就回滚这次编辑。
 
@@ -639,7 +639,7 @@ Agentic Harness Engineering 作者认为 harness 演化的瓶颈在于**可观�
 2. 搭建 agent 可直接使用的反馈环境
 3. 评审涉及系统架构、异步并发和生产风险的关键改动
 
-agent：提出假设、实现改动、运行实验，再用反馈决定是保留、修改还是放弃当前方案
+agent：提出假设、实现改动、运行实验，再用反馈决定是保留、修改还是放弃当前方案。
 
 反馈细分
 
@@ -737,7 +737,7 @@ SIA 的主张：**两个杠杆同时拉**，由一个 Feedback-Agent 在运行�
 </div>
 
 
-通过在低奖励轨迹上蒸馏强教师模型标签来共同学习策略模型
+通过在低奖励轨迹上蒸馏强教师模型标签来共同学习策略模型。
 
 
 

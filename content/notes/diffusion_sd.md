@@ -63,7 +63,7 @@ DDPM 反向去噪过程表示为：
 
 <div style="text-align:center">
 
-$$p_\theta(x_{t-1} \mid x_t) \sim \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \sigma_t^2 I)$$
+$$p_\theta(x_{t-1} \mid x_t) \sim \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \sigma_t^2 I) \qquad (1)$$
 
 </div>
 
@@ -71,7 +71,7 @@ $$p_\theta(x_{t-1} \mid x_t) \sim \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \sigm
 
 <div style="text-align:center">
 
-$$p_\theta(x_{t-1} \mid x_t, y) \sim \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t) + \sigma_t^2 \nabla_{x_t} \log p(y \mid x_t), \sigma_t^2 I)$$
+$$p_\theta(x_{t-1} \mid x_t, y) \sim \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t) + \sigma_t^2 \nabla_{x_t} \log p(y \mid x_t), \sigma_t^2 I) \qquad (2)$$
 
 </div>
 
@@ -79,7 +79,7 @@ CG 类别控制等价于无条件 DDPM 加分类器梯度。对其进行重参�
 
 <div style="text-align:center">
 
-$$x_{t-1} = \mu_\theta(x_t, t) + \gamma\, \sigma_t^2 \nabla_{x_t} \log p(y \mid x_t) + \sigma_t \cdot \epsilon$$
+$$x_{t-1} = \mu_\theta(x_t, t) + \gamma\, \sigma_t^2 \nabla_{x_t} \log p(y \mid x_t) + \sigma_t \cdot \epsilon \qquad (3)$$
 
 </div>
 关键问题：
@@ -106,7 +106,7 @@ $$x_{t-1} = \mu_\theta(x_t, t) + \gamma\, \sigma_t^2 \nabla_{x_t} \log p(y \mid 
 
 <div style="text-align:center">
 
-$$\mu_\theta(x_t, t, y) = \mu_\theta(x_t, t) + \sigma_t^2 \nabla_{x_t} \log p(y \mid x_t)$$
+$$\mu_\theta(x_t, t, y) = \mu_\theta(x_t, t) + \sigma_t^2 \nabla_{x_t} \log p(y \mid x_t) \qquad (4)$$
 
 </div>
 
@@ -114,7 +114,7 @@ $$\mu_\theta(x_t, t, y) = \mu_\theta(x_t, t) + \sigma_t^2 \nabla_{x_t} \log p(y 
 
 <div style="text-align:center">
 
-$$\sigma_t^2 \nabla_{x_t} \log p(y \mid x_t) = \mu_\theta(x_t, t, y) - \mu_\theta(x_t, t)$$
+$$\sigma_t^2 \nabla_{x_t} \log p(y \mid x_t) = \mu_\theta(x_t, t, y) - \mu_\theta(x_t, t) \qquad (5)$$
 
 </div>
 
@@ -126,7 +126,7 @@ $$\sigma_t^2 \nabla_{x_t} \log p(y \mid x_t) = \mu_\theta(x_t, t, y) - \mu_\thet
 
 <div style="text-align:center">
 
-$$\mu_\theta(x_t, t) = \frac{1}{\sqrt{\alpha_t}}\left(x_t - \frac{1-\alpha_t}{\sqrt{1-\bar{\alpha}_t}} \epsilon_\theta(x_t, t)\right)$$
+$$\mu_\theta(x_t, t) = \frac{1}{\sqrt{\alpha_t}}\left(x_t - \frac{1-\alpha_t}{\sqrt{1-\bar{\alpha}_t}} \epsilon_\theta(x_t, t)\right) \qquad (6)$$
 
 </div>
 
@@ -134,7 +134,7 @@ $$\mu_\theta(x_t, t) = \frac{1}{\sqrt{\alpha_t}}\left(x_t - \frac{1-\alpha_t}{\s
 
 <div style="text-align:center">
 
-$$\mu_\theta(x_t, t, y) = \frac{1}{\sqrt{\alpha_t}}\left(x_t - \frac{1-\alpha_t}{\sqrt{1-\bar{\alpha}_t}} \epsilon_\theta(x_t, t, y)\right)$$
+$$\mu_\theta(x_t, t, y) = \frac{1}{\sqrt{\alpha_t}}\left(x_t - \frac{1-\alpha_t}{\sqrt{1-\bar{\alpha}_t}} \epsilon_\theta(x_t, t, y)\right) \qquad (7)$$
 
 </div>
 
@@ -142,7 +142,7 @@ $$\mu_\theta(x_t, t, y) = \frac{1}{\sqrt{\alpha_t}}\left(x_t - \frac{1-\alpha_t}
 
 <div style="text-align:center">
 
-$$\mathcal{L}_1 = \mathrm{MSE}\left(\epsilon_t - \epsilon_\theta(x_t, t)\right), \qquad \mathcal{L}_2 = \mathrm{MSE}\left(\epsilon_t - \epsilon_\theta(x_t, t, y)\right)$$
+$$\mathcal{L}_1 = \mathrm{MSE}\left(\epsilon_t - \epsilon_\theta(x_t, t)\right), \qquad \mathcal{L}_2 = \mathrm{MSE}\left(\epsilon_t - \epsilon_\theta(x_t, t, y)\right) \qquad (8)$$
 
 </div>
 
@@ -150,7 +150,7 @@ $$\mathcal{L}_1 = \mathrm{MSE}\left(\epsilon_t - \epsilon_\theta(x_t, t)\right),
 
 <div style="text-align:center">
 
-$$x_{t-1} = \mu_\theta(x_t, t) + \gamma\left(\mu_\theta(x_t, t, y) - \mu_\theta(x_t, t)\right) + \sigma_t \cdot \epsilon$$
+$$x_{t-1} = \mu_\theta(x_t, t) + \gamma\left(\mu_\theta(x_t, t, y) - \mu_\theta(x_t, t)\right) + \sigma_t \cdot \epsilon \qquad (9)$$
 
 </div>
 
@@ -296,7 +296,7 @@ Flow Matching 学习一个连续时间的向量场 $v_\theta$，把一个简单�
 
 <div style="text-align:center">
 
-$$x_t = \phi(x_0, x_1, t), \qquad t \in [0, 1]$$
+$$x_t = \phi(x_0, x_1, t), \qquad t \in [0, 1] \qquad (10)$$
 
 </div>
 
@@ -310,7 +310,7 @@ $$x_t = \phi(x_0, x_1, t), \qquad t \in [0, 1]$$
 
 <div style="text-align:center">
 
-$$u_t(x_0, x_1) = \frac{d\phi(x_0, x_1, t)}{dt}$$
+$$u_t(x_0, x_1) = \frac{d\phi(x_0, x_1, t)}{dt} \qquad (11)$$
 
 </div>
 
@@ -318,7 +318,7 @@ $$u_t(x_0, x_1) = \frac{d\phi(x_0, x_1, t)}{dt}$$
 
 <div style="text-align:center">
 
-$$\mathcal{L}_{\text{FM}}(\theta) = \mathbb{E}\left[\left\|v_\theta(x_t, t) - u_t(x_0, x_1)\right\|^2\right]$$
+$$\mathcal{L}_{\text{FM}}(\theta) = \mathbb{E}\left[\left\|v_\theta(x_t, t) - u_t(x_0, x_1)\right\|^2\right] \qquad (12)$$
 
 </div>
 
@@ -338,7 +338,7 @@ $$\begin{aligned}
 v_\theta(x_t, t)
 &= \frac{1}{\alpha_t} x_t - \left(\frac{\sigma_t}{\alpha_t} + 1\right)\varepsilon_\theta(x_t, t) \\
 &= \underbrace{\frac{1}{\alpha_t} x_t}_{\text{确定项}} - \underbrace{\left(\frac{\sigma_t}{\alpha_t} + 1\right)\varepsilon_\theta(x_t, t)}_{\text{噪声预测} \times \text{权重}}
-\end{aligned}$$
+\end{aligned} \qquad (13)$$
 
 </div>
 
@@ -346,7 +346,7 @@ v_\theta(x_t, t)
 
 <div style="text-align:center">
 
-$$\mathcal{L} = w(t) \cdot \left\|\varepsilon_\theta(x_t, t) - \varepsilon\right\|^2$$
+$$\mathcal{L} = w(t) \cdot \left\|\varepsilon_\theta(x_t, t) - \varepsilon\right\|^2 \qquad (14)$$
 
 </div>
 
@@ -398,7 +398,7 @@ pooled text embedding 是对整段文本 token embedding 的全局汇聚表示�
 
 <div style="text-align:center">
 
-$$h = \mathrm{LN}(x), \qquad \text{output} = h \cdot (1 + \text{scale}) + \text{shift}$$
+$$h = \mathrm{LN}(x), \qquad \text{output} = h \cdot (1 + \text{scale}) + \text{shift} \qquad (15)$$
 
 </div>
 
@@ -506,7 +506,7 @@ flowchart TB
 
 <div style="text-align:center">
 
-$$R_{\theta_i} = \begin{bmatrix} \cos \theta_i & -\sin \theta_i \\ \sin \theta_i & \cos \theta_i \end{bmatrix}, \qquad \theta_i = i \cdot w$$
+$$R_{\theta_i} = \begin{bmatrix} \cos \theta_i & -\sin \theta_i \\ \sin \theta_i & \cos \theta_i \end{bmatrix}, \qquad \theta_i = i \cdot w \qquad (16)$$
 
 </div>
 
@@ -514,7 +514,7 @@ attention 表示为：
 
 <div style="text-align:center">
 
-$$\mathrm{Attention}(Q, K) = \mathrm{softmax}\left(\frac{QK^T}{\sqrt{d}}\right)$$
+$$\mathrm{Attention}(Q, K) = \mathrm{softmax}\left(\frac{QK^T}{\sqrt{d}}\right) \qquad (17)$$
 
 </div>
 
@@ -526,7 +526,7 @@ $$\begin{aligned}
 Q_i' &= Q_i R_{\theta_i} \\
 K_j' &= K_j R_{\theta_j} \\
 Q_i' K_j'^T &= Q_i R_{\theta_i}\left(K_j R_{\theta_j}\right)^T = Q_i R_{\theta_i} R_{\theta_j}^T K_j^T = Q_i R_{\theta_i - \theta_j} K_j^T
-\end{aligned}$$
+\end{aligned} \qquad (18)$$
 
 </div>
 
@@ -536,7 +536,7 @@ RoPE 多维度扩展：将高维向量划分成多个二维子空间，每个子
 
 <div style="text-align:center">
 
-$$x = [x_1, x_2, x_3, x_4, \dots] \;\Rightarrow\; (x_1, x_2), (x_3, x_4), (x_5, x_6), \dots$$
+$$x = [x_1, x_2, x_3, x_4, \dots] \;\Rightarrow\; (x_1, x_2), (x_3, x_4), (x_5, x_6), \dots \qquad (19)$$
 
 </div>
 
@@ -544,7 +544,7 @@ $$x = [x_1, x_2, x_3, x_4, \dots] \;\Rightarrow\; (x_1, x_2), (x_3, x_4), (x_5, 
 
 <div style="text-align:center">
 
-$$\theta_{i,k} = i \cdot w_k, \qquad w_k = \frac{1}{10000^{2k/d}}$$
+$$\theta_{i,k} = i \cdot w_k, \qquad w_k = \frac{1}{10000^{2k/d}} \qquad (20)$$
 
 </div>
 
@@ -592,7 +592,7 @@ SDXL 训练流程：
 
 <div style="text-align:center">
 
-$$L_D = \mathbb{E}_{x_0}\left[\sum \max\left(0, 1 - D(F(x_0)) + \gamma R_1\right)\right] + \mathbb{E}_{x_\theta}\left[\sum \max\left(0, 1 + D(F(x_\theta))\right)\right]$$
+$$L_D = \mathbb{E}_{x_0}\left[\sum \max\left(0, 1 - D(F(x_0)) + \gamma R_1\right)\right] + \mathbb{E}_{x_\theta}\left[\sum \max\left(0, 1 + D(F(x_\theta))\right)\right] \qquad (21)$$
 
 </div>
 
@@ -602,7 +602,7 @@ $$L_D = \mathbb{E}_{x_0}\left[\sum \max\left(0, 1 - D(F(x_0)) + \gamma R_1\right
 
 <div style="text-align:center">
 
-$$L_G = -\mathbb{E}_{x_\theta}\left[D(F(x_\theta))\right]$$
+$$L_G = -\mathbb{E}_{x_\theta}\left[D(F(x_\theta))\right] \qquad (22)$$
 
 </div>
 

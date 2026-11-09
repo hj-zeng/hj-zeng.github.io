@@ -58,7 +58,7 @@ flowchart LR
 
 <div style="text-align:center">
 
-$$D_{KL}(p_{fake} \parallel p_{real}) = \mathbb{E}_{x \sim p_{fake}}\left[\log \frac{p_{fake}(x)}{p_{real}(x)}\right] = \mathbb{E}_{\substack{z \sim \mathcal{N}(0; I) \\ x = G_\theta(z)}}\left[-(\log p_{real}(x) - \log p_{fake}(x))\right]$$
+$$D_{KL}(p_{fake} \parallel p_{real}) = \mathbb{E}_{x \sim p_{fake}}\left[\log \frac{p_{fake}(x)}{p_{real}(x)}\right] = \mathbb{E}_{\substack{z \sim \mathcal{N}(0; I) \\ x = G_\theta(z)}}\left[-(\log p_{real}(x) - \log p_{fake}(x))\right] \qquad (1)$$
 
 </div>
 
@@ -68,7 +68,7 @@ $$D_{KL}(p_{fake} \parallel p_{real}) = \mathbb{E}_{x \sim p_{fake}}\left[\log \
 
 <div style="text-align:center">
 
-$$\nabla_\theta D_{KL} = \mathbb{E}_{\substack{z \sim \mathcal{N}(0; I) \\ x = G(z)}}\left[-\left(s_{\mathrm{real}}(x) - s_{\mathrm{fake}}(x)\right) \cdot \nabla_\theta G_\theta(z)\right]$$
+$$\nabla_\theta D_{KL} = \mathbb{E}_{\substack{z \sim \mathcal{N}(0; I) \\ x = G(z)}}\left[-\left(s_{\mathrm{real}}(x) - s_{\mathrm{fake}}(x)\right) \cdot \nabla_\theta G_\theta(z)\right] \qquad (2)$$
 
 </div>
 
@@ -104,7 +104,7 @@ flowchart LR
 
 <div style="text-align:center">
 
-$$L_{reg} = \mathbb{E}_{(z, y) \sim D}\left[\mathcal{L}(G_\theta(y), z)\right]$$
+$$L_{reg} = \mathbb{E}_{(z, y) \sim D}\left[\mathcal{L}(G_\theta(y), z)\right] \qquad (3)$$
 
 </div>
 
@@ -125,7 +125,7 @@ $G_\theta(y)$ 是学生模型生成的图像，$z$ 是教师模型多步生成�
 
 <div style="text-align:center">
 
-$$L = D_{KL} + \lambda_{reg} L_{reg}$$
+$$L = D_{KL} + \lambda_{reg} L_{reg} \qquad (4)$$
 
 </div>
 
@@ -239,7 +239,7 @@ flowchart TB
 
 <div style="text-align:center">
 
-$$\nabla_\theta D_{KL} = \mathbb{E}_{\substack{z \sim \mathcal{N}(0; I) \\ x = G(z)}}\left[-\left(s_{\mathrm{cond}}^{\mathrm{real}}(x) - s_{\mathrm{cond}}^{\mathrm{fake}}(x)\right) \cdot \nabla_\theta G_\theta(z)\right]$$
+$$\nabla_\theta D_{KL} = \mathbb{E}_{\substack{z \sim \mathcal{N}(0; I) \\ x = G(z)}}\left[-\left(s_{\mathrm{cond}}^{\mathrm{real}}(x) - s_{\mathrm{cond}}^{\mathrm{fake}}(x)\right) \cdot \nabla_\theta G_\theta(z)\right] \qquad (5)$$
 
 </div>
 
@@ -249,7 +249,7 @@ $$\nabla_\theta D_{KL} = \mathbb{E}_{\substack{z \sim \mathcal{N}(0; I) \\ x = G
 
 <div style="text-align:center">
 
-$$\nabla_\theta D_{KL} = \mathbb{E}_{\substack{z \sim \mathcal{N}(0; I) \\ x = G(z)}}\left[-\left(s_{\mathrm{cfg}}^{\mathrm{real}}(x) - s_{\mathrm{cond}}^{\mathrm{fake}}(x)\right) \cdot \nabla_\theta G_\theta(z)\right]$$
+$$\nabla_\theta D_{KL} = \mathbb{E}_{\substack{z \sim \mathcal{N}(0; I) \\ x = G(z)}}\left[-\left(s_{\mathrm{cfg}}^{\mathrm{real}}(x) - s_{\mathrm{cond}}^{\mathrm{fake}}(x)\right) \cdot \nabla_\theta G_\theta(z)\right] \qquad (6)$$
 
 </div>
 
@@ -257,7 +257,7 @@ $$\nabla_\theta D_{KL} = \mathbb{E}_{\substack{z \sim \mathcal{N}(0; I) \\ x = G
 
 <div style="text-align:center">
 
-$$\nabla_\theta D_{KL} = \mathbb{E}_{\substack{z \sim \mathcal{N}(0; I) \\ x = G(z)}}\left[-\left(\underbrace{\left(s_{\mathrm{cond}}^{\mathrm{real}}(x) - s_{\mathrm{cond}}^{\mathrm{fake}}(x)\right)}_{\Delta^{\mathrm{real}-\mathrm{fake}}} + (\alpha - 1)\underbrace{\left(s_{\mathrm{cond}}^{\mathrm{real}}(x) - s_{\mathrm{uncond}}^{\mathrm{real}}(x)\right)}_{\Delta_{\mathrm{cfg}}^{\mathrm{real}}}\right) \cdot \nabla_\theta G_\theta(z)\right]$$
+$$\nabla_\theta D_{KL} = \mathbb{E}_{\substack{z \sim \mathcal{N}(0; I) \\ x = G(z)}}\left[-\left(\underbrace{\left(s_{\mathrm{cond}}^{\mathrm{real}}(x) - s_{\mathrm{cond}}^{\mathrm{fake}}(x)\right)}_{\Delta^{\mathrm{real}-\mathrm{fake}}} + (\alpha - 1)\underbrace{\left(s_{\mathrm{cond}}^{\mathrm{real}}(x) - s_{\mathrm{uncond}}^{\mathrm{real}}(x)\right)}_{\Delta_{\mathrm{cfg}}^{\mathrm{real}}}\right) \cdot \nabla_\theta G_\theta(z)\right] \qquad (7)$$
 
 </div>
 
@@ -311,7 +311,7 @@ $\tau$：re-noising timestep（再加噪时间步）。
 
 <div style="text-align:center">
 
-$$\nabla_\theta D_{KL} = \mathbb{E}_{\substack{z \sim \mathcal{N}(0; I) \\ x = G(z)}}\left[-\left((s_{\mathrm{cond}}^{\mathrm{real}}(x) - s_{\mathrm{cond}}^{\mathrm{fake}}(x)) + (\alpha - 1)(s_{\mathrm{cond}}^{\mathrm{real}}(x_{\tau_{CA}}) - s_{\mathrm{uncond}}^{\mathrm{real}}(x_{\tau_{CA}}))\right) \cdot \nabla_\theta G_\theta(z)\right]$$
+$$\nabla_\theta D_{KL} = \mathbb{E}_{\substack{z \sim \mathcal{N}(0; I) \\ x = G(z)}}\left[-\left((s_{\mathrm{cond}}^{\mathrm{real}}(x) - s_{\mathrm{cond}}^{\mathrm{fake}}(x)) + (\alpha - 1)(s_{\mathrm{cond}}^{\mathrm{real}}(x_{\tau_{CA}}) - s_{\mathrm{uncond}}^{\mathrm{real}}(x_{\tau_{CA}}))\right) \cdot \nabla_\theta G_\theta(z)\right] \qquad (8)$$
 
 </div>
 
@@ -319,7 +319,7 @@ $$\nabla_\theta D_{KL} = \mathbb{E}_{\substack{z \sim \mathcal{N}(0; I) \\ x = G
 
 <div style="text-align:center">
 
-$$\tau_{CA} \sim u(t, 1)$$
+$$\tau_{CA} \sim u(t, 1) \qquad (9)$$
 
 </div>
 

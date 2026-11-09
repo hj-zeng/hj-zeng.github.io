@@ -82,7 +82,7 @@ $$\nabla_\theta J(\theta) = \mathbb{E}_{\tau \sim p(\tau;\theta)}\Big[\sum_{t=0}
 
 <div style="text-align:center">
 
-$$Q(s_t, a_t) \approx r + \gamma V(s_{t+1}) \qquad (3a)$$
+$$Q(s_t, a_t) \approx r + \gamma V(s_{t+1}) \qquad (3)$$
 
 </div>
 
@@ -90,7 +90,7 @@ $$Q(s_t, a_t) \approx r + \gamma V(s_{t+1}) \qquad (3a)$$
 
 <div style="text-align:center">
 
-$$A(s_t, a_t) = Q(s_t, a_t) - V(s_t) = r + \gamma V(s_{t+1}) - V(s_t) \qquad (3b)$$
+$$A(s_t, a_t) = Q(s_t, a_t) - V(s_t) = r + \gamma V(s_{t+1}) - V(s_t) \qquad (4)$$
 
 </div>
 
@@ -107,7 +107,7 @@ $$
 &= \mathbb{E}_{\tau \sim p(\tau;\theta)}\Big[\sum_{t=0}^{T-1} \nabla_\theta \log \pi_\theta(a_t \mid s_t)\, \cdot \big(r + \gamma V(s_{t+1}) - V(s_t)\big)\Big] \\
 &= \mathbb{E}_{\tau \sim p(\tau;\theta)}\Big[\sum_{t=0}^{T-1} \nabla_\theta \log \pi_\theta(a_t \mid s_t)\, \cdot \delta_t\Big]
 \end{aligned}
-\qquad (3)
+\qquad (5)
 $$
 </div>
 
@@ -126,7 +126,7 @@ GAE 借鉴了 **TD($\lambda$)**（TD 方法的改进）的思路：TD($\lambda$)
 $$
 A_t^{GAE(\gamma,\lambda)} = \sum_{k=0}^{T-t-1} (\lambda\gamma)^k\, \delta_{t+k}
 = \delta_t + (\lambda\gamma)\, A_{t+1}^{GAE(\gamma,\lambda)}
-\qquad (4)
+\qquad (6)
 $$
 
 </div>
@@ -174,7 +174,7 @@ $$
 \max_\theta\ \mathbb{E}_t\!\left[\frac{\pi_\theta(a_t \mid s_t)}{\pi_{\theta_{old}}(a_t \mid s_t)}\, A_t^{\pi_{\theta_{old}}}\right]
 \quad \text{s.t.}\quad
 \mathbb{E}_t\big[\mathrm{KL}\big[\pi_{\theta_{old}}(\cdot \mid s_t),\, \pi_\theta(\cdot \mid s_t)\big]\big] \le \delta
-\qquad (5)
+\qquad (7)
 $$
 
 </div>
@@ -205,7 +205,7 @@ TRPO 通过在策略更新时引入置信域来限制更新幅度，确保每次
 
 $$
 \mathbb{E}_{x \sim p}[f(x)] = \int f(x)\, p(x)\, \mathrm{d}x = \int f(x)\, \frac{p(x)}{p'(x)}\, p'(x)\, \mathrm{d}x = \mathbb{E}_{x \sim p'}\big[f(x)\, w(x)\big]
-\qquad (7)
+\qquad (8)
 $$
 
 </div>
