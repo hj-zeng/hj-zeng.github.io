@@ -69,7 +69,7 @@ $$D_{KL}(q_\theta \parallel p) = -\mathbb{E}_{x \sim q_\theta}\left[\log p\right
 
 <div style="text-align:center">
 
-$$L_{SD}(\theta) = \mathbb{E}_{(x,y) \sim D}\left[D_{KL}\left(P_T(\cdot \mid y_{<n}, x) \parallel P_S^\theta(\cdot \mid y_{<n}, x)\right)\right]$$
+$$L_{SD}(\theta) = \mathbb{E}_{(x,y) \sim D}\left[D_{KL}\left(P_T(\cdot \mid y_{&lt;n}, x) \parallel P_S^\theta(\cdot \mid y_{&lt;n}, x)\right)\right]$$
 
 </div>
 
@@ -93,7 +93,7 @@ OPD 的数据来源于学生模型：$y \sim p_S^\theta(\cdot \mid x)$
 步骤为：
 
 1. 输入 x，Student 自回归生成轨迹 $y \sim p_S^\theta(\cdot \mid x)$
-2. Teacher 模型以 $(x, y_{<t})$ 为条件计算 token 概率分布 $p_T(\cdot \mid x, y_{<t})$
+2. Teacher 模型以 $(x, y_{&lt;t})$ 为条件计算 token 概率分布 $p_T(\cdot \mid x, y_{&lt;t})$
 3. Student 更新参数，向 teacher 靠拢
 
 这里的 **On-Policy** 指的是：训练过程中使用的数据来自 Student 当前的策略分布，而不是来自离线数据集或 Teacher 的生成结果。
@@ -102,17 +102,17 @@ OPD 的数据来源于学生模型：$y \sim p_S^\theta(\cdot \mid x)$
 
 Teacher 并不是读取 Student 的最终答案进行打分，而是将 Student 已生成的 prefix 作为输入，通过一次 forward，计算当前位置的 next-token probability distribution。
 
-假设 Student 生成的序列是 $y = (y_1, y_2, \dots, y_T)$，在第 t 个 token 位置，Teacher 和 Student 都以相同的上下文 $(x, y_{<t})$ 预测下一个 token 的概率分布：
+假设 Student 生成的序列是 $y = (y_1, y_2, \dots, y_T)$，在第 t 个 token 位置，Teacher 和 Student 都以相同的上下文 $(x, y_{&lt;t})$ 预测下一个 token 的概率分布：
 
-Student：$p_S(\cdot \mid x, y_{<t})$
+Student：$p_S(\cdot \mid x, y_{&lt;t})$
 
-Teacher：$p_T(\cdot \mid x, y_{<t})$
+Teacher：$p_T(\cdot \mid x, y_{&lt;t})$
 
 OPD 比较的不是最终生成的 token，而是两个模型对整个词表的概率分布，并通过 KL 散度约束 Student 逼近 Teacher：
 
 <div style="text-align:center">
 
-$$L_{opd} = \sum_{t=1}^{T} D_{KL}\left(p_T(\cdot \mid x, y_{<t}) \parallel p_S(\cdot \mid x, y_{<t})\right)$$
+$$L_{opd} = \sum_{t=1}^{T} D_{KL}\left(p_T(\cdot \mid x, y_{&lt;t}) \parallel p_S(\cdot \mid x, y_{&lt;t})\right)$$
 
 </div>
 

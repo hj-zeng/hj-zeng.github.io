@@ -79,15 +79,15 @@ DSpark 从两个方向改进 DFlash：让草稿生成更准（半自回归——
 ### 2.1 半自回归生成
 
 * **并行阶段。** DFlash 对整块执行一次前向传播，产出隐状态 $h_1,\dots,h_\gamma$ 和基础 logits $U_1,\dots,U_\gamma$。DSpark 对原始 DFlash 主干只做一处小改动：不再输入一个 anchor token 加 $\gamma$ 个 mask token、仅预测 mask 位置，而是把 anchor 自身当作第一个预测位置，于是 $\gamma$ 个输入 token（anchor + $\gamma-1$ 个 mask）产出 $\gamma$ 个草稿 logits。这在保持相近草稿质量的同时减少了草稿计算。
-* **序列化阶段。** 序列化阶段为基础 logits 补上一个依赖前缀的**转移偏置** $B_k(x_0, x_{<k}, x_k)$，使每个草稿位置都能以块内先前采样的 token 为条件。做法是通过自回归分解诱导出一个因果的块分布：
+* **序列化阶段。** 序列化阶段为基础 logits 补上一个依赖前缀的**转移偏置** $B_k(x_0, x_{&lt;k}, x_k)$，使每个草稿位置都能以块内先前采样的 token 为条件。做法是通过自回归分解诱导出一个因果的块分布：
 
 <div style="text-align:center">
 
-$$P(X \mid x_0) = \prod_{k=1}^{\gamma} p_k(x_k \mid x_0, x_{<k}), \quad p_k(v \mid x_0, x_{<k}) = \frac{\exp(U_k(v) + B_k(x_0, x_{<k}, v))}{\sum_{u \in \mathcal{V}} \exp(U_k(u) + B_k(x_0, x_{<k}, u))}$$
+$$P(X \mid x_0) = \prod_{k=1}^{\gamma} p_k(x_k \mid x_0, x_{&lt;k}), \quad p_k(v \mid x_0, x_{&lt;k}) = \frac{\exp(U_k(v) + B_k(x_0, x_{&lt;k}, v))}{\sum_{u \in \mathcal{V}} \exp(U_k(u) + B_k(x_0, x_{&lt;k}, u))}$$
 
 </div>
 
-其中 $x_0$ 表示上一验证周期的 anchor token，$U_k$ 是并行主干在位置 $k$ 产出的基础 logit 向量，$\mathcal{V}$ 是词表。推理时，序列化块按 $p_k(\cdot \mid x_0, x_{<k})$ 从左到右采样。由于该采样过程本质上是串行的，这个块必须计算上足够轻量（$T_\text{sequential} \ll T_\text{parallel}$），以保证整体草稿时延仍由并行阶段主导。下面是 DSpark 序列化块的两种实例化。
+其中 $x_0$ 表示上一验证周期的 anchor token，$U_k$ 是并行主干在位置 $k$ 产出的基础 logit 向量，$\mathcal{V}$ 是词表。推理时，序列化块按 $p_k(\cdot \mid x_0, x_{&lt;k})$ 从左到右采样。由于该采样过程本质上是串行的，这个块必须计算上足够轻量（$T_\text{sequential} \ll T_\text{parallel}$），以保证整体草稿时延仍由并行阶段主导。下面是 DSpark 序列化块的两种实例化。
 
 * **Markov 头。** 最简单的实例化把 $B_k$ 限制为只依赖紧邻的前一个 token，退化为一阶转移 $B(x_{k-1}, x_k)$。原则上这是一个完整的 $V \times V$ 矩阵 $B$；我们用低秩分解 $B = W_1 W_2$ 近似它，其中 $W_1 \in \mathbb{R}^{V \times r}$、$W_2 \in \mathbb{R}^{r \times V}$。给定前一个 token $x_{k-1}$，位置 $k$ 的转移偏置为：
 
@@ -103,7 +103,7 @@ $$B(x_{k-1}, \cdot) = W_1[x_{k-1}]\,W_2 \in \mathbb{R}^V$$
 
 <div style="text-align:center">
 
-$$s_k = \sigma(W_g z_k) \odot s_{k-1} + \big(1 - \sigma(W_g z_k)\big) \odot \tanh(W_c z_k), \quad B_k(x_{<k}, \cdot) = W_2^\top \tanh(W_o z_k)$$
+$$s_k = \sigma(W_g z_k) \odot s_{k-1} + \big(1 - \sigma(W_g z_k)\big) \odot \tanh(W_c z_k), \quad B_k(x_{&lt;k}, \cdot) = W_2^\top \tanh(W_o z_k)$$
 
 </div>
 
@@ -150,7 +150,7 @@ $c_k = \mathrm{sigmoid}(\mathrm{logit}_k / T_k)$
 
 * $T_k = 1$：不变，就是原始 $c_k$。
 * $T_k > 1$：logit 被压缩向 0，$c_k$ 往 0.5 靠——降温、去过度自信。网络预测 0.99、真实率 0.85 时，需要 $T_k > 1$ 把 0.99 拉低。
-* $T_k < 1$：logit 被放大，$c_k$ 往两端推——升温、更自信。网络欠自信时用。
+* $T_k &lt; 1$：logit 被放大，$c_k$ 往两端推——升温、更自信。网络欠自信时用。
 * $\mathrm{sigmoid}(z/T)$ 对 $z$ 单调——保序，不改变样本间的相对排序。
 
 所以温度标量就是「这一个位置上，把置信度头的概率值整体往 0.5 拉还是往两端推、推多少」的一个旋钮。每个位置独立一个，因为不同位置的过度自信程度不一样（通常越靠后的位置累积越不准）。

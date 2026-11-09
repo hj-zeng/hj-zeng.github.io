@@ -34,7 +34,7 @@ summary: "ADAFLASH 论文总结：扩散草稿模型双向注意力带来的领�
 
 <div style="text-align:center">
 
-$$\ell_{\text{OPD}} = \alpha\, \ell_{\text{hard}} + (1-\alpha)\, \ell^{\text{clip}}_{\text{rkl}}, \qquad \ell_{\text{hard}} = -\frac{1}{k}\sum_{i=1}^{k} \log q_w(x_i^\star \mid x_{<t+i})$$
+$$\ell_{\text{OPD}} = \alpha\, \ell_{\text{hard}} + (1-\alpha)\, \ell^{\text{clip}}_{\text{rkl}}, \qquad \ell_{\text{hard}} = -\frac{1}{k}\sum_{i=1}^{k} \log q_w(x_i^\star \mid x_{&lt;t+i})$$
 
 </div>
 
@@ -42,7 +42,7 @@ $$\ell_{\text{OPD}} = \alpha\, \ell_{\text{hard}} + (1-\alpha)\, \ell^{\text{cli
 
 <div style="text-align:center">
 
-$$\ell^{\text{clip}}_{\text{rkl}} = \frac{1}{k}\sum_{i=1}^{k}\sum_{y \in \mathcal{V}} \min\left\{ q_w(y \mid x_{<t}, z)_i \log \frac{q_w(y \mid x_{<t}, z)_i}{p_v(y \mid x_{<t+i})},\ \delta \right\}$$
+$$\ell^{\text{clip}}_{\text{rkl}} = \frac{1}{k}\sum_{i=1}^{k}\sum_{y \in \mathcal{V}} \min\left\{ q_w(y \mid x_{&lt;t}, z)_i \log \frac{q_w(y \mid x_{&lt;t}, z)_i}{p_v(y \mid x_{&lt;t+i})},\ \delta \right\}$$
 
 </div>
 
