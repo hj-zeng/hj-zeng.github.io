@@ -32,7 +32,7 @@ DFlash 并行、独立地预测每个位置，单个预测单独看都合理，�
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/speculative_decoding_dflash2/image1.png &quot;selector 工作示意图 (Image source: https://inco.ai/blog/dflash2/" alt="selector 工作示意图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">selector 工作示意图（Image source: <a href="https://inco.ai/blog/dflash2/">https://inco.ai/blog/dflash2/</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">selector 工作示意图<br>Image source: <a href="https://inco.ai/blog/dflash2/">https://inco.ai/blog/dflash2/</a></p>
 </div>
 
 ")
@@ -73,7 +73,7 @@ selector 在 $T=0$ 下为 DFlash 提升 **0.34** token，在 $T=1$ 下提升 **0
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/speculative_decoding_dflash2/image2.png &quot;不同参数量模型的接受率变化曲线 (Image source: https://inco.ai/blog/dflash2/" alt="不同参数量模型的接受率变化曲线" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">不同参数量模型的接受率变化曲线（Image source: <a href="https://inco.ai/blog/dflash2/">https://inco.ai/blog/dflash2/</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">不同参数量模型的接受率变化曲线<br>Image source: <a href="https://inco.ai/blog/dflash2/">https://inco.ai/blog/dflash2/</a></p>
 </div>
 
 ")
@@ -93,7 +93,7 @@ DFlash 的 attention 已经指明了修复方向。它干两件事：读**块之
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/speculative_decoding_dflash2/image3.png &quot;各 head 的块内 attention (Image source: https://inco.ai/blog/dflash2/" alt="各 head 的块内 attention" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">各 head 的块内 attention（Image source: <a href="https://inco.ai/blog/dflash2/">https://inco.ai/blog/dflash2/</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">各 head 的块内 attention<br>Image source: <a href="https://inco.ai/blog/dflash2/">https://inco.ai/blog/dflash2/</a></p>
 </div>
 
 ")
@@ -114,7 +114,7 @@ $$\operatorname{Conv}_k(x)_t = k_{t,0} \odot x_t + k_{t,1} \odot x_{t-1}.$$
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/speculative_decoding_dflash2/image4.png &quot;两抽头动态卷积 (Image source: https://inco.ai/blog/dflash2/" alt="两抽头动态卷积" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">两抽头动态卷积（Image source: <a href="https://inco.ai/blog/dflash2/">https://inco.ai/blog/dflash2/</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">两抽头动态卷积<br>Image source: <a href="https://inco.ai/blog/dflash2/">https://inco.ai/blog/dflash2/</a></p>
 </div>
 
 ")

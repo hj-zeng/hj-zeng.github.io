@@ -110,6 +110,25 @@ flowchart LR
 
 > 保留原流程里的信息（箭头上的标签、分支条件），只是换成图形表达；不要新增作者没写的步骤。
 
+### 3.5 图片与图注规范
+
+**适用信号**：文档里有图片（`![](/images/<slug>/imageN.png)`），且图片需要有标注（描述、来源）。**不要把「描述 (Image source: URL)」塞进 `alt`/`title` 属性**——那在正常渲染时完全不可见（只有鼠标悬停提示，线上表现为"图片标注都没了"）。图注必须显示在图片正下方。
+
+**仓库统一格式**（图片与图注都居中，图注分两行：第一行描述、第二行 `Image source: 链接`，颜色比正文浅 `#888`）：
+
+```markdown
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/<slug>/imageN.png" alt="描述" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">描述<br>Image source: <a href="URL">URL</a></p>
+</div>
+```
+
+- `alt` 只放描述；**描述与 `Image source` 分行**（`<br>` 分隔），来源链接可点击；
+- 无来源的图片只保留描述一行；**裸图**（无描述、无来源）不加图注，保持原样；
+- 图注块放在文档顶层（前后空行隔开），不要嵌进列表项；
+- 批量转换时只动图片标记本身：代码块、行内代码、frontmatter、`<div>`/`<br/>` 等 HTML 里的 `![](...)` 不要误伤；
+- 用构建 + 渲染抽查验证：每张图下方出现 `<p style="color:#888; ...">` 图注行。
+
 ### 4. 润色拗口/繁琐的句子
 
 - 长句拆短，去掉冗余的"的的""进行""通过…的方式"。
@@ -119,6 +138,8 @@ flowchart LR
 ### 5. 补齐/校正 frontmatter
 
 若文档缺 frontmatter 或与同目录不一致，按仓库约定补上。用了公式就 `math: true`，用了流程图保持与同类文档一致的字段。`date` 用当天日期，`summary` 一句话概括全文。
+
+- **正文首个 H1 不要与 frontmatter `title` 完全相同**：Hugo 主题（PaperMod）用 `title` 渲染页头，正文再写一个一模一样的 H1 会导致"标题出现两次"。要么删掉正文重复的 H1，要么让正文 H1 与 title 不同（把正文 H1 当章节标题用）。
 
 ### 6. 验证
 

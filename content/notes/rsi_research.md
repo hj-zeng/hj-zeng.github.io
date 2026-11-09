@@ -133,7 +133,7 @@ flowchart TD
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/rsi_research/image1.png" alt="RSI 发展路线图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">RSI 发展路线图（Image source: <a href="https://arxiv.org/abs/2609.11873">https://arxiv.org/abs/2609.11873</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">RSI 发展路线图<br>Image source: <a href="https://arxiv.org/abs/2609.11873">https://arxiv.org/abs/2609.11873</a></p>
 </div>
 
 
@@ -225,7 +225,7 @@ Autoresearch 的工作：让 AI agent（如 Claude Code）像人类研究员一�
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/rsi_research/image2.png" alt="Autoresearch 效果图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">Autoresearch 效果图（Image source: <a href="https://github.com/karpathy/autoresearch">https://github.com/karpathy/autoresearch</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">Autoresearch 效果图<br>Image source: <a href="https://github.com/karpathy/autoresearch">https://github.com/karpathy/autoresearch</a></p>
 </div>
 
 
@@ -237,7 +237,7 @@ Autoresearch 的工作：让 AI agent（如 Claude Code）像人类研究员一�
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/rsi_research/image3.png" alt="AlphaEvolve 框架图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">AlphaEvolve 框架图（Image source: <a href="https://arxiv.org/abs/2506.13131">https://arxiv.org/abs/2506.13131</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">AlphaEvolve 框架图<br>Image source: <a href="https://arxiv.org/abs/2506.13131">https://arxiv.org/abs/2506.13131</a></p>
 </div>
 
 
@@ -307,7 +307,7 @@ flowchart TD
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/rsi_research/image4.png" alt="简化的 Codex Agent 循环：Agent 调用工具，工具的响应影响模型的下一次生成" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">简化的 Codex Agent 循环：Agent 调用工具，工具的响应影响模型的下一次生成（Image source: <a href="https://openai.com/index/unrolling-the">https://openai.com/index/unrolling-the</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">简化的 Codex Agent 循环：Agent 调用工具，工具的响应影响模型的下一次生成<br>Image source: <a href="https://openai.com/index/unrolling-the">https://openai.com/index/unrolling-the</a></p>
 </div>
 
 
@@ -337,7 +337,7 @@ ACE 把上下文当作一本不断演化的「playbook」，而不是一段越�
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/rsi_research/image5.png" alt="ACE流程图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">ACE流程图（Image source: <a href="https://arxiv.org/abs/2510.04618">https://arxiv.org/abs/2510.04618</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">ACE流程图<br>Image source: <a href="https://arxiv.org/abs/2510.04618">https://arxiv.org/abs/2510.04618</a></p>
 </div>
 
 
@@ -353,7 +353,7 @@ ACE 把上下文当作一本不断演化的「playbook」，而不是一段越�
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/rsi_research/image6.png" alt="LLM 总结导致上下文坍塌示意图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">LLM 总结导致上下文坍塌示意图（Image source: <a href="https://arxiv.org/abs/2510.04618">https://arxiv.org/abs/2510.04618</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">LLM 总结导致上下文坍塌示意图<br>Image source: <a href="https://arxiv.org/abs/2510.04618">https://arxiv.org/abs/2510.04618</a></p>
 </div>
 
 
@@ -376,7 +376,7 @@ MCE 将「如何管理上下文」与「上下文里具体是什么」分离开�
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/rsi_research/image7.png" alt="MCE 框架示意图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">MCE 框架示意图（Image source: <a href="https://arxiv.org/abs/2601.21557">https://arxiv.org/abs/2601.21557</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">MCE 框架示意图<br>Image source: <a href="https://arxiv.org/abs/2601.21557">https://arxiv.org/abs/2601.21557</a></p>
 </div>
 
 
@@ -384,7 +384,7 @@ MCE 将「如何管理上下文」与「上下文里具体是什么」分离开�
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/rsi_research/image8.png" alt="MCE 算法流程" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">MCE 算法流程（Image source: <a href="https://arxiv.org/abs/2601.21557">https://arxiv.org/abs/2601.21557</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">MCE 算法流程<br>Image source: <a href="https://arxiv.org/abs/2601.21557">https://arxiv.org/abs/2601.21557</a></p>
 </div>
 
 
@@ -396,7 +396,7 @@ Meta-Harness 优化的对象是决定「哪些信息应当被存储、检索并�
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/rsi_research/image9.png" alt="meta-harness 框架" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">meta-harness 框架（Image source: <a href="https://arxiv.org/abs/2603.28052">https://arxiv.org/abs/2603.28052</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">meta-harness 框架<br>Image source: <a href="https://arxiv.org/abs/2603.28052">https://arxiv.org/abs/2603.28052</a></p>
 </div>
 
 
@@ -412,7 +412,7 @@ Meta-Harness 优化的对象是决定「哪些信息应当被存储、检索并�
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/rsi_research/image10.png" alt="Meta-Harness 算法流程" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">Meta-Harness 算法流程（Image source: <a href="https://arxiv.org/abs/2603.28052">https://arxiv.org/abs/2603.28052</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">Meta-Harness 算法流程<br>Image source: <a href="https://arxiv.org/abs/2603.28052">https://arxiv.org/abs/2603.28052</a></p>
 </div>
 
 
@@ -430,7 +430,7 @@ policy 变强 → 暴露新失败 → 蒸馏新技能 → 反哺 policy
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/rsi_research/image11.png &quot;SkillRL 框架 (Image source:https://arxiv.org/abs/2602.08234" alt="SkillRL 框架" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">SkillRL 框架（Image source: <a href="https://arxiv.org/abs/2602.08234">https://arxiv.org/abs/2602.08234</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">SkillRL 框架<br>Image source: <a href="https://arxiv.org/abs/2602.08234">https://arxiv.org/abs/2602.08234</a></p>
 </div>
 
 ")
@@ -446,7 +446,7 @@ SkillOpt 借鉴了训练模型的方式，实现 Skill 的自动优化：文本=
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/rsi_research/image12.png &quot;SkillOpt 框架图 (Image source:https://arxiv.org/abs/2605.23904" alt="SkillOpt 框架图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">SkillOpt 框架图（Image source: <a href="https://arxiv.org/abs/2605.23904">https://arxiv.org/abs/2605.23904</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">SkillOpt 框架图<br>Image source: <a href="https://arxiv.org/abs/2605.23904">https://arxiv.org/abs/2605.23904</a></p>
 </div>
 
 ")
@@ -468,7 +468,7 @@ MemRL 由结构化记忆库、两阶段检索机制、非参数化强化学习�
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/rsi_research/image13.png &quot;MemRL 框架 (Image source:https://arxiv.org/abs/2601.03192" alt="MemRL 框架" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">MemRL 框架（Image source: <a href="https://arxiv.org/abs/2601.03192">https://arxiv.org/abs/2601.03192</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">MemRL 框架<br>Image source: <a href="https://arxiv.org/abs/2601.03192">https://arxiv.org/abs/2601.03192</a></p>
 </div>
 
 ")
@@ -488,7 +488,7 @@ JitRL 与传统 RL 的区别：不更新模型参数、类TTT思想：
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/rsi_research/image14.png &quot;JitRL 与RL 的区别 (Image source:https://arxiv.org/abs/2601.18510" alt="JitRL 与RL 的区别" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">JitRL 与RL 的区别（Image source: <a href="https://arxiv.org/abs/2601.18510">https://arxiv.org/abs/2601.18510</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">JitRL 与RL 的区别<br>Image source: <a href="https://arxiv.org/abs/2601.18510">https://arxiv.org/abs/2601.18510</a></p>
 </div>
 
 ")
@@ -500,7 +500,7 @@ JitRL** **推理：检索轨迹 -> 计算优势 -> 修正模型推理输出
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/rsi_research/image15.png &quot;JitRL 框架图 (Image source:https://arxiv.org/abs/2601.18510" alt="JitRL 框架图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">JitRL 框架图（Image source: <a href="https://arxiv.org/abs/2601.18510">https://arxiv.org/abs/2601.18510</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">JitRL 框架图<br>Image source: <a href="https://arxiv.org/abs/2601.18510">https://arxiv.org/abs/2601.18510</a></p>
 </div>
 
 ")
@@ -535,7 +535,7 @@ JitRL** **推理：检索轨迹 -> 计算优势 -> 修正模型推理输出
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/rsi_research/image16.png" alt="harness 改进的三种范式" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">harness 改进的三种范式（Image source: <a href="https://arxiv.org/abs/2606.09498">https://arxiv.org/abs/2606.09498</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">harness 改进的三种范式<br>Image source: <a href="https://arxiv.org/abs/2606.09498">https://arxiv.org/abs/2606.09498</a></p>
 </div>
 
 
@@ -545,7 +545,7 @@ JitRL** **推理：检索轨迹 -> 计算优势 -> 修正模型推理输出
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/rsi_research/image17.png" alt="self-harness 框架图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">self-harness 框架图（Image source: <a href="https://arxiv.org/abs/2606.09498">https://arxiv.org/abs/2606.09498</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">self-harness 框架图<br>Image source: <a href="https://arxiv.org/abs/2606.09498">https://arxiv.org/abs/2606.09498</a></p>
 </div>
 
 
@@ -577,7 +577,7 @@ Agentic Harness Engineering 作者认为 harness 演化的瓶颈在于**可观�
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/rsi_research/image18.png" alt="AHE 框架" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">AHE 框架（Image source: <a href="https://arxiv.org/abs/2604.25850">https://arxiv.org/abs/2604.25850</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">AHE 框架<br>Image source: <a href="https://arxiv.org/abs/2604.25850">https://arxiv.org/abs/2604.25850</a></p>
 </div>
 
 
@@ -591,7 +591,7 @@ Agentic Harness Engineering 作者认为 harness 演化的瓶颈在于**可观�
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/rsi_research/image19.png" alt="AHE 流程" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">AHE 流程（Image source: <a href="https://arxiv.org/abs/2604.25850">https://arxiv.org/abs/2604.25850</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">AHE 流程<br>Image source: <a href="https://arxiv.org/abs/2604.25850">https://arxiv.org/abs/2604.25850</a></p>
 </div>
 
 
@@ -629,7 +629,7 @@ Agentic Harness Engineering 作者认为 harness 演化的瓶颈在于**可观�
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/rsi_research/image20.png" alt="密集反馈优化回路示意图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">密集反馈优化回路示意图（Image source: <a href="https://z.ai/blog/glm-built-its-inference-infrastructure">https://z.ai/blog/glm-built-its-inference-infrastructure</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">密集反馈优化回路示意图<br>Image source: <a href="https://z.ai/blog/glm-built-its-inference-infrastructure">https://z.ai/blog/glm-built-its-inference-infrastructure</a></p>
 </div>
 
 
@@ -661,7 +661,7 @@ Harness 演化改变的是模型周围的非参数系统。要实现完全的自
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/rsi_research/image21.png" alt="SEAL 框架" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">SEAL 框架（Image source: <a href="https://arxiv.org/abs/2506.10943">https://arxiv.org/abs/2506.10943</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">SEAL 框架<br>Image source: <a href="https://arxiv.org/abs/2506.10943">https://arxiv.org/abs/2506.10943</a></p>
 </div>
 
 
@@ -669,7 +669,7 @@ Harness 演化改变的是模型周围的非参数系统。要实现完全的自
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/rsi_research/image22.png" alt="SEAL 算法流程图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">SEAL 算法流程图（Image source: <a href="https://arxiv.org/abs/2506.10943">https://arxiv.org/abs/2506.10943</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">SEAL 算法流程图<br>Image source: <a href="https://arxiv.org/abs/2506.10943">https://arxiv.org/abs/2506.10943</a></p>
 </div>
 
 
@@ -697,7 +697,7 @@ SIA 的主张：**两个杠杆同时拉**，由一个 Feedback-Agent 在运行�
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/rsi_research/image23.png" alt="SIA 框架图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">SIA 框架图（Image source: <a href="https://arxiv.org/abs/2605.27276">https://arxiv.org/abs/2605.27276</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">SIA 框架图<br>Image source: <a href="https://arxiv.org/abs/2605.27276">https://arxiv.org/abs/2605.27276</a></p>
 </div>
 
 
@@ -733,7 +733,7 @@ SIA 的主张：**两个杠杆同时拉**，由一个 Feedback-Agent 在运行�
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/rsi_research/image24.png" alt="不同自我改进方式示意图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">不同自我改进方式示意图（Image source: <a href="https://arxiv.org/abs/2605.09998">https://arxiv.org/abs/2605.09998</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">不同自我改进方式示意图<br>Image source: <a href="https://arxiv.org/abs/2605.09998">https://arxiv.org/abs/2605.09998</a></p>
 </div>
 
 
@@ -743,7 +743,7 @@ SIA 的主张：**两个杠杆同时拉**，由一个 Feedback-Agent 在运行�
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/rsi_research/image25.png" alt="Continual Harness 算法流程" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">Continual Harness 算法流程（Image source: <a href="https://arxiv.org/abs/2605.09998">https://arxiv.org/abs/2605.09998</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">Continual Harness 算法流程<br>Image source: <a href="https://arxiv.org/abs/2605.09998">https://arxiv.org/abs/2605.09998</a></p>
 </div>
 
 

@@ -116,7 +116,7 @@ $G_\theta(y)$ 是学生模型生成的图像，$z$ 是教师模型多步生成�
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_dmd/image1.png" alt="DMD 论文结论" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DMD 论文结论（Image source: <a href="https://arxiv.org/abs/2311.18828">https://arxiv.org/abs/2311.18828</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DMD 论文结论<br>Image source: <a href="https://arxiv.org/abs/2311.18828">https://arxiv.org/abs/2311.18828</a></p>
 </div>
 
 
@@ -135,7 +135,7 @@ $$L = D_{KL} + \lambda_{reg} L_{reg}$$
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_dmd/image2.png" alt="DMD 总体框架" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DMD 总体框架（Image source: <a href="https://arxiv.org/abs/2311.18828">https://arxiv.org/abs/2311.18828</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DMD 总体框架<br>Image source: <a href="https://arxiv.org/abs/2311.18828">https://arxiv.org/abs/2311.18828</a></p>
 </div>
 
 
@@ -175,7 +175,7 @@ DMD2 解决的问题：DMD1 中，回归损失的计算需要用到 data pair，
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_dmd/image4.png" alt="DMD2 双时间戳更新" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DMD2 双时间戳更新（Image source: <a href="https://arxiv.org/abs/2405.14867">https://arxiv.org/abs/2405.14867</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DMD2 双时间戳更新<br>Image source: <a href="https://arxiv.org/abs/2405.14867">https://arxiv.org/abs/2405.14867</a></p>
 </div>
 
 
@@ -226,7 +226,7 @@ flowchart TB
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_dmd/image5.png" alt="DMD2 总体框架" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DMD2 总体框架（Image source: <a href="https://arxiv.org/abs/2405.14867">https://arxiv.org/abs/2405.14867</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DMD2 总体框架<br>Image source: <a href="https://arxiv.org/abs/2405.14867">https://arxiv.org/abs/2405.14867</a></p>
 </div>
 
 

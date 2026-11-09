@@ -31,7 +31,7 @@ summary: "DSpark 论文解读：投机解码背景与 DFlash 改进、三个加�
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/speculative_decoding_dspark/image1.png &quot;DFlash 架构图 (Image source: https://arxiv.org/abs/2602.06036" alt="DFlash 架构图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DFlash 架构图（Image source: <a href="https://arxiv.org/abs/2602.06036">https://arxiv.org/abs/2602.06036</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DFlash 架构图<br>Image source: <a href="https://arxiv.org/abs/2602.06036">https://arxiv.org/abs/2602.06036</a></p>
 </div>
 
 ")
@@ -57,7 +57,7 @@ $K_i = [W_{K_i}H_\text{ctx}; W_{K_i}H_d], \quad V_i = [W_{V_i}H_\text{ctx}; W_{V
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/speculative_decoding_dspark/image2.png &quot;DFlash 掩码块示意图 (Image source: https://arxiv.org/abs/2602.06036" alt="DFlash 掩码块示意图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DFlash 掩码块示意图（Image source: <a href="https://arxiv.org/abs/2602.06036">https://arxiv.org/abs/2602.06036</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DFlash 掩码块示意图<br>Image source: <a href="https://arxiv.org/abs/2602.06036">https://arxiv.org/abs/2602.06036</a></p>
 </div>
 
 ")
@@ -86,7 +86,7 @@ DSpark 从两个方向改进 DFlash：让草稿生成更准（半自回归——
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/speculative_decoding_dspark/image3.png &quot;DSpark 架构与算法流程 (Image source: https://arxiv.org/abs/2607.05147" alt="DSpark 架构与算法流程" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DSpark 架构与算法流程（Image source: <a href="https://arxiv.org/abs/2607.05147">https://arxiv.org/abs/2607.05147</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DSpark 架构与算法流程<br>Image source: <a href="https://arxiv.org/abs/2607.05147">https://arxiv.org/abs/2607.05147</a></p>
 </div>
 
 ")
@@ -199,7 +199,7 @@ ECE 随 $T$ 先降后升，呈 U 形，$T_k^* = 2.3$ 是谷底。这就是「最
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/speculative_decoding_dspark/image4.png &quot;硬件负载感知调度原理 (Image source: https://arxiv.org/abs/2607.05147" alt="硬件负载感知调度原理" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">硬件负载感知调度原理（Image source: <a href="https://arxiv.org/abs/2607.05147">https://arxiv.org/abs/2607.05147</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">硬件负载感知调度原理<br>Image source: <a href="https://arxiv.org/abs/2607.05147">https://arxiv.org/abs/2607.05147</a></p>
 </div>
 
 ")
@@ -378,7 +378,7 @@ flowchart TB
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/speculative_decoding_dspark/image5.png &quot;各位置接受率对比 (Image source: https://arxiv.org/abs/2607.05147" alt="各位置接受率对比" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">各位置接受率对比（Image source: <a href="https://arxiv.org/abs/2607.05147">https://arxiv.org/abs/2607.05147</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">各位置接受率对比<br>Image source: <a href="https://arxiv.org/abs/2607.05147">https://arxiv.org/abs/2607.05147</a></p>
 </div>
 
 ")
@@ -397,7 +397,7 @@ DSpark 的优势在于起点高，且随着长度增加衰减更慢。
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/speculative_decoding_dspark/image6.png &quot;草稿模型深度对比 (Image source: https://arxiv.org/abs/2607.05147" alt="草稿模型深度对比" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">草稿模型深度对比（Image source: <a href="https://arxiv.org/abs/2607.05147">https://arxiv.org/abs/2607.05147</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">草稿模型深度对比<br>Image source: <a href="https://arxiv.org/abs/2607.05147">https://arxiv.org/abs/2607.05147</a></p>
 </div>
 
 ")
@@ -410,7 +410,7 @@ DSpark 的优势在于起点高，且随着长度增加衰减更慢。
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/speculative_decoding_dspark/image7.png &quot;提议长度对比 (Image source: https://arxiv.org/abs/2607.05147" alt="提议长度对比" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">提议长度对比（Image source: <a href="https://arxiv.org/abs/2607.05147">https://arxiv.org/abs/2607.05147</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">提议长度对比<br>Image source: <a href="https://arxiv.org/abs/2607.05147">https://arxiv.org/abs/2607.05147</a></p>
 </div>
 
 ")
@@ -427,7 +427,7 @@ DSpark 在每一种提议长度上都稳定优于 DFlash，更重要的是性能
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/speculative_decoding_dspark/image8.png &quot;置信度阈值与接受率 (Image source: https://arxiv.org/abs/2607.05147" alt="置信度阈值与接受率" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">置信度阈值与接受率（Image source: <a href="https://arxiv.org/abs/2607.05147">https://arxiv.org/abs/2607.05147</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">置信度阈值与接受率<br>Image source: <a href="https://arxiv.org/abs/2607.05147">https://arxiv.org/abs/2607.05147</a></p>
 </div>
 
 ")
@@ -438,7 +438,7 @@ DSpark 在每一种提议长度上都稳定优于 DFlash，更重要的是性能
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/speculative_decoding_dspark/image9.png &quot;置信度校准直方图 (Image source: https://arxiv.org/abs/2607.05147" alt="置信度校准直方图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">置信度校准直方图（Image source: <a href="https://arxiv.org/abs/2607.05147">https://arxiv.org/abs/2607.05147</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">置信度校准直方图<br>Image source: <a href="https://arxiv.org/abs/2607.05147">https://arxiv.org/abs/2607.05147</a></p>
 </div>
 
 ")

@@ -50,7 +50,7 @@ $$L(\theta) = \mathbb{E}_{a \sim \pi_{\text{sample}}}\left[\min\left(\frac{\pi_{
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/slime_train_infer_inconsistency/image1.png &quot;训推不一致现象 (Image source: https://fengyao.notion.site/off-policy-rl" alt="训推不一致现象" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">训推不一致现象（Image source: <a href="https://fengyao.notion.site/off-policy-rl">https://fengyao.notion.site/off-policy-rl</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">训推不一致现象<br>Image source: <a href="https://fengyao.notion.site/off-policy-rl">https://fengyao.notion.site/off-policy-rl</a></p>
 </div>
 
 ")

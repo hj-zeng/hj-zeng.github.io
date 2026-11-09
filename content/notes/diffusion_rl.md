@@ -189,7 +189,7 @@ flowchart TB
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image1.png" alt="DDPO 算法流程图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DDPO 算法流程图（Image source: <a href="https://arxiv.org/abs/2305.13301">https://arxiv.org/abs/2305.13301</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DDPO 算法流程图<br>Image source: <a href="https://arxiv.org/abs/2305.13301">https://arxiv.org/abs/2305.13301</a></p>
 </div>
 
 
@@ -233,7 +233,7 @@ $$\nabla_\theta J_{DDPO} = \mathbb{E}\left[\text{clip}\left(\frac{p_\theta(x_{t-
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image2.png" alt="DDPO 代码流程图（采样）" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DDPO 代码流程图（采样）（Image source: <a href="https://arxiv.org/abs/2305.13301">https://arxiv.org/abs/2305.13301</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DDPO 代码流程图（采样）<br>Image source: <a href="https://arxiv.org/abs/2305.13301">https://arxiv.org/abs/2305.13301</a></p>
 </div>
 
 
@@ -243,7 +243,7 @@ $$\nabla_\theta J_{DDPO} = \mathbb{E}\left[\text{clip}\left(\frac{p_\theta(x_{t-
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image3.png" alt="DDPO 代码流程图（训练）" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DDPO 代码流程图（训练）（Image source: <a href="https://arxiv.org/abs/2305.13301">https://arxiv.org/abs/2305.13301</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DDPO 代码流程图（训练）<br>Image source: <a href="https://arxiv.org/abs/2305.13301">https://arxiv.org/abs/2305.13301</a></p>
 </div>
 
 
@@ -337,7 +337,7 @@ DRaFT 能够基于给定的可微分奖励函数，直接优化扩散模型。�
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image4.png" alt="DRaFT 算法流程图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DRaFT 算法流程图（Image source: <a href="https://arxiv.org/abs/2309.17400">https://arxiv.org/abs/2309.17400</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DRaFT 算法流程图<br>Image source: <a href="https://arxiv.org/abs/2309.17400">https://arxiv.org/abs/2309.17400</a></p>
 </div>
 
 
@@ -384,7 +384,7 @@ flow-GRPO 是 DDPO 在 flow-base 模型上的应用，把确定性 ODE 转为 SD
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image5.png" alt="Flow-GRPO 算法流程图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">Flow-GRPO 算法流程图（Image source: <a href="https://arxiv.org/abs/2505.05470">https://arxiv.org/abs/2505.05470</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">Flow-GRPO 算法流程图<br>Image source: <a href="https://arxiv.org/abs/2505.05470">https://arxiv.org/abs/2505.05470</a></p>
 </div>
 
 
@@ -441,7 +441,7 @@ $$x_{t+\Delta t} = x_t + \left[v_\theta(x_t, t) + \frac{\sigma_t^2}{2t}\left(x_t
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image6.png" alt="Flow-GRPO KL 散度消融" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">Flow-GRPO KL 散度消融（Image source: <a href="https://arxiv.org/abs/2505.05470">https://arxiv.org/abs/2505.05470</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">Flow-GRPO KL 散度消融<br>Image source: <a href="https://arxiv.org/abs/2505.05470">https://arxiv.org/abs/2505.05470</a></p>
 </div>
 
 
@@ -454,7 +454,7 @@ $$x_{t+\Delta t} = x_t + \left[v_\theta(x_t, t) + \frac{\sigma_t^2}{2t}\left(x_t
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image7.png" alt="Flow-GRPO 去噪步数缩减消融" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">Flow-GRPO 去噪步数缩减消融（Image source: <a href="https://arxiv.org/abs/2505.05470">https://arxiv.org/abs/2505.05470</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">Flow-GRPO 去噪步数缩减消融<br>Image source: <a href="https://arxiv.org/abs/2505.05470">https://arxiv.org/abs/2505.05470</a></p>
 </div>
 
 
@@ -469,7 +469,7 @@ $$x_{t+\Delta t} = x_t + \left[v_\theta(x_t, t) + \frac{\sigma_t^2}{2t}\left(x_t
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image8.png" alt="Flow-GRPO 噪声水平消融" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">Flow-GRPO 噪声水平消融（Image source: <a href="https://arxiv.org/abs/2505.05470">https://arxiv.org/abs/2505.05470</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">Flow-GRPO 噪声水平消融<br>Image source: <a href="https://arxiv.org/abs/2505.05470">https://arxiv.org/abs/2505.05470</a></p>
 </div>
 
 
@@ -492,7 +492,7 @@ $$x_{t+\Delta t} = x_t + \left[v_\theta(x_t, t) + \frac{\sigma_t^2}{2t}\left(x_t
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image9.png" alt="Flow-GRPO 代码流程图（采样）" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">Flow-GRPO 代码流程图（采样）（Image source: <a href="https://arxiv.org/abs/2505.05470">https://arxiv.org/abs/2505.05470</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">Flow-GRPO 代码流程图（采样）<br>Image source: <a href="https://arxiv.org/abs/2505.05470">https://arxiv.org/abs/2505.05470</a></p>
 </div>
 
 
@@ -502,7 +502,7 @@ $$x_{t+\Delta t} = x_t + \left[v_\theta(x_t, t) + \frac{\sigma_t^2}{2t}\left(x_t
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image10.png" alt="Flow-GRPO 代码流程图（训练）" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">Flow-GRPO 代码流程图（训练）（Image source: <a href="https://arxiv.org/abs/2505.05470">https://arxiv.org/abs/2505.05470</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">Flow-GRPO 代码流程图（训练）<br>Image source: <a href="https://arxiv.org/abs/2505.05470">https://arxiv.org/abs/2505.05470</a></p>
 </div>
 
 
@@ -640,7 +640,7 @@ samples.append(
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image11.png" alt="AWM 与 DDPO 比较" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">AWM 与 DDPO 比较（Image source: <a href="https://arxiv.org/abs/2509.25050">https://arxiv.org/abs/2509.25050</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">AWM 与 DDPO 比较<br>Image source: <a href="https://arxiv.org/abs/2509.25050">https://arxiv.org/abs/2509.25050</a></p>
 </div>
 
 
@@ -674,7 +674,7 @@ $$\text{Cov}\left(\nabla_{x_t}\log p(x_t \mid x_s) \;\middle|\; x_t\right) \geq 
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image12.png" alt="带噪与干净效果对比" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">带噪与干净效果对比（Image source: <a href="https://arxiv.org/abs/2509.25050">https://arxiv.org/abs/2509.25050</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">带噪与干净效果对比<br>Image source: <a href="https://arxiv.org/abs/2509.25050">https://arxiv.org/abs/2509.25050</a></p>
 </div>
 
 
@@ -705,7 +705,7 @@ DDPO 的强化学习目标与预训练阶段使用的得分匹配、流匹配目
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image13.png" alt="AWM 算法流程图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">AWM 算法流程图（Image source: <a href="https://arxiv.org/abs/2509.25050">https://arxiv.org/abs/2509.25050</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">AWM 算法流程图<br>Image source: <a href="https://arxiv.org/abs/2509.25050">https://arxiv.org/abs/2509.25050</a></p>
 </div>
 
 
@@ -750,7 +750,7 @@ $$\mathrm{KL} \approx \mathbb{E}_t\left[w(t)\left\|v_\theta(x_t, t, c) - v_{\mat
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image14.png" alt="AWM 与 Flow-GRPO 效果对比" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">AWM 与 Flow-GRPO 效果对比（Image source: <a href="https://arxiv.org/abs/2509.25050">https://arxiv.org/abs/2509.25050</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">AWM 与 Flow-GRPO 效果对比<br>Image source: <a href="https://arxiv.org/abs/2509.25050">https://arxiv.org/abs/2509.25050</a></p>
 </div>
 
 
@@ -768,7 +768,7 @@ $$\mathrm{KL} \approx \mathbb{E}_t\left[w(t)\left\|v_\theta(x_t, t, c) - v_{\mat
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image15.png" alt="AWM 代码流程图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">AWM 代码流程图（Image source: <a href="https://arxiv.org/abs/2509.25050">https://arxiv.org/abs/2509.25050</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">AWM 代码流程图<br>Image source: <a href="https://arxiv.org/abs/2509.25050">https://arxiv.org/abs/2509.25050</a></p>
 </div>
 
 
@@ -877,7 +877,7 @@ $$v^{-}(x_t, t, c) = (1+\beta)v^{\text{old}}(x_t, t, c) - \beta\,v_\theta(x_t, t
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image16.png" alt="NFT 目标函数示意图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">NFT 目标函数示意图（Image source: <a href="https://arxiv.org/abs/2509.16117">https://arxiv.org/abs/2509.16117</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">NFT 目标函数示意图<br>Image source: <a href="https://arxiv.org/abs/2509.16117">https://arxiv.org/abs/2509.16117</a></p>
 </div>
 
 
@@ -930,7 +930,7 @@ CFG 的功能可以通过强化学习后训练有效地学习或替代，这与�
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image17.png" alt="NFT 与 Flow-GRPO 效果对比" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">NFT 与 Flow-GRPO 效果对比（Image source: <a href="https://arxiv.org/abs/2509.16117">https://arxiv.org/abs/2509.16117</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">NFT 与 Flow-GRPO 效果对比<br>Image source: <a href="https://arxiv.org/abs/2509.16117">https://arxiv.org/abs/2509.16117</a></p>
 </div>
 
 
@@ -943,7 +943,7 @@ CFG 的功能可以通过强化学习后训练有效地学习或替代，这与�
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image18.png" alt="NFT 算法框架图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">NFT 算法框架图（Image source: <a href="https://arxiv.org/abs/2509.16117">https://arxiv.org/abs/2509.16117</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">NFT 算法框架图<br>Image source: <a href="https://arxiv.org/abs/2509.16117">https://arxiv.org/abs/2509.16117</a></p>
 </div>
 
 
@@ -958,7 +958,7 @@ CFG 的功能可以通过强化学习后训练有效地学习或替代，这与�
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image19.png" alt="NFT 代码流程图（采样）" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">NFT 代码流程图（采样）（Image source: <a href="https://arxiv.org/abs/2509.16117">https://arxiv.org/abs/2509.16117</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">NFT 代码流程图（采样）<br>Image source: <a href="https://arxiv.org/abs/2509.16117">https://arxiv.org/abs/2509.16117</a></p>
 </div>
 
 
@@ -968,7 +968,7 @@ CFG 的功能可以通过强化学习后训练有效地学习或替代，这与�
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image20.png" alt="NFT 代码流程图（训练）" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">NFT 代码流程图（训练）（Image source: <a href="https://arxiv.org/abs/2509.16117">https://arxiv.org/abs/2509.16117</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">NFT 代码流程图（训练）<br>Image source: <a href="https://arxiv.org/abs/2509.16117">https://arxiv.org/abs/2509.16117</a></p>
 </div>
 
 
@@ -989,7 +989,7 @@ CFG 的功能可以通过强化学习后训练有效地学习或替代，这与�
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image21.png" alt="采样器消融" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">采样器消融（Image source: <a href="https://arxiv.org/abs/2509.16117">https://arxiv.org/abs/2509.16117</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">采样器消融<br>Image source: <a href="https://arxiv.org/abs/2509.16117">https://arxiv.org/abs/2509.16117</a></p>
 </div>
 
 
@@ -1002,7 +1002,7 @@ CFG 的功能可以通过强化学习后训练有效地学习或替代，这与�
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image22.png" alt="自适应损失加权消融" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">自适应损失加权消融（Image source: <a href="https://arxiv.org/abs/2509.16117">https://arxiv.org/abs/2509.16117</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">自适应损失加权消融<br>Image source: <a href="https://arxiv.org/abs/2509.16117">https://arxiv.org/abs/2509.16117</a></p>
 </div>
 
 
@@ -1015,7 +1015,7 @@ CFG 的功能可以通过强化学习后训练有效地学习或替代，这与�
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image23.png" alt="引导强度 beta 消融" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">引导强度 beta 消融（Image source: <a href="https://arxiv.org/abs/2509.16117">https://arxiv.org/abs/2509.16117</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">引导强度 beta 消融<br>Image source: <a href="https://arxiv.org/abs/2509.16117">https://arxiv.org/abs/2509.16117</a></p>
 </div>
 
 
@@ -1029,7 +1029,7 @@ CFG 的功能可以通过强化学习后训练有效地学习或替代，这与�
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image24.png" alt="EMA 参数消融" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">EMA 参数消融（Image source: <a href="https://arxiv.org/abs/2509.16117">https://arxiv.org/abs/2509.16117</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">EMA 参数消融<br>Image source: <a href="https://arxiv.org/abs/2509.16117">https://arxiv.org/abs/2509.16117</a></p>
 </div>
 
 
@@ -1107,7 +1107,7 @@ $$\begin{aligned}
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image25.png" alt="Edit-R1 算法框架图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">Edit-R1 算法框架图（Image source: <a href="https://arxiv.org/abs/2510.16888">https://arxiv.org/abs/2510.16888</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">Edit-R1 算法框架图<br>Image source: <a href="https://arxiv.org/abs/2510.16888">https://arxiv.org/abs/2510.16888</a></p>
 </div>
 
 
@@ -1213,7 +1213,7 @@ Edit-R1 把 MLLM 当成"打分分布模型"，用 score token 的 logit 期望�
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image26.png" alt="奖励方式效果对比图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">奖励方式效果对比图（Image source: <a href="https://arxiv.org/abs/2510.16888">https://arxiv.org/abs/2510.16888</a>）</p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">奖励方式效果对比图<br>Image source: <a href="https://arxiv.org/abs/2510.16888">https://arxiv.org/abs/2510.16888</a></p>
 </div>
 
 
