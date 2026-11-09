@@ -9,7 +9,6 @@ toc: true
 summary: "relax 框架 LoRA 训练/推理权重同步机制：PEFT 包装、merge-mode / adapter-mode 两种 rollout 适配方式，以及各 模式 × 部署 路径下的数据流。"
 ---
 
-# Relax LoRA 机制
 
 slime 当前还没有 lora 训练的支持（2026.10.23），relax（小红书） 和 miles（radixark） 是 slime 衍生出来的两个框架，具备 lora 支持，本文探索 relax lora 机制。
 

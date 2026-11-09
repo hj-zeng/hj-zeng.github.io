@@ -9,7 +9,6 @@ toc: true
 summary: "ADAFLASH 论文总结：扩散草稿模型双向注意力带来的领域/词元层面高方差，同策略蒸馏（OPD）与自适应长度头两个组件、异步训练—推理基础设施，以及 8 基准 × 3 模型上的实验结论。"
 ---
 
-# adaflash 论文与代码解读
 
 > 论文：**ADAFLASH: Adaptive Speculative Decoding via On-Policy Distilled Diffusion Drafters**（[arXiv:2607.19223](https://arxiv.org/abs/2607.19223)）
 

@@ -9,7 +9,6 @@ toc: true
 summary: "slime data buffer 实现梳理：data_source 定义（RolloutDataSource / RolloutDataSourceWithBuffer）、rollout 侧数据产生与 add_samples 回写、以及训练侧消费数据的完整链路。"
 ---
 
-# slime data buffer 怎么实现的
 
 ![slime data buffer 整体架构图 (Image source: https://github.com/THUDM/slime)](/images/slime_databuffer/image1.png "slime data buffer 整体架构图 (Image source: https://github.com/THUDM/slime)")
 

@@ -9,7 +9,6 @@ toc: true
 summary: "扩散模型总结：SDE 建模与三种预测模型（噪声 / score / 速度）、Diffusion 与 Flow Matching 的统一视角、离散与连续扩散模型及其类型与训练范式选择、条件扩散（分类器引导与 CFG）、加速采样（DPM-Solver）。"
 ---
 
-# 扩散模型总结
 
 本篇总结扩散模型的基本原理与方法，包含几个重要问题：
 

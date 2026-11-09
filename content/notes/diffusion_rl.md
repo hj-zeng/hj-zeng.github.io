@@ -9,7 +9,6 @@ toc: true
 summary: "强化学习与扩散模型结合的方法总结：LLM RL 与 Diffusion RL 的区别、Diffusion-base / Flow-base 与 RL 的兼容性，以及 DDPO、Diffusion-DPO、DRaFT、flow-GRPO、AWM、DiffusionNFT、UniWorld-V2 等代表性算法的原理与代码逻辑。"
 ---
 
-# 强化学习 + 扩散模型方法总结
 
 扩散模型凭借其强大的分布建模能力，可用于解决传统强化学习难以解决的序列决策问题；同时，强化学习也可以用于优化扩散模型。本篇总结强化学习在扩散模型生成领域上的优化方法。
 
@@ -184,7 +183,11 @@ flowchart TB
 > paper: [arXiv:2305.13301](https://arxiv.org/abs/2305.13301)
 
 主要思路：将去噪过程建模为一个多步 MDP（马尔可夫决策过程），然后利用策略优化算法优化扩散模型。
-![DDPO 算法流程图 (Image source: https://arxiv.org/abs/2305.13301)](/images/diffusion_rl/image1.png "DDPO 算法流程图 (Image source: https://arxiv.org/abs/2305.13301)")
+
+
+![DDPO 算法流程图](/images/diffusion_rl/image1.png)
+
+DDPO 算法流程图（Image source: [https://arxiv.org/abs/2305.13301](https://arxiv.org/abs/2305.13301)）
 
 ### 多步 MDP 建模
 
@@ -219,8 +222,16 @@ $$\nabla_\theta J_{DDPO} = \mathbb{E}\left[\text{clip}\left(\frac{p_\theta(x_{t-
 
 ### 代码逻辑
 
-![DDPO 代码流程图（采样） (Image source: https://arxiv.org/abs/2305.13301)](/images/diffusion_rl/image2.png "DDPO 代码流程图（采样） (Image source: https://arxiv.org/abs/2305.13301)")
-![DDPO 代码流程图（训练） (Image source: https://arxiv.org/abs/2305.13301)](/images/diffusion_rl/image3.png "DDPO 代码流程图（训练） (Image source: https://arxiv.org/abs/2305.13301)")
+
+
+![DDPO 代码流程图（采样）](/images/diffusion_rl/image2.png)
+
+DDPO 代码流程图（采样）（Image source: [https://arxiv.org/abs/2305.13301](https://arxiv.org/abs/2305.13301)）
+
+
+![DDPO 代码流程图（训练）](/images/diffusion_rl/image3.png)
+
+DDPO 代码流程图（训练）（Image source: [https://arxiv.org/abs/2305.13301](https://arxiv.org/abs/2305.13301)）
 
 
 实现步骤：
@@ -305,7 +316,11 @@ $$L = -\mathbb{E}\left[\log \sigma\left(-\beta T\,w(\lambda_t)\left(\left\|\epsi
 
 DRaFT 能够基于给定的可微分奖励函数，直接优化扩散模型。由于能够端到端地直接计算扩散模型的梯度，与 DDPO 相比，DRaFT 具有更高的优化效率，但 DRaFT 要求奖励函数是可微分的。
 
-![DRaFT 算法流程图 (Image source: https://arxiv.org/abs/2309.17400)](/images/diffusion_rl/image4.png "DRaFT 算法流程图 (Image source: https://arxiv.org/abs/2309.17400)")
+
+
+![DRaFT 算法流程图](/images/diffusion_rl/image4.png)
+
+DRaFT 算法流程图（Image source: [https://arxiv.org/abs/2309.17400](https://arxiv.org/abs/2309.17400)）
 
 DRaFT 的目标是对预训练扩散模型的参数进行微调，以最大化可微分的奖励函数。目标函数如下：
 
@@ -343,7 +358,11 @@ $$J(\theta) = \mathbb{E}\left[r(\text{sample}(\theta, c, x_T), c)\right] \qquad 
 
 flow-GRPO 是 DDPO 在 flow-base 模型上的应用，把确定性 ODE 转为 SDE。
 
-![Flow-GRPO 算法流程图 (Image source: https://arxiv.org/abs/2505.05470)](/images/diffusion_rl/image5.png "Flow-GRPO 算法流程图 (Image source: https://arxiv.org/abs/2505.05470)")
+
+
+![Flow-GRPO 算法流程图](/images/diffusion_rl/image5.png)
+
+Flow-GRPO 算法流程图（Image source: [https://arxiv.org/abs/2505.05470](https://arxiv.org/abs/2505.05470)）
 
 ### ODE 到 SDE
 
@@ -391,17 +410,29 @@ $$x_{t+\Delta t} = x_t + \left[v_\theta(x_t, t) + \frac{\sigma_t^2}{2t}\left(x_t
 
 * **KL 散度**
 
-![Flow-GRPO KL 散度消融 (Image source: https://arxiv.org/abs/2505.05470)](/images/diffusion_rl/image6.png "Flow-GRPO KL 散度消融 (Image source: https://arxiv.org/abs/2505.05470)")
+
+
+![Flow-GRPO KL 散度消融](/images/diffusion_rl/image6.png)
+
+Flow-GRPO KL 散度消融（Image source: [https://arxiv.org/abs/2505.05470](https://arxiv.org/abs/2505.05470)）
 
 * **去噪步数缩减**
 
-![Flow-GRPO 去噪步数缩减消融 (Image source: https://arxiv.org/abs/2505.05470)](/images/diffusion_rl/image7.png "Flow-GRPO 去噪步数缩减消融 (Image source: https://arxiv.org/abs/2505.05470)")
+
+
+![Flow-GRPO 去噪步数缩减消融](/images/diffusion_rl/image7.png)
+
+Flow-GRPO 去噪步数缩减消融（Image source: [https://arxiv.org/abs/2505.05470](https://arxiv.org/abs/2505.05470)）
 
 * **噪声水平的影响**
 
   噪声水平越大，越能增强图像的多样性与探索性。
 
-![Flow-GRPO 噪声水平消融 (Image source: https://arxiv.org/abs/2505.05470)](/images/diffusion_rl/image8.png "Flow-GRPO 噪声水平消融 (Image source: https://arxiv.org/abs/2505.05470)")
+
+
+![Flow-GRPO 噪声水平消融](/images/diffusion_rl/image8.png)
+
+Flow-GRPO 噪声水平消融（Image source: [https://arxiv.org/abs/2505.05470](https://arxiv.org/abs/2505.05470)）
 
 * **群体大小的影响**
 
@@ -415,8 +446,16 @@ $$x_{t+\Delta t} = x_t + \left[v_\theta(x_t, t) + \frac{\sigma_t^2}{2t}\left(x_t
 2. 反向不再是 ddim，而是转化后的 SDE（核心公式）；
 3. 计算 KL 散度。
 
-![Flow-GRPO 代码流程图（采样） (Image source: https://arxiv.org/abs/2505.05470)](/images/diffusion_rl/image9.png "Flow-GRPO 代码流程图（采样） (Image source: https://arxiv.org/abs/2505.05470)")
-![Flow-GRPO 代码流程图（训练） (Image source: https://arxiv.org/abs/2505.05470)](/images/diffusion_rl/image10.png "Flow-GRPO 代码流程图（训练） (Image source: https://arxiv.org/abs/2505.05470)")
+
+
+![Flow-GRPO 代码流程图（采样）](/images/diffusion_rl/image9.png)
+
+Flow-GRPO 代码流程图（采样）（Image source: [https://arxiv.org/abs/2505.05470](https://arxiv.org/abs/2505.05470)）
+
+
+![Flow-GRPO 代码流程图（训练）](/images/diffusion_rl/image10.png)
+
+Flow-GRPO 代码流程图（训练）（Image source: [https://arxiv.org/abs/2505.05470](https://arxiv.org/abs/2505.05470)）
 
 说明：
 
@@ -545,7 +584,11 @@ samples.append(
 * DDPO 基于**带噪条件（noisy conditioning）**的反向离散化过程。
 
 论文证明了 DDPO 实际上是一种**带有噪声目标**的隐式得分/流匹配形式，这会导致方差增加并减缓收敛速度。
-![AWM 与 DDPO 比较 (Image source: https://arxiv.org/abs/2509.25050)](/images/diffusion_rl/image11.png "AWM 与 DDPO 比较 (Image source: https://arxiv.org/abs/2509.25050)")
+
+
+![AWM 与 DDPO 比较](/images/diffusion_rl/image11.png)
+
+AWM 与 DDPO 比较（Image source: [https://arxiv.org/abs/2509.25050](https://arxiv.org/abs/2509.25050)）
 **证明 1：DDPO 的似然目标等价于带噪的得分匹配**
 
 <div style="text-align:center">
@@ -570,7 +613,11 @@ $$\text{Cov}\left(\nabla_{x_t}\log p(x_t \mid x_s) \;\middle|\; x_t\right) \geq 
 
 </div>
 
-![带噪与干净效果对比 (Image source: https://arxiv.org/abs/2509.25050)](/images/diffusion_rl/image12.png "带噪与干净效果对比 (Image source: https://arxiv.org/abs/2509.25050)")
+
+
+![带噪与干净效果对比](/images/diffusion_rl/image12.png)
+
+带噪与干净效果对比（Image source: [https://arxiv.org/abs/2509.25050](https://arxiv.org/abs/2509.25050)）
 
 标准干净数据目标：
 
@@ -592,7 +639,11 @@ DDPO 的强化学习目标与预训练阶段使用的得分匹配、流匹配目
 
 ### AWM 目标函数
 
-![AWM 算法流程图 (Image source: https://arxiv.org/abs/2509.25050)](/images/diffusion_rl/image13.png "AWM 算法流程图 (Image source: https://arxiv.org/abs/2509.25050)")
+
+
+![AWM 算法流程图](/images/diffusion_rl/image13.png)
+
+AWM 算法流程图（Image source: [https://arxiv.org/abs/2509.25050](https://arxiv.org/abs/2509.25050)）
 
 GRPO 的目标为：
 
@@ -628,7 +679,11 @@ $$\mathrm{KL} \approx \mathbb{E}_t\left[w(t)\left\|v_\theta(x_t, t, c) - v_{\mat
 
 与 flow-GRPO 的对比结果：
 
-![AWM 与 Flow-GRPO 效果对比 (Image source: https://arxiv.org/abs/2509.25050)](/images/diffusion_rl/image14.png "AWM 与 Flow-GRPO 效果对比 (Image source: https://arxiv.org/abs/2509.25050)")
+
+
+![AWM 与 Flow-GRPO 效果对比](/images/diffusion_rl/image14.png)
+
+AWM 与 Flow-GRPO 效果对比（Image source: [https://arxiv.org/abs/2509.25050](https://arxiv.org/abs/2509.25050)）
 
 ### 代码逻辑
 
@@ -637,7 +692,11 @@ $$\mathrm{KL} \approx \mathbb{E}_t\left[w(t)\left\|v_\theta(x_t, t, c) - v_{\mat
 1. 使用"干净数据"；
 2. 去掉了 train_timesteps 的循环。
 
-![AWM 代码流程图 (Image source: https://arxiv.org/abs/2509.25050)](/images/diffusion_rl/image15.png "AWM 代码流程图 (Image source: https://arxiv.org/abs/2509.25050)")
+
+
+![AWM 代码流程图](/images/diffusion_rl/image15.png)
+
+AWM 代码流程图（Image source: [https://arxiv.org/abs/2509.25050](https://arxiv.org/abs/2509.25050)）
 
 ## DiffusionNFT（Negative-aware FineTuning）
 
@@ -737,7 +796,11 @@ $$v^{-}(x_t, t, c) = (1+\beta)v^{\text{old}}(x_t, t, c) - \beta\,v_\theta(x_t, t
 
 示意图：
 
-![NFT 目标函数示意图 (Image source: https://arxiv.org/abs/2509.16117)](/images/diffusion_rl/image16.png "NFT 目标函数示意图 (Image source: https://arxiv.org/abs/2509.16117)")
+
+
+![NFT 目标函数示意图](/images/diffusion_rl/image16.png)
+
+NFT 目标函数示意图（Image source: [https://arxiv.org/abs/2509.16117](https://arxiv.org/abs/2509.16117)）
 
 **奖励归一化**
 
@@ -781,18 +844,34 @@ CFG 的功能可以通过强化学习后训练有效地学习或替代，这与�
 
 与 flow-GRPO 对比：
 
-![NFT 与 Flow-GRPO 效果对比 (Image source: https://arxiv.org/abs/2509.16117)](/images/diffusion_rl/image17.png "NFT 与 Flow-GRPO 效果对比 (Image source: https://arxiv.org/abs/2509.16117)")
+
+
+![NFT 与 Flow-GRPO 效果对比](/images/diffusion_rl/image17.png)
+
+NFT 与 Flow-GRPO 效果对比（Image source: [https://arxiv.org/abs/2509.16117](https://arxiv.org/abs/2509.16117)）
 
 ### 整体框架
 
-![NFT 算法框架图 (Image source: https://arxiv.org/abs/2509.16117)](/images/diffusion_rl/image18.png "NFT 算法框架图 (Image source: https://arxiv.org/abs/2509.16117)")
+
+
+![NFT 算法框架图](/images/diffusion_rl/image18.png)
+
+NFT 算法框架图（Image source: [https://arxiv.org/abs/2509.16117](https://arxiv.org/abs/2509.16117)）
 
 ### 代码实现
 
 相比于 AWM，更改了 loss 的计算方式，策略损失由正向和负向组成：
 
-![NFT 代码流程图（采样） (Image source: https://arxiv.org/abs/2509.16117)](/images/diffusion_rl/image19.png "NFT 代码流程图（采样） (Image source: https://arxiv.org/abs/2509.16117)")
-![NFT 代码流程图（训练） (Image source: https://arxiv.org/abs/2509.16117)](/images/diffusion_rl/image20.png "NFT 代码流程图（训练） (Image source: https://arxiv.org/abs/2509.16117)")
+
+
+![NFT 代码流程图（采样）](/images/diffusion_rl/image19.png)
+
+NFT 代码流程图（采样）（Image source: [https://arxiv.org/abs/2509.16117](https://arxiv.org/abs/2509.16117)）
+
+
+![NFT 代码流程图（训练）](/images/diffusion_rl/image20.png)
+
+NFT 代码流程图（训练）（Image source: [https://arxiv.org/abs/2509.16117](https://arxiv.org/abs/2509.16117)）
 
 ### 消融实验
 
@@ -804,20 +883,36 @@ CFG 的功能可以通过强化学习后训练有效地学习或替代，这与�
 
 * **采样器**
 
-![采样器消融 (Image source: https://arxiv.org/abs/2509.16117)](/images/diffusion_rl/image21.png "采样器消融 (Image source: https://arxiv.org/abs/2509.16117)")
+
+
+![采样器消融](/images/diffusion_rl/image21.png)
+
+采样器消融（Image source: [https://arxiv.org/abs/2509.16117](https://arxiv.org/abs/2509.16117)）
 
 * **自适应损失加权**
 
-![自适应损失加权消融 (Image source: https://arxiv.org/abs/2509.16117)](/images/diffusion_rl/image22.png "自适应损失加权消融 (Image source: https://arxiv.org/abs/2509.16117)")
+
+
+![自适应损失加权消融](/images/diffusion_rl/image22.png)
+
+自适应损失加权消融（Image source: [https://arxiv.org/abs/2509.16117](https://arxiv.org/abs/2509.16117)）
 
 * **引导强度 beta**
 
-![引导强度 beta 消融 (Image source: https://arxiv.org/abs/2509.16117)](/images/diffusion_rl/image23.png "引导强度 beta 消融 (Image source: https://arxiv.org/abs/2509.16117)")
+
+
+![引导强度 beta 消融](/images/diffusion_rl/image23.png)
+
+引导强度 beta 消融（Image source: [https://arxiv.org/abs/2509.16117](https://arxiv.org/abs/2509.16117)）
 
 
 * **EMA 参数**
 
-![EMA 参数消融 (Image source: https://arxiv.org/abs/2509.16117)](/images/diffusion_rl/image24.png "EMA 参数消融 (Image source: https://arxiv.org/abs/2509.16117)")
+
+
+![EMA 参数消融](/images/diffusion_rl/image24.png)
+
+EMA 参数消融（Image source: [https://arxiv.org/abs/2509.16117](https://arxiv.org/abs/2509.16117)）
 
 ### NFT 和 AWM 的统一
 
@@ -886,7 +981,11 @@ $$\begin{aligned}
 
 总体框架：
 
-![Edit-R1 算法框架图 (Image source: https://arxiv.org/abs/2510.16888)](/images/diffusion_rl/image25.png "Edit-R1 算法框架图 (Image source: https://arxiv.org/abs/2510.16888)")
+
+
+![Edit-R1 算法框架图](/images/diffusion_rl/image25.png)
+
+Edit-R1 算法框架图（Image source: [https://arxiv.org/abs/2510.16888](https://arxiv.org/abs/2510.16888)）
 
 总体步骤：
 
@@ -983,7 +1082,11 @@ Edit-R1 把 MLLM 当成"打分分布模型"，用 score token 的 logit 期望�
 2. **奖励模型规模（scale）的有效性**：小规模 reward model（如 3B、7B）会出现 reward hacking（奖励欺骗），更大规模的 reward model 可以有效减小奖励欺骗现象；
 3. 用 pairwise accuracy 评估人类对齐偏好，证明评分方式的好坏。
 
-![奖励方式效果对比图 (Image source: https://arxiv.org/abs/2510.16888)](/images/diffusion_rl/image26.png "奖励方式效果对比图 (Image source: https://arxiv.org/abs/2510.16888)")
+
+
+![奖励方式效果对比图](/images/diffusion_rl/image26.png)
+
+奖励方式效果对比图（Image source: [https://arxiv.org/abs/2510.16888](https://arxiv.org/abs/2510.16888)）
 
 观察到，引入 CoT 反而降低了连续 reward 方法的性能。我们将其归因于一种"推理诱导偏置"，类似于序列生成中的 exposure bias：当模型生成较长的 reasoning chain 时，它可能会被自己生成的叙事"说服"，即便这个叙事是错误的，或已经偏离原始证据。
 

@@ -9,7 +9,6 @@ toc: true
 summary: "slime 训练主流程梳理：placement/rollout/training 初始化、训练循环与权重同步、offload 流程，以及权重更新时的 megatron→hf→IPC/SGLang 通信链路。"
 ---
 
-# slime 主流程
 
 大体流程（省略 offload 和 critic 流程）：
 
