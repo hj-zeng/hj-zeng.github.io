@@ -22,6 +22,7 @@ markup:
     extensions:
       typographer: false   # 关闭智能引号，避免公式里的 ' 被转成 ’（影响 s'、a' 等素数记号）
       passthrough:
+        enable: true   # 公式内容原样透传，避免 goldmark 把 _..._ 当斜体强调吃下标（\mathbb{E}_{\pi} 等）
         delimiters:
           block: [['\[', '\]'], ['$$', '$$']]
           inline: [['\(', '\)'], ['$', '$']]
