@@ -35,7 +35,6 @@ DFlash 并行、独立地预测每个位置，单个预测单独看都合理，�
 <p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">selector 工作示意图<br>Image source: <a href="https://inco.ai/blog/dflash2/">https://inco.ai/blog/dflash2/</a></p>
 </div>
 
-")
 
 > 图示：一个解码周期内的 selector。只用 DFlash 时，每个位置保留自己的 top-1；这里两个相邻位置挑了同一个词，验证时卡住而终止。DFlash 2 在每个位置保留多个 top 候选，由 selector 在其中找出一条连贯路径；这里整个块都通过了验证。
 
@@ -76,7 +75,6 @@ selector 在 $T=0$ 下为 DFlash 提升 **0.34** token，在 $T=1$ 下提升 **0
 <p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">不同参数量模型的接受率变化曲线<br>Image source: <a href="https://inco.ai/blog/dflash2/">https://inco.ai/blog/dflash2/</a></p>
 </div>
 
-")
 
 > 不同参数量 DFlash 的条件接受率变化曲线（Qwen3-4B，GSM8K，T=0），数据对应下表。
 
@@ -96,7 +94,6 @@ DFlash 的 attention 已经指明了修复方向。它干两件事：读**块之
 <p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">各 head 的块内 attention<br>Image source: <a href="https://inco.ai/blog/dflash2/">https://inco.ai/blog/dflash2/</a></p>
 </div>
 
-")
 
 > 五层 Qwen3-4B DFlash 各 head 的块内 attention。格子越亮表示该 head 在 draft 块上花的 attention 越多；在后面的层里，块内 attention 的量减少并集中到少数 head 上。
 
@@ -117,7 +114,6 @@ $$\operatorname{Conv}_k(x)_t = k_{t,0} \odot x_t + k_{t,1} \odot x_{t-1}. \qquad
 <p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">两抽头动态卷积<br>Image source: <a href="https://inco.ai/blog/dflash2/">https://inco.ai/blog/dflash2/</a></p>
 </div>
 
-")
 
 > 两抽头动态卷积。它位于 drafter 每层的每个 attention 和 MLP 子层前后。卷积内部，每个位置把自己的表示与前驱的表示混合，第一个位置读取上一个已验证 token。
 

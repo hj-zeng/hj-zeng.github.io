@@ -17,7 +17,6 @@ summary: "slime data buffer 实现梳理：data_source 定义（RolloutDataSourc
 <p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">slime data buffer 整体架构图<br>Image source: <a href="https://github.com/THUDM/slime">https://github.com/THUDM/slime</a></p>
 </div>
 
-")
 
 * 训练（Megatron）：负责主要的训练过程，从数据缓冲区读取数据，并在训练后将参数同步到 rollout 模块。
 * rollout（SGLang + router）：生成新数据（包括奖励/验证器输出）并将其存储在数据缓冲区中。自定义生成函数可以将其封装在多轮循环、工具调用、环境/沙箱交互以及 verifier-based 奖励中。

@@ -22,7 +22,6 @@ diffusion 的通用思想是：1. **正向扩散（Forward diffusion）**：把�
 <p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">生成模型对比<br>Image source: <a href="https://zhuanlan.zhihu.com/p/525106459">https://zhuanlan.zhihu.com/p/525106459</a></p>
 </div>
 
-")
 
 diffusion 和其他模型的最大区别在于其 **latent 和原空间的尺寸大小相同**；diffusion 和 GAN 类似，都是给定噪声 $x_t$ 然后生成图片 $x_0$。
 

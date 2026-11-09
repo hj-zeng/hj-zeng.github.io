@@ -433,7 +433,6 @@ policy 变强 → 暴露新失败 → 蒸馏新技能 → 反哺 policy
 <p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">SkillRL 框架<br>Image source: <a href="https://arxiv.org/abs/2602.08234">https://arxiv.org/abs/2602.08234</a></p>
 </div>
 
-")
 1. **经验蒸馏**：采集成功+失败轨迹 → Teacher 蒸馏成 10–20× 压缩的技能
 2. **分层skill 构建**：通用技能 `S_g` + 任务特定 `S_k`，自适应检索（`S_g` 永远加载 + `S_k` TopK=6 语义相似）
 3. **递归进化 + RL**：SFT 冷启 → GRPO 训练（KL 锚定 `π_sft`）→ 验证成功率 < 0.4 触发失败分析 → 扩库→ 共进化（skill & base model）
@@ -449,7 +448,6 @@ SkillOpt 借鉴了训练模型的方式，实现 Skill 的自动优化：文本=
 <p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">SkillOpt 框架图<br>Image source: <a href="https://arxiv.org/abs/2605.23904">https://arxiv.org/abs/2605.23904</a></p>
 </div>
 
-")
 关键：
 
 1. 冻结任务Skill：用当前的Skill去执行一批任务，收集执行轨迹与得分。
@@ -471,7 +469,6 @@ MemRL 由结构化记忆库、两阶段检索机制、非参数化强化学习�
 <p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">MemRL 框架<br>Image source: <a href="https://arxiv.org/abs/2601.03192">https://arxiv.org/abs/2601.03192</a></p>
 </div>
 
-")
 1. 结构化记忆库：（意图 Z，经验 E，效用 Q ），引入基于真实业务反馈的"效用评分（Q值）"机制
 2. 两阶段检索机制：阶段A：基于相似度的召回；阶段B：基于价值的选择；
 3. 基于非参数化强化学习的运行时效用更新：在记忆空间中持续优化Q值，无需修改LLM权重，依托环境反馈（如任务成功/失败、标量分数）实现效用精修：Q ← Q + alpha * (r - Q)
@@ -491,7 +488,6 @@ JitRL 与传统 RL 的区别：不更新模型参数、类TTT思想：
 <p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">JitRL 与RL 的区别<br>Image source: <a href="https://arxiv.org/abs/2601.18510">https://arxiv.org/abs/2601.18510</a></p>
 </div>
 
-")
 传统 RL 训练：收集轨迹 -> 模型进行RL训练 ->参数更新
 
 JitRL** **推理：检索轨迹 -> 计算优势 -> 修正模型推理输出
@@ -503,7 +499,6 @@ JitRL** **推理：检索轨迹 -> 计算优势 -> 修正模型推理输出
 <p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">JitRL 框架图<br>Image source: <a href="https://arxiv.org/abs/2601.18510">https://arxiv.org/abs/2601.18510</a></p>
 </div>
 
-")
 整体闭环流程：
 
 1. **推理阶段（Inference）**
