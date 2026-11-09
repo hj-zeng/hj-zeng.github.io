@@ -195,7 +195,7 @@ DDIM 的主要思路：
 
 <div style="text-align:center">
 
-$$\sigma_t^2 = \beta_t, \qquad \sigma_t^2 = \tilde{\beta}_t = \frac{1-\bar{\alpha}_{t-1}}{1-\bar{\alpha}_t}\beta_t \quad \text{（DDPM）}; \qquad \sigma_t(\eta)^2 = \eta\, \beta_t \quad \text{（DDIM）}$$
+$$\sigma_t^2 = \beta_t, \qquad \sigma_t^2 = \tilde{\beta}_t = \frac{1-\bar{\alpha}_{t-1}}{1-\bar{\alpha}_t}\beta_t \quad \text{(DDPM)}; \qquad \sigma_t(\eta)^2 = \eta\, \beta_t \quad \text{(DDIM)}$$
 
 </div>
 
@@ -365,7 +365,11 @@ $$mean = c_1[t] \cdot x_t - c_2[t] \cdot \mathrm{eps}$$
 
 其中 $x_t$ 是输入的噪声图像，eps 是网络的预测输出：
 
+<div style="text-align:center">
+
 $$\mathrm{eps} = model(x_t, t)$$
+
+</div>
 
 3. 更新 $x_t$
 
@@ -440,7 +444,11 @@ if np.random.rand() < 0.1: #掩盖掉一部分
 
 推理主体过程没什么变化，推理 forward 过程只区别于均值的计算：
 
+<div style="text-align:center">
+
 $$mean = c_1[t] \cdot x_t - c_2[t] \cdot \mathrm{eps}$$
+
+</div>
 
 无条件 diffusion 中 eps 是网络的预测输出：$\mathrm{eps} = model(x_t, t)$。
 

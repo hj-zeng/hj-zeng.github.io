@@ -20,6 +20,7 @@ markup:
     renderer:
       unsafe: true
     extensions:
+      typographer: false   # 关闭智能引号，避免公式里的 ' 被转成 ’（影响 s'、a' 等素数记号）
       passthrough:
         delimiters:
           block: [['\[', '\]'], ['$$', '$$']]

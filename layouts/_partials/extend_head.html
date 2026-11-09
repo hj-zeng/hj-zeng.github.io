@@ -30,3 +30,15 @@
     mermaid.run();
   });
 </script>
+
+{{- /* KaTeX 数学公式渲染（front matter 设 math: true 时启用，与博客搭建记录约定一致） */ -}}
+{{- if or .Params.math .Site.Params.math }}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.47/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.47/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.47/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'\\[',right:'\\]',display:true}],throwOnError:false});"></script>
+<style>
+  /* 长公式横向滚动，避免溢出容器 */
+  .katex-display { overflow-x: auto; overflow-y: hidden; padding: 0.5em 0; }
+</style>
+{{- end }}
