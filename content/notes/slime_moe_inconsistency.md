@@ -187,9 +187,14 @@ Megatron patch 里在 `TopKRouter.__init__` 把它套到 `compute_topk` 上，�
 
 主要调用处：slime/backends/megatron_utils/actor.py
 
-![重放函数调用链](/images/slime_moe_inconsistency/image1.png)
 
-说明：
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/slime_moe_inconsistency/image1.png" alt="重放函数调用链" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">重放函数调用链</p>
+</div>
+
+
 
 1. `prepare_routed_experts_for_routing_replay` 进行对齐：
 

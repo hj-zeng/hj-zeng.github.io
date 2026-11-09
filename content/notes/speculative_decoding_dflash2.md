@@ -28,7 +28,14 @@ DFlash 并行、独立地预测每个位置，单个预测单独看都合理，�
 
 > 各 draft 位置的 Recall@1（top-1 命中率）和 Recall@16（正确 token 落在 top 16 的概率）
 
-![selector 工作示意图 (Image source: https://inco.ai/blog/dflash2/)](/images/speculative_decoding_dflash2/image1.png "selector 工作示意图 (Image source: https://inco.ai/blog/dflash2/)")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/speculative_decoding_dflash2/image1.png &quot;selector 工作示意图 (Image source: https://inco.ai/blog/dflash2/" alt="selector 工作示意图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">selector 工作示意图（Image source: <a href="https://inco.ai/blog/dflash2/">https://inco.ai/blog/dflash2/</a>）</p>
+</div>
+
+")
 
 > 图示：一个解码周期内的 selector。只用 DFlash 时，每个位置保留自己的 top-1；这里两个相邻位置挑了同一个词，验证时卡住而终止。DFlash 2 在每个位置保留多个 top 候选，由 selector 在其中找出一条连贯路径；这里整个块都通过了验证。
 
@@ -62,7 +69,14 @@ selector 在 $T=0$ 下为 DFlash 提升 **0.34** token，在 $T=1$ 下提升 **0
 
 一个可疑因素是容量：五层 backbone 可能太小，不足以承载跨块的依赖。如果这个猜想成立，加深模型应该对靠后位置帮助最大。事实正是如此——3 层、5 层、15 层 DFlash 在第一个位置几乎一样，越靠后差距越大。但加深深度是"一刀切"的：多加十个 attention block 给所有位置都加容量，包括本就提升空间有限的早期位置，同时把 DFlash 引以为傲的效率优势消磨掉大半。
 
-![不同参数量模型的接受率变化曲线 (Image source: https://inco.ai/blog/dflash2/)](/images/speculative_decoding_dflash2/image2.png "不同参数量模型的接受率变化曲线 (Image source: https://inco.ai/blog/dflash2/)")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/speculative_decoding_dflash2/image2.png &quot;不同参数量模型的接受率变化曲线 (Image source: https://inco.ai/blog/dflash2/" alt="不同参数量模型的接受率变化曲线" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">不同参数量模型的接受率变化曲线（Image source: <a href="https://inco.ai/blog/dflash2/">https://inco.ai/blog/dflash2/</a>）</p>
+</div>
+
+")
 
 > 不同参数量 DFlash 的条件接受率变化曲线（Qwen3-4B，GSM8K，T=0），数据对应下表。
 
@@ -75,7 +89,14 @@ selector 在 $T=0$ 下为 DFlash 提升 **0.34** token，在 $T=1$ 下提升 **0
 
 DFlash 的 attention 已经指明了修复方向。它干两件事：读**块之前的上下文**，以及建模**块内的依赖**——但它在第二件事上花的注意力越来越少：块内 attention 占比从**第 1 层的 30% 掉到第 5 层的 8%**，剩下的还集中在越来越少的几个 head 上。于是我们把这两件事拆开：用一个专门的**模块承担块内工作**，让 attention 专心读上下文。
 
-![各 head 的块内 attention (Image source: https://inco.ai/blog/dflash2/)](/images/speculative_decoding_dflash2/image3.png "各 head 的块内 attention (Image source: https://inco.ai/blog/dflash2/)")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/speculative_decoding_dflash2/image3.png &quot;各 head 的块内 attention (Image source: https://inco.ai/blog/dflash2/" alt="各 head 的块内 attention" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">各 head 的块内 attention（Image source: <a href="https://inco.ai/blog/dflash2/">https://inco.ai/blog/dflash2/</a>）</p>
+</div>
+
+")
 
 > 五层 Qwen3-4B DFlash 各 head 的块内 attention。格子越亮表示该 head 在 draft 块上花的 attention 越多；在后面的层里，块内 attention 的量减少并集中到少数 head 上。
 
@@ -89,7 +110,14 @@ $$\operatorname{Conv}_k(x)_t = k_{t,0} \odot x_t + k_{t,1} \odot x_{t-1}.$$
 
 </div>
 
-![两抽头动态卷积 (Image source: https://inco.ai/blog/dflash2/)](/images/speculative_decoding_dflash2/image4.png "两抽头动态卷积 (Image source: https://inco.ai/blog/dflash2/)")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/speculative_decoding_dflash2/image4.png &quot;两抽头动态卷积 (Image source: https://inco.ai/blog/dflash2/" alt="两抽头动态卷积" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">两抽头动态卷积（Image source: <a href="https://inco.ai/blog/dflash2/">https://inco.ai/blog/dflash2/</a>）</p>
+</div>
+
+")
 
 > 两抽头动态卷积。它位于 drafter 每层的每个 attention 和 MLP 子层前后。卷积内部，每个位置把自己的表示与前驱的表示混合，第一个位置读取上一个已验证 token。
 

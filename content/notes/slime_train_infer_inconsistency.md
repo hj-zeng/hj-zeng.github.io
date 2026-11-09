@@ -46,7 +46,14 @@ $$L(\theta) = \mathbb{E}_{a \sim \pi_{\text{sample}}}\left[\min\left(\frac{\pi_{
 
 **训推不一致现象**：
 
-![训推不一致现象 (Image source: https://fengyao.notion.site/off-policy-rl)](/images/slime_train_infer_inconsistency/image1.png "训推不一致现象 (Image source: https://fengyao.notion.site/off-policy-rl)")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/slime_train_infer_inconsistency/image1.png &quot;训推不一致现象 (Image source: https://fengyao.notion.site/off-policy-rl" alt="训推不一致现象" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">训推不一致现象（Image source: <a href="https://fengyao.notion.site/off-policy-rl">https://fengyao.notion.site/off-policy-rl</a>）</p>
+</div>
+
+")
 
 左图：训推不一致问题带来的 token 概率差异；右图：正常 RL 训练与修复不一致问题后训练的性能对比。
 

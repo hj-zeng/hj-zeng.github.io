@@ -15,7 +15,14 @@ diffusion 的通用思想是：1. **正向扩散（Forward diffusion）**：把�
 
 一些生成模型的对比：
 
-![生成模型对比 (Image source: https://zhuanlan.zhihu.com/p/525106459)](/images/diffusion_ddpm/image1.png "生成模型对比 (Image source: https://zhuanlan.zhihu.com/p/525106459)")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/diffusion_ddpm/image1.png &quot;生成模型对比 (Image source: https://zhuanlan.zhihu.com/p/525106459" alt="生成模型对比" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">生成模型对比（Image source: <a href="https://zhuanlan.zhihu.com/p/525106459">https://zhuanlan.zhihu.com/p/525106459</a>）</p>
+</div>
+
+")
 
 diffusion 和其他模型的最大区别在于其 **latent 和原空间的尺寸大小相同**；diffusion 和 GAN 类似，都是给定噪声 $x_t$ 然后生成图片 $x_0$。
 
@@ -252,29 +259,54 @@ DDIM 仍然不能实现单步采样：
 
 #### TimeEmbedding 模块
 
-![TimeEmbedding 模块](/images/diffusion_ddpm/image2.png)
 
-$T$ 是超参，会影响位置的项数，表示 diffusion 的次数；该模块出来的数据会送到 unet 的各个模块。
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/diffusion_ddpm/image2.png" alt="TimeEmbedding 模块" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">TimeEmbedding 模块</p>
+</div>
+
+
 
 #### resblock 模块
 
 各个子模块：
 
-![resblock 子模块](/images/diffusion_ddpm/image3.png)
 
-attention 模块：
 
-![attention 模块](/images/diffusion_ddpm/image4.png)
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/diffusion_ddpm/image3.png" alt="resblock 子模块" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">resblock 子模块</p>
+</div>
 
-res 模块：
 
-![res 模块](/images/diffusion_ddpm/image5.png)
 
-#### unet 网络结构
 
-![unet 网络结构](/images/diffusion_ddpm/image6.png)
 
-其中 downblock 和 upblock 由若干个 resblock 组成，维度相反；middleblock 由两个 resblock 组成。
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/diffusion_ddpm/image4.png" alt="attention 模块" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">attention 模块</p>
+</div>
+
+
+
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/diffusion_ddpm/image5.png" alt="res 模块" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">res 模块</p>
+</div>
+
+
+
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/diffusion_ddpm/image6.png" alt="unet 网络结构" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">unet 网络结构</p>
+</div>
+
+
 
 ### 训练细节
 
@@ -412,23 +444,38 @@ $$x_t = mean + \sqrt{var} \cdot noise$$
 nn.Embedding(num_embeddings=num_labels + 1, embedding_dim=d_model, padding_idx=0),
 ```
 
-![Condition Embedding](/images/diffusion_ddpm/image7.png)
 
-区别于输入 $T$ 的 TimeEmbedding 加入了位置信息，这里直接对 label 进行 embedding。
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/diffusion_ddpm/image7.png" alt="Condition Embedding" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">Condition Embedding</p>
+</div>
+
+
 
 ##### resblock
 
 标签向量直接与输入和时间戳向量一起求和：
 
-![条件 resblock](/images/diffusion_ddpm/image8.png)
 
-##### unet 总体结构
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/diffusion_ddpm/image8.png" alt="条件 resblock" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">条件 resblock</p>
+</div>
+
+
 
 标签经过向量嵌入后，一起送入残差模块：
 
-![条件 unet 总体结构](/images/diffusion_ddpm/image9.png)
 
-#### 训练与推理
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/diffusion_ddpm/image9.png" alt="条件 unet 总体结构" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">条件 unet 总体结构</p>
+</div>
+
+
 
 ##### 训练
 

@@ -375,9 +375,14 @@ flowchart TB
 
 SD3.0 采用 MMDiT 架构，将图像与文本双分支 Transformer 深度融合，实现更强的跨模态对齐与语义组合能力：
 
-![MMDiT 结构](/images/diffusion_sd/image1.png)
 
-### pooled text embedding
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/diffusion_sd/image1.png" alt="MMDiT 结构" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">MMDiT 结构</p>
+</div>
+
+
 
 pooled text embedding 是对整段文本 token embedding 的全局汇聚表示，用来表达"这句话整体在说什么"。
 
@@ -551,13 +556,23 @@ SDXL Turbo 是基于 SDXL 架构、通过蒸馏技术训练得到的快速生成
 
 SDXL 训练流程：
 
-![SDXL 训练流程](/images/diffusion_sd/image2.png)
 
-SDXL-Turbo 训练流程（对 SDXL 模型进行蒸馏，实现单步/4 步推理）：
 
-![SDXL-Turbo 蒸馏训练流程](/images/diffusion_sd/image3.png)
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/diffusion_sd/image2.png" alt="SDXL 训练流程" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">SDXL 训练流程</p>
+</div>
 
-### 对抗损失
+
+
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/diffusion_sd/image3.png" alt="SDXL-Turbo 蒸馏训练流程" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">SDXL-Turbo 蒸馏训练流程</p>
+</div>
+
+
 
 训练过程需要训练一个额外的判别器（Discriminator），它仅在训练阶段存在，是对抗损失计算的核心，与学生模型、冻结的教师模型共同构成完整的训练框架。
 
@@ -566,9 +581,14 @@ SDXL-Turbo 训练流程（对 SDXL 模型进行蒸馏，实现单步/4 步推理
 * 输入：融合图像、时间步、文本条件等信息，输出无 sigmoid 的真假分数
 * 具体实现：在 DINO encoder 的不同层级上加上判别头
 
-![DINO encoder 结构](/images/diffusion_sd/image4.png)
 
-#### 判别器损失
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/diffusion_sd/image4.png" alt="DINO encoder 结构" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DINO encoder 结构</p>
+</div>
+
+
 
 <div style="text-align:center">
 
@@ -588,4 +608,11 @@ $$L_G = -\mathbb{E}_{x_\theta}\left[D(F(x_\theta))\right]$$
 
 #### 对抗 loss 代码实现
 
-![对抗 loss 代码实现](/images/diffusion_sd/image5.png)
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/diffusion_sd/image5.png" alt="对抗 loss 代码实现" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">对抗 loss 代码实现</p>
+</div>
+
+

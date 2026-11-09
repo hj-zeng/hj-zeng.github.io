@@ -30,9 +30,14 @@ $$D_{KL}(p \parallel q_\theta) = -\mathbb{E}_{x \sim p}\left[\log q_\theta(x)\ri
 
 由于上面这个特性，前向 KL 会强迫 $q_\theta(x)$ 在其所有高概率区域都必须分配足够的概率质量，因为任何被频繁 $p(x)$ 采到却被 $q_\theta(x)$ 赋予低概率的点，都会被推高损失。即前向 KL 要求：**在所有 $p(x)$ 有高概率的地方，$q_\theta(x)$ 也必须有高概率**。而对于 $q_\theta(x)$ 概率较高但 $p(x)$ 本身概率不高的位置，由于几乎采样不到，前向 KL 基本不会惩罚。这种“宁可摊开也不能漏掉任何一个峰（mode）”的倾向称为 **mean-seeking**，因为当 $q_\theta(x)$ 表达力受限时（例如单峰高斯拟合多峰），最优解会落在 $p(x)$ 的均值附近，把概率质量摊在所有峰之间。
 
-![前向 KL 拟合示意图](/images/slime_opd/image1.png)
 
-蓝色：目标拟合分布；橘色：前向 KL 拟合的结果
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/slime_opd/image1.png" alt="前向 KL 拟合示意图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">前向 KL 拟合示意图</p>
+</div>
+
+
 
 ## 反向 KL
 
@@ -52,9 +57,14 @@ $$D_{KL}(q_\theta \parallel p) = -\mathbb{E}_{x \sim q_\theta}\left[\log p\right
 
 所以说，反向 KL 最终会“尽可能地拟合一个峰，但不保证每个峰都有概率”，这种行为称为 **mode-seeking**。
 
-![反向 KL 拟合示意图](/images/slime_opd/image2.png)
 
-蓝色：目标拟合分布；橘色：反向 KL 拟合的结果
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/slime_opd/image2.png" alt="反向 KL 拟合示意图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">反向 KL 拟合示意图</p>
+</div>
+
+
 
 # OPD
 

@@ -49,7 +49,14 @@ DeepSpec/
 
 ## 训练结构
 
-![训练结构图](/images/speculative_decoding_deepspec/image1.png)
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/speculative_decoding_deepspec/image1.png" alt="训练结构图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">训练结构图</p>
+</div>
+
+
 对于每一类模型，都有一个对应的 Trainer，它主要实现两件事：1）补全基类没有实现的 `run_batch`，实现模型训练；2）构建草稿模型：
 
 _build_draft_model
@@ -182,7 +189,14 @@ self.confidence_head = AcceptRatePredictor(input_dim=input_dim)
 
 推理时单步版接受率预测；无 head 时返回 `None`，带 markov 时拼接 `prev_token_ids` 的 embedding。
 
-![predict_confidence_step 流程](/images/speculative_decoding_deepspec/image2.png)
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/speculative_decoding_deepspec/image2.png" alt="predict_confidence_step 流程" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">predict_confidence_step 流程</p>
+</div>
+
+
 * 指定了 confidence_head_with_markov，拼接 prev_embeddings 和 hidden state，然后输入到 self.confidence_head 的前向
 * 没有指定 confidence_head_with_markov，直接收入 hidden state 返回 self.confidence_head 的前向
 
@@ -196,7 +210,14 @@ self.confidence_head = AcceptRatePredictor(input_dim=input_dim)
 
 整块采样。`proposal_len == 0` 返回空张量；无 markov head 直接 `sample_tokens`；有则走 `markov_head.sample_block_tokens`，块内顺序展开、逐位用上一个采样结果修正 logits。返回 `(tokens, logits)`。
 
-![sample_draft_tokens 流程](/images/speculative_decoding_deepspec/image3.png)
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/speculative_decoding_deepspec/image3.png" alt="sample_draft_tokens 流程" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">sample_draft_tokens 流程</p>
+</div>
+
+
 sample_tokens 的实现
 
 ```python
@@ -219,19 +240,40 @@ def sample_tokens(logits: torch.Tensor, temperature: float = 0.0) -> torch.Tenso
 
 sample_draft_tokens 的单步版本，要求 `base_logits` 为 `[batch, vocab]`，用 `apply_step_logits` 施加 markov 修正后采样一个 token。给逐步式解码循环用。
 
-![sample_draft_token_step 流程](/images/speculative_decoding_deepspec/image4.png)
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/speculative_decoding_deepspec/image4.png" alt="sample_draft_token_step 流程" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">sample_draft_token_step 流程</p>
+</div>
+
+
 
 
 ### _forward_backbone
 
 核心前向：`hidden_norm(fc(target_hidden_states))` 得到上下文 KV 源，`rotary_emb` 按 `position_ids` 生成 RoPE，逐层跑 decoder，最后 `norm`。噪声 embedding 作为 query 流。
 
-![_forward_backbone 前向](/images/speculative_decoding_deepspec/image5.png)
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/speculative_decoding_deepspec/image5.png" alt="_forward_backbone 前向" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">_forward_backbone 前向</p>
+</div>
+
+
 ### forward
 
 在一次 forward 里，从序列上随机挑 N 个位置，让 draft 模型基于 target 模型的隐状态特征，并行猜出每个位置之后的 B 个 token，并输出算 loss 所需的全部素材。
 
-![forward 流程](/images/speculative_decoding_deepspec/image6.png)
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/speculative_decoding_deepspec/image6.png" alt="forward 流程" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">forward 流程</p>
+</div>
+
+
 1. **采样 anchor：**`sample_anchor_positions` 采 `num_anchors` 个 anchor，得到 `block_keep_mask`（不足时补 dummy anchor 并置 False）
 
 > `num_anchors` 在训练时设置为 512，即 512 个 block 同时进行预测（相当于 batch size 的概念）。`num_anchors` 的设置最好配合输入序列长度，一般 `block_size` × `num_anchors` ≈ seq_len 效率更高
@@ -547,8 +589,22 @@ block_hidden = model._forward_backbone(
 
 BaseEvaluator 的结构主要是：1. init 时 build_model；2. 数据指标的处理；3. evaluate 进行投机解码验证
 
-![eval 总体结构（一）](/images/speculative_decoding_deepspec/image7.png)
-![eval 总体结构（二）](/images/speculative_decoding_deepspec/image8.png)
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/speculative_decoding_deepspec/image7.png" alt="eval 总体结构（一）" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">eval 总体结构（一）</p>
+</div>
+
+
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/speculative_decoding_deepspec/image8.png" alt="eval 总体结构（二）" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">eval 总体结构（二）</p>
+</div>
+
+
 最终调用的是 base_evaluator.py 的 `generate_decoding_sample` 函数，该函数通过回调接口进行 callback，不挑投机解码算法：
 
 **回调契约**
@@ -566,8 +622,22 @@ generate_decoding_sample  函数：
 
 它是一个 batch-size=1 的投机解码引擎：目标模型 prefill 出首 token → 循环中草稿模型提议 k 个 token、目标模型一次并行验证、rejection sampling 决定接受前缀并保证分布等价、直到达到长度上限或命中 EOS。对混合注意力目标额外做「快照+重跑」以维持递归状态一致性。
 
-![generate_decoding_sample 流程（一）](/images/speculative_decoding_deepspec/image9.png)
-![generate_decoding_sample 流程（二）](/images/speculative_decoding_deepspec/image10.png)
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/speculative_decoding_deepspec/image9.png" alt="generate_decoding_sample 流程（一）" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">generate_decoding_sample 流程（一）</p>
+</div>
+
+
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/speculative_decoding_deepspec/image10.png" alt="generate_decoding_sample 流程（二）" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">generate_decoding_sample 流程（二）</p>
+</div>
+
+
 其中构建草稿的 `init_context`、更新草稿状态的 `update`、草稿生成的 `propose` 以及置信头校准都是调用的回调函数
 
 
@@ -712,7 +782,14 @@ self.confidence_head_recorder.observe(proposal=proposal, verification=verificati
 
 `_propose` = 以「当前已确认 token + mask 块 + target 隐藏态」为输入，让草稿 backbone 一次非因果前向出整块隐藏态（并立即 crop 回退草稿缓存避免污染），再逐位置采样出 k 个候选 token、可选地按置信度截断，最后打包成含 `verify_input_ids` 和草稿分布 `draft_probs` 的提议，供 `verify_draft_tokens` 验证。它是 DSpark「并行块生成」原理的具体落地点。
 
-![propose 流程](/images/speculative_decoding_deepspec/image11.png)
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/speculative_decoding_deepspec/image11.png" alt="propose 流程" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">propose 流程</p>
+</div>
+
+
 
 
 ## 马尔可夫头修正
@@ -908,7 +985,14 @@ DeepSpec 里 DFlash / Eagle3 和 DSpark 走的是**同一套三段式流水线**
 
 两种配置对比：
 
-![DFlash 两种配置对比](/images/speculative_decoding_deepspec/image12.png)
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/speculative_decoding_deepspec/image12.png" alt="DFlash 两种配置对比" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DFlash 两种配置对比</p>
+</div>
+
+
 ## Eagle3 
 
 Eagle3 用独立的 trainer 和 modeling，训练范式是 TTT（test-time-training，多步展开），没有 markov/confidence 那套。
@@ -917,7 +1001,14 @@ Qwen3Eagle3Trainer 和 Qwen3DSparkTrainer 一样，都继承自 BaseTrainer，�
 
 ### Qwen3Eagle3Model eagle3 的 forward 实现
 
-![Qwen3Eagle3Model forward](/images/speculative_decoding_deepspec/image13.png)
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/speculative_decoding_deepspec/image13.png" alt="Qwen3Eagle3Model forward" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">Qwen3Eagle3Model forward</p>
+</div>
+
+
 1. position_ids
 
 |**维度**|**Eagle3**|**DSpark**|

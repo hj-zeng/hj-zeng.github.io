@@ -27,7 +27,14 @@ summary: "DSpark 论文解读：投机解码背景与 DFlash 改进、三个加�
 
 ### 1.2 DFlash
 
-![DFlash 架构图 (Image source: https://arxiv.org/abs/2602.06036)](/images/speculative_decoding_dspark/image1.png "DFlash 架构图 (Image source: https://arxiv.org/abs/2602.06036)")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/speculative_decoding_dspark/image1.png &quot;DFlash 架构图 (Image source: https://arxiv.org/abs/2602.06036" alt="DFlash 架构图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DFlash 架构图（Image source: <a href="https://arxiv.org/abs/2602.06036">https://arxiv.org/abs/2602.06036</a>）</p>
+</div>
+
+")
 
 DFlash 的草稿模型以**目标模型中间层的隐状态作为额外上下文，沿 K/V 的序列维拼进去**。在 prefill 阶段，来自一组目标层 $\{l_1,\dots,l_m\}$ 的隐状态被拼接并投影到草稿隐空间：
 
@@ -46,7 +53,14 @@ $K_i = [W_{K_i}H_\text{ctx}; W_{K_i}H_d], \quad V_i = [W_{V_i}H_\text{ctx}; W_{V
 * **上下文因果到 anchor**：保证草稿只基于 anchor 之前的真实信息预测 anchor 之后的 token，不偷看未来真 token（否则训练会泄漏、推理也无法使用）。
 * **`is_causal=False`**：把因果性完全交给 `block_mask`，内核不再叠下三角，块内双向才成立。
 
-![DFlash 掩码块示意图 (Image source: https://arxiv.org/abs/2602.06036)](/images/speculative_decoding_dspark/image2.png "DFlash 掩码块示意图 (Image source: https://arxiv.org/abs/2602.06036)")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/speculative_decoding_dspark/image2.png &quot;DFlash 掩码块示意图 (Image source: https://arxiv.org/abs/2602.06036" alt="DFlash 掩码块示意图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DFlash 掩码块示意图（Image source: <a href="https://arxiv.org/abs/2602.06036">https://arxiv.org/abs/2602.06036</a>）</p>
+</div>
+
+")
 
 * 目标模型提供上下文特征（蓝色），这些特征为草稿模型提供条件。输入包括干净的提示标记 $p$ 和干净的响应标记 $r$。
 * 在每个掩码块内，随机抽取一部分干净响应标记（黄色）作为锚点，而掩码标记 $m$（绿色）则标记用于并行预测的位置。
@@ -68,7 +82,14 @@ $$L = \frac{T_\text{draft} + T_\text{verify}}{\tau}$$
 
 DSpark 从两个方向改进 DFlash：让草稿生成更准（半自回归——Markov 头/RNN 头），以及让验证更聪明（置信度头 + 硬件利用率自适应）。
 
-![DSpark 架构与算法流程 (Image source: https://arxiv.org/abs/2607.05147)](/images/speculative_decoding_dspark/image3.png "DSpark 架构与算法流程 (Image source: https://arxiv.org/abs/2607.05147)")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/speculative_decoding_dspark/image3.png &quot;DSpark 架构与算法流程 (Image source: https://arxiv.org/abs/2607.05147" alt="DSpark 架构与算法流程" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DSpark 架构与算法流程（Image source: <a href="https://arxiv.org/abs/2607.05147">https://arxiv.org/abs/2607.05147</a>）</p>
+</div>
+
+")
 
 算法流程：
 
@@ -174,7 +195,14 @@ ECE 随 $T$ 先降后升，呈 U 形，$T_k^* = 2.3$ 是谷底。这就是「最
 
 验证一个草稿 token 是否有效严重依赖于当前系统负载。DSpark 把验证长度选择建模为一个全局吞吐最大化问题。
 
-![硬件负载感知调度原理 (Image source: https://arxiv.org/abs/2607.05147)](/images/speculative_decoding_dspark/image4.png "硬件负载感知调度原理 (Image source: https://arxiv.org/abs/2607.05147)")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/speculative_decoding_dspark/image4.png &quot;硬件负载感知调度原理 (Image source: https://arxiv.org/abs/2607.05147" alt="硬件负载感知调度原理" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">硬件负载感知调度原理（Image source: <a href="https://arxiv.org/abs/2607.05147">https://arxiv.org/abs/2607.05147</a>）</p>
+</div>
+
+")
 
 算法原理：有 $R$ 个并发请求同时在跑推测解码。每个请求已经草稿出 $\gamma$ 个 token，每个位置有校准过的置信度。要决定的是：每个请求拿多少个草稿 token 去让目标模型验证。多验证可能多接受，但批量变大、目标模型每步变慢，需要在「多接受」和「每步变慢」之间找吞吐最大的点。
 
@@ -346,7 +374,14 @@ flowchart TB
 
 #### 3.3.1 每个位置的接受率
 
-![各位置接受率对比 (Image source: https://arxiv.org/abs/2607.05147)](/images/speculative_decoding_dspark/image5.png "各位置接受率对比 (Image source: https://arxiv.org/abs/2607.05147)")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/speculative_decoding_dspark/image5.png &quot;各位置接受率对比 (Image source: https://arxiv.org/abs/2607.05147" alt="各位置接受率对比" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">各位置接受率对比（Image source: <a href="https://arxiv.org/abs/2607.05147">https://arxiv.org/abs/2607.05147</a>）</p>
+</div>
+
+")
 
 DSpark 的优势在于起点高，且随着长度增加衰减更慢。
 
@@ -358,13 +393,27 @@ DSpark 的优势在于起点高，且随着长度增加衰减更慢。
 
 * 从草稿模型结构（模型深度）角度看：
 
-![草稿模型深度对比 (Image source: https://arxiv.org/abs/2607.05147)](/images/speculative_decoding_dspark/image6.png "草稿模型深度对比 (Image source: https://arxiv.org/abs/2607.05147)")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/speculative_decoding_dspark/image6.png &quot;草稿模型深度对比 (Image source: https://arxiv.org/abs/2607.05147" alt="草稿模型深度对比" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">草稿模型深度对比（Image source: <a href="https://arxiv.org/abs/2607.05147">https://arxiv.org/abs/2607.05147</a>）</p>
+</div>
+
+")
 
 2 层 DSpark 在所有领域上都胜过 5 层 DFlash 基线。这说明通过一个轻量序列化头注入局部自回归，能带来非常有利的精度-参数权衡，比单纯堆叠更深的并行层获得更好的序列连贯性。
 
 * 从接受长度的变化看：
 
-![提议长度对比 (Image source: https://arxiv.org/abs/2607.05147)](/images/speculative_decoding_dspark/image7.png "提议长度对比 (Image source: https://arxiv.org/abs/2607.05147)")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/speculative_decoding_dspark/image7.png &quot;提议长度对比 (Image source: https://arxiv.org/abs/2607.05147" alt="提议长度对比" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">提议长度对比（Image source: <a href="https://arxiv.org/abs/2607.05147">https://arxiv.org/abs/2607.05147</a>）</p>
+</div>
+
+")
 
 DSpark 在每一种提议长度上都稳定优于 DFlash，更重要的是性能差距随 $\gamma$ 增大而持续扩大。由于纯并行生成（DFlash）存在迅速的接受率衰减（见左图 2），其在长块上的边际效用递减；DSpark 缓解了这种衰减，使其相对 DFlash 的增益不断增长。另外，RNN 头相对 Markov 头只带来边际的额外增益，且主要出现在较长的提议长度上。考虑到其实现复杂度更高、部署特性更不友好，DSpark 把 Markov 头作为默认选择。
 
@@ -374,10 +423,24 @@ DSpark 在每一种提议长度上都稳定优于 DFlash，更重要的是性能
 
 #### 3.3.3 置信度头的影响
 
-![置信度阈值与接受率 (Image source: https://arxiv.org/abs/2607.05147)](/images/speculative_decoding_dspark/image8.png "置信度阈值与接受率 (Image source: https://arxiv.org/abs/2607.05147)")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/speculative_decoding_dspark/image8.png &quot;置信度阈值与接受率 (Image source: https://arxiv.org/abs/2607.05147" alt="置信度阈值与接受率" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">置信度阈值与接受率（Image source: <a href="https://arxiv.org/abs/2607.05147">https://arxiv.org/abs/2607.05147</a>）</p>
+</div>
+
+")
 
 上图绘制了不同置信度阈值下的每步平均 token 数（柱状）和整体接受率（折线）。随着阈值升高，接受率稳步上升，因为估计器过滤掉了最终会被拒绝的 token。这表明置信度头能识别低价值的后缀 token，且这种裁剪在闲聊（chat）负载上最为显著——那里更高熵的 token 分布限制了固定长度验证的效率。
 
-![置信度校准直方图 (Image source: https://arxiv.org/abs/2607.05147)](/images/speculative_decoding_dspark/image9.png "置信度校准直方图 (Image source: https://arxiv.org/abs/2607.05147)")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/speculative_decoding_dspark/image9.png &quot;置信度校准直方图 (Image source: https://arxiv.org/abs/2607.05147" alt="置信度校准直方图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">置信度校准直方图（Image source: <a href="https://arxiv.org/abs/2607.05147">https://arxiv.org/abs/2607.05147</a>）</p>
+</div>
+
+")
 
 尽管原始置信度估计器具备很强的判别力，其预测本质上过度自信。施加事后校准有助于把前缀存活概率与经验接受率对齐。上图背景的浅色直方图表示样本数在各置信度分箱上的频率分布。（位置 1：ECE 5.7% → 2.0%，AUC 0.818；位置 3：ECE 8.2% → 1.7%，AUC 0.812；位置 5：ECE 5.8% → 0.8%，AUC 0.864；位置 7：ECE 3.3% → 0.4%，AUC 0.907。）

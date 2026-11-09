@@ -112,9 +112,14 @@ $G_\theta(y)$ 是学生模型生成的图像，$z$ 是教师模型多步生成�
 
 引用论文结论（One-step Diffusion with Distribution Matching Distillation）：
 
-![DMD 论文结论](/images/diffusion_dmd/image1.png)
 
-image source: https://arxiv.org/abs/2311.18828
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/diffusion_dmd/image1.png" alt="DMD 论文结论" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DMD 论文结论（Image source: <a href="https://arxiv.org/abs/2311.18828">https://arxiv.org/abs/2311.18828</a>）</p>
+</div>
+
+
 
 最终损失为：
 
@@ -126,9 +131,14 @@ $$L = D_{KL} + \lambda_{reg} L_{reg}$$
 
 ### 总体框架
 
-![DMD 总体框架](/images/diffusion_dmd/image2.png)
 
-image source: https://arxiv.org/abs/2311.18828
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/diffusion_dmd/image2.png" alt="DMD 总体框架" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DMD 总体框架（Image source: <a href="https://arxiv.org/abs/2311.18828">https://arxiv.org/abs/2311.18828</a>）</p>
+</div>
+
+
 
 ### 总体训练流程
 
@@ -137,9 +147,14 @@ image source: https://arxiv.org/abs/2311.18828
 * 选择一个教师模型
 * 准备好 data pair（用于计算回归损失）
 
-![DMD 总体训练流程](/images/diffusion_dmd/image3.png)
 
-## DMD2
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/diffusion_dmd/image3.png" alt="DMD 总体训练流程" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DMD 总体训练流程</p>
+</div>
+
+
 
 DMD2 解决的问题：DMD1 中，回归损失的计算需要用到 data pair，存在一些问题：
 
@@ -156,9 +171,14 @@ DMD2 解决的问题：DMD1 中，回归损失的计算需要用到 data pair，
 
 解决方法：让 fake score function 学得更久一些——每训练 5 步 fake score function，对应训练一次学生模型。
 
-![DMD2 双时间戳更新](/images/diffusion_dmd/image4.png)
 
-image source: https://arxiv.org/abs/2405.14867
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/diffusion_dmd/image4.png" alt="DMD2 双时间戳更新" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DMD2 双时间戳更新（Image source: <a href="https://arxiv.org/abs/2405.14867">https://arxiv.org/abs/2405.14867</a>）</p>
+</div>
+
+
 
 ### GAN loss
 
@@ -202,9 +222,14 @@ flowchart TB
 
 ### 总体框架
 
-![DMD2 总体框架](/images/diffusion_dmd/image5.png)
 
-image source: https://arxiv.org/abs/2405.14867
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/diffusion_dmd/image5.png" alt="DMD2 总体框架" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DMD2 总体框架（Image source: <a href="https://arxiv.org/abs/2405.14867">https://arxiv.org/abs/2405.14867</a>）</p>
+</div>
+
+
 
 ## Decoupled DMD
 
@@ -302,4 +327,11 @@ $$\tau_{CA} \sim u(t, 1)$$
 
 ### DMD 与 Decoupled-DMD 的流程图对比
 
-![DMD 与 Decoupled-DMD 流程图对比](/images/diffusion_dmd/image6.png)
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/diffusion_dmd/image6.png" alt="DMD 与 Decoupled-DMD 流程图对比" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DMD 与 Decoupled-DMD 流程图对比</p>
+</div>
+
+

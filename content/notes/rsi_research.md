@@ -129,7 +129,14 @@ flowchart TD
 
 论文：The Last AI Built by Humans: Toward Genuine Recursive Self-Improvement，给出 RSI 的发展路线图
 
-![RSI 发展路线图 (Image source: https://arxiv.org/abs/2609.11873）](/images/rsi_research/image1.png "RSI 发展路线图 (Image source: https://arxiv.org/abs/2609.11873）")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/rsi_research/image1.png" alt="RSI 发展路线图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">RSI 发展路线图（Image source: <a href="https://arxiv.org/abs/2609.11873">https://arxiv.org/abs/2609.11873</a>）</p>
+</div>
+
+
 RSI 发展的每一个阶段
 
 * **B0（非 RSI ）**：改进只在当前任务内，不保留持久状态。
@@ -214,12 +221,26 @@ Autoresearch 的工作：让 AI agent（如 Claude Code）像人类研究员一�
 
 按这个节奏一小时能跑 12 个实验，一夜下来能跑上百个。这里的 Artifacts，就是那个被不断改进的 `train.py`/模型配置本身。
 
-![Autoresearch 效果图 (Image source: https://github.com/karpathy/autoresearch）](/images/rsi_research/image2.png "Autoresearch 效果图 (Image source: https://github.com/karpathy/autoresearch）")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/rsi_research/image2.png" alt="Autoresearch 效果图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">Autoresearch 效果图（Image source: <a href="https://github.com/karpathy/autoresearch">https://github.com/karpathy/autoresearch</a>）</p>
+</div>
+
+
 
 
 **AlphaEvolve**
 
-![AlphaEvolve 框架图 (Image source: https://arxiv.org/abs/2506.13131）](/images/rsi_research/image3.png "AlphaEvolve 框架图 (Image source: https://arxiv.org/abs/2506.13131）")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/rsi_research/image3.png" alt="AlphaEvolve 框架图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">AlphaEvolve 框架图（Image source: <a href="https://arxiv.org/abs/2506.13131">https://arxiv.org/abs/2506.13131</a>）</p>
+</div>
+
+
 **AlphaEvolve =**自动寻找更优程序的搜索系统；
 
 1. 用户定义：用户提供 prompt 模板、模型选择、**评估代码**、初始程序，以及**哪些代码组件可以被演化**。
@@ -282,7 +303,14 @@ flowchart TD
 
 * **工作流自动化**
 
-![简化的 Codex Agent 循环：Agent 调用工具，工具的响应影响模型的下一次生成 (Image source: https://openai.com/index/unrolling-the）](/images/rsi_research/image4.png "简化的 Codex Agent 循环：Agent 调用工具，工具的响应影响模型的下一次生成 (Image source: https://openai.com/index/unrolling-the）")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/rsi_research/image4.png" alt="简化的 Codex Agent 循环：Agent 调用工具，工具的响应影响模型的下一次生成" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">简化的 Codex Agent 循环：Agent 调用工具，工具的响应影响模型的下一次生成（Image source: <a href="https://openai.com/index/unrolling-the">https://openai.com/index/unrolling-the</a>）</p>
+</div>
+
+
 * **文件系统作为持久记忆**
 
 长程 Agent 系统中反复出现的一种模式是对状态和产物的简洁控制。Harness 不应将整个工作流和所有日志都承载在上下文中；相反，它应将持久状态保存在文件中。在长程 Agent 推进过程中，实验日志、代码 diff、论文摘要、错误追踪和过往推进轨迹等产物的规模常常远超模型训练时所用的上下文窗口。
@@ -305,7 +333,14 @@ Harness 就是代码，它规定了提示词、工具调用、子智能体、控
 
 ACE 把上下文当作一本不断演化的「playbook」，而不是一段越写越长的提示词。它维护一个由多条要点组成的上下文 playbook，每条要点都有自己的**标识符和描述**。
 
-![ACE流程图（Image source: https://arxiv.org/abs/2510.04618）](/images/rsi_research/image5.png "ACE流程图（Image source: https://arxiv.org/abs/2510.04618）")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/rsi_research/image5.png" alt="ACE流程图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">ACE流程图（Image source: <a href="https://arxiv.org/abs/2510.04618">https://arxiv.org/abs/2510.04618</a>）</p>
+</div>
+
+
 
 
 1. 生成器（Generator）：参照已有的要点，生成任务执行轨迹。
@@ -314,7 +349,14 @@ ACE 把上下文当作一本不断演化的「playbook」，而不是一段越�
 
 为了在迭代重写过程中防止上下文坍缩，ACE 输出的是一组结构化的、条目化的要点，形式为（标识符，描述），这些要点会依据确定性的逻辑被合并进结构化的上下文日志中。这些上下文条目还会被定期精炼和去重。
 
-![LLM 总结导致上下文坍塌示意图（Image source: https://arxiv.org/abs/2510.04618）](/images/rsi_research/image6.png "LLM 总结导致上下文坍塌示意图（Image source: https://arxiv.org/abs/2510.04618）")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/rsi_research/image6.png" alt="LLM 总结导致上下文坍塌示意图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">LLM 总结导致上下文坍塌示意图（Image source: <a href="https://arxiv.org/abs/2510.04618">https://arxiv.org/abs/2510.04618</a>）</p>
+</div>
+
+
 ACE 能够从执行轨迹中学习洞见，这有助于我们朝着「自我管理的记忆」迈进，但它的**更新规则和整体工作流仍然是人工设计的**。
 
 **Meta Context Engineering**
@@ -330,13 +372,34 @@ MCE 将「如何管理上下文」与「上下文里具体是什么」分离开�
 
 
 
-![MCE 框架示意图（Image source: https://arxiv.org/abs/2601.21557）](/images/rsi_research/image7.png "MCE 框架示意图（Image source: https://arxiv.org/abs/2601.21557）")
-![MCE 算法流程（Image source: https://arxiv.org/abs/2601.21557）](/images/rsi_research/image8.png "MCE 算法流程（Image source: https://arxiv.org/abs/2601.21557）")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/rsi_research/image7.png" alt="MCE 框架示意图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">MCE 框架示意图（Image source: <a href="https://arxiv.org/abs/2601.21557">https://arxiv.org/abs/2601.21557</a>）</p>
+</div>
+
+
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/rsi_research/image8.png" alt="MCE 算法流程" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">MCE 算法流程（Image source: <a href="https://arxiv.org/abs/2601.21557">https://arxiv.org/abs/2601.21557</a>）</p>
+</div>
+
+
 **Meta-Harness**
 
 Meta-Harness 优化的对象是决定「哪些信息应当被存储、检索并呈现给模型」的那段代码本身。它的名字里之所以有「Meta-」，就是因为这是一个用于优化 Harness 的 Harness。
 
-![meta-harness 框架（Image source:https://arxiv.org/abs/2603.28052）](/images/rsi_research/image9.png "meta-harness 框架（Image source:https://arxiv.org/abs/2603.28052）")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/rsi_research/image9.png" alt="meta-harness 框架" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">meta-harness 框架（Image source: <a href="https://arxiv.org/abs/2603.28052">https://arxiv.org/abs/2603.28052</a>）</p>
+</div>
+
+
 1. **阅读文件系统**：一个 Coding Agent proposer （论文用的是 Claude Code + Opus 4.6）去读文件系统里存储的所有历史记录，包括之前每一版 Harness 的源代码、评估分数、执行 trace。
 2. **跑评估**：把新提出的 Harness 拿去跑实际任务，收集成绩和轨迹。
 3. **更新文件系统**：把这一轮的所有产物，代码、分数、推理过程、执行日志，全部写回文件系统，供下一轮查阅，不断循环
@@ -345,7 +408,14 @@ Meta-Harness 优化的对象是决定「哪些信息应当被存储、检索并�
 
 可以理解为meta-harness 是一个外层搜索算法，搜索对象不是模型权重，而是 harness 代码
 
-![Meta-Harness 算法流程（Image source:https://arxiv.org/abs/2603.28052）](/images/rsi_research/image10.png "Meta-Harness 算法流程（Image source:https://arxiv.org/abs/2603.28052）")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/rsi_research/image10.png" alt="Meta-Harness 算法流程" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">Meta-Harness 算法流程（Image source: <a href="https://arxiv.org/abs/2603.28052">https://arxiv.org/abs/2603.28052</a>）</p>
+</div>
+
+
 line4-line6 是冷启动，论文冷启动直接拿该 domain 已有的几个公开强 baseline harness 原样组成一个集合作为初始 population，跑一遍评估把 filesystem 铺底，然后交给 proposer 迭代搜索
 
 #### Skill 层面
@@ -356,7 +426,14 @@ SkillRL 把原始轨迹蒸馏成短技能存入分层 SkillBank，SkillBank 与 
 
 policy 变强 → 暴露新失败 → 蒸馏新技能 → 反哺 policy
 
-![SkillRL 框架 (Image source:https://arxiv.org/abs/2602.08234)](/images/rsi_research/image11.png "SkillRL 框架 (Image source:https://arxiv.org/abs/2602.08234)")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/rsi_research/image11.png &quot;SkillRL 框架 (Image source:https://arxiv.org/abs/2602.08234" alt="SkillRL 框架" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">SkillRL 框架（Image source: <a href="https://arxiv.org/abs/2602.08234">https://arxiv.org/abs/2602.08234</a>）</p>
+</div>
+
+")
 1. **经验蒸馏**：采集成功+失败轨迹 → Teacher 蒸馏成 10–20× 压缩的技能
 2. **分层skill 构建**：通用技能 `S_g` + 任务特定 `S_k`，自适应检索（`S_g` 永远加载 + `S_k` TopK=6 语义相似）
 3. **递归进化 + RL**：SFT 冷启 → GRPO 训练（KL 锚定 `π_sft`）→ 验证成功率 < 0.4 触发失败分析 → 扩库→ 共进化（skill & base model）
@@ -365,7 +442,14 @@ policy 变强 → 暴露新失败 → 蒸馏新技能 → 反哺 policy
 
 SkillOpt 借鉴了训练模型的方式，实现 Skill 的自动优化：文本==参数权重
 
-![SkillOpt 框架图 (Image source:https://arxiv.org/abs/2605.23904)](/images/rsi_research/image12.png "SkillOpt 框架图 (Image source:https://arxiv.org/abs/2605.23904)")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/rsi_research/image12.png &quot;SkillOpt 框架图 (Image source:https://arxiv.org/abs/2605.23904" alt="SkillOpt 框架图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">SkillOpt 框架图（Image source: <a href="https://arxiv.org/abs/2605.23904">https://arxiv.org/abs/2605.23904</a>）</p>
+</div>
+
+")
 关键：
 
 1. 冻结任务Skill：用当前的Skill去执行一批任务，收集执行轨迹与得分。
@@ -380,7 +464,14 @@ SkillOpt 借鉴了训练模型的方式，实现 Skill 的自动优化：文本=
 
 MemRL 由结构化记忆库、两阶段检索机制、非参数化强化学习的效用更新规则三部分构成，形成端到端的学习闭环：输入查询→检索记忆→生成输出→基于环境奖励更新记忆效用。
 
-![MemRL 框架 (Image source:https://arxiv.org/abs/2601.03192)](/images/rsi_research/image13.png "MemRL 框架 (Image source:https://arxiv.org/abs/2601.03192)")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/rsi_research/image13.png &quot;MemRL 框架 (Image source:https://arxiv.org/abs/2601.03192" alt="MemRL 框架" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">MemRL 框架（Image source: <a href="https://arxiv.org/abs/2601.03192">https://arxiv.org/abs/2601.03192</a>）</p>
+</div>
+
+")
 1. 结构化记忆库：（意图 Z，经验 E，效用 Q ），引入基于真实业务反馈的"效用评分（Q值）"机制
 2. 两阶段检索机制：阶段A：基于相似度的召回；阶段B：基于价值的选择；
 3. 基于非参数化强化学习的运行时效用更新：在记忆空间中持续优化Q值，无需修改LLM权重，依托环境反馈（如任务成功/失败、标量分数）实现效用精修：Q ← Q + alpha * (r - Q)
@@ -393,12 +484,26 @@ JitRL（Just-In-Time Reinforcement Learning），即时强化学习：不重新�
 
 JitRL 与传统 RL 的区别：不更新模型参数、类TTT思想：
 
-![JitRL 与RL 的区别 (Image source:https://arxiv.org/abs/2601.18510)](/images/rsi_research/image14.png "JitRL 与RL 的区别 (Image source:https://arxiv.org/abs/2601.18510)")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/rsi_research/image14.png &quot;JitRL 与RL 的区别 (Image source:https://arxiv.org/abs/2601.18510" alt="JitRL 与RL 的区别" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">JitRL 与RL 的区别（Image source: <a href="https://arxiv.org/abs/2601.18510">https://arxiv.org/abs/2601.18510</a>）</p>
+</div>
+
+")
 传统 RL 训练：收集轨迹 -> 模型进行RL训练 ->参数更新
 
 JitRL** **推理：检索轨迹 -> 计算优势 -> 修正模型推理输出
 
-![JitRL 框架图 (Image source:https://arxiv.org/abs/2601.18510)](/images/rsi_research/image15.png "JitRL 框架图 (Image source:https://arxiv.org/abs/2601.18510)")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/rsi_research/image15.png &quot;JitRL 框架图 (Image source:https://arxiv.org/abs/2601.18510" alt="JitRL 框架图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">JitRL 框架图（Image source: <a href="https://arxiv.org/abs/2601.18510">https://arxiv.org/abs/2601.18510</a>）</p>
+</div>
+
+")
 整体闭环流程：
 
 1. **推理阶段（Inference）**
@@ -426,10 +531,24 @@ JitRL** **推理：检索轨迹 -> 计算优势 -> 修正模型推理输出
 
 **Self-Harness**
 
-![harness 改进的三种范式 （Image source: https://arxiv.org/abs/2606.09498）](/images/rsi_research/image16.png "harness 改进的三种范式 （Image source: https://arxiv.org/abs/2606.09498）")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/rsi_research/image16.png" alt="harness 改进的三种范式" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">harness 改进的三种范式（Image source: <a href="https://arxiv.org/abs/2606.09498">https://arxiv.org/abs/2606.09498</a>）</p>
+</div>
+
+
 依靠 LLM 智能体，通过「提议—评估—接受」的循环来改进自己的 Harness。
 
-![self-harness 框架图 （Image source: https://arxiv.org/abs/2606.09498）](/images/rsi_research/image17.png "self-harness 框架图 （Image source: https://arxiv.org/abs/2606.09498）")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/rsi_research/image17.png" alt="self-harness 框架图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">self-harness 框架图（Image source: <a href="https://arxiv.org/abs/2606.09498">https://arxiv.org/abs/2606.09498</a>）</p>
+</div>
+
+
 1. **弱点挖掘**：将失败案例聚类，归纳为**有验证依据**的失败模式。
 
 * 用当前 Harness h_t 在各项任务上进行评估，并收集执行轨迹以供分析。
@@ -454,14 +573,28 @@ JitRL** **推理：检索轨迹 -> 计算优势 -> 修正模型推理输出
 
 Agentic Harness Engineering 作者认为 harness 演化的瓶颈在于**可观测性**——当一次推进失败时，需要知道哪个组件负有责任，且每次编辑都应以证据为依据。
 
-![AHE 框架（Image source: https://arxiv.org/abs/2604.25850）](/images/rsi_research/image18.png "AHE 框架（Image source: https://arxiv.org/abs/2604.25850）")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/rsi_research/image18.png" alt="AHE 框架" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">AHE 框架（Image source: <a href="https://arxiv.org/abs/2604.25850">https://arxiv.org/abs/2604.25850</a>）</p>
+</div>
+
+
 强调：
 
 1. **组件可观测性：**每个可编辑的 harness 组件在文件系统中有一个表示，使动作空间显式且可追踪。一个 harness 包含 7 个组件：系统提示、工具描述、工具实现、中间件、技能、子 Agent 配置和长期记忆。每种失败模式被映射到一个组件。
 2. **经验可观测性**：分析和总结大量原始轨迹为证据与失败模式的层级结构。每个 harness 生成 $k$ 条轨迹。一个"Agent 调试器"分析轨迹并生成每任务分析报告。把百万级 raw trajectory tokens 蒸馏成分层、可下钻的证据语料，而不是直接喂原始日志。
 3. **决策可观测性**：每次编辑都配有一个对下一轮的预测以供验证。在新一轮任务集上跑出任务级指标。把实测结果与之前的预测对照——如果预测被证伪，就回滚这次编辑。
 
-![AHE 流程（Image source: https://arxiv.org/abs/2604.25850）](/images/rsi_research/image19.png "AHE 流程（Image source: https://arxiv.org/abs/2604.25850）")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/rsi_research/image19.png" alt="AHE 流程" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">AHE 流程（Image source: <a href="https://arxiv.org/abs/2604.25850">https://arxiv.org/abs/2604.25850</a>）</p>
+</div>
+
+
 1. line3-rollout：让上一轮的 harness 驱动模型 M，对基准 D 中每个任务跑 k 次推理，得到原始轨迹
 2. line4-clean：把高噪声的原始轨迹规范化成统一格式（经验可观测性），剥离无关 token，方便下游分析
 3. line5-line10：从第 2 轮开始，把上一轮自己声明的预测清单 `C_{t-1}`（"我这次修改会修复哪些任务、可能弄坏哪些任务"）和实际的任务级 Δ对比。对预测"修复但没修复"和"未预测的回归"，按文件粒度回滚对应组件（决策可观测性）。
@@ -492,7 +625,14 @@ Agentic Harness Engineering 作者认为 harness 演化的瓶颈在于**可观�
 
 围绕密集反馈构建的 Infra Agent 优化回路：
 
-![密集反馈优化回路示意图（Image source: https://z.ai/blog/glm-built-its-inference-infrastructure）](/images/rsi_research/image20.png "密集反馈优化回路示意图（Image source: https://z.ai/blog/glm-built-its-inference-infrastructure）")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/rsi_research/image20.png" alt="密集反馈优化回路示意图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">密集反馈优化回路示意图（Image source: <a href="https://z.ai/blog/glm-built-its-inference-infrastructure">https://z.ai/blog/glm-built-its-inference-infrastructure</a>）</p>
+</div>
+
+
 工程师：
 
 1. 定义优化目标与系统约束
@@ -517,8 +657,22 @@ Harness 演化改变的是模型周围的非参数系统。要实现完全的自
 
 **SEAL**
 
-![SEAL 框架（Image source: https://arxiv.org/abs/2506.10943）](/images/rsi_research/image21.png "SEAL 框架（Image source: https://arxiv.org/abs/2506.10943）")
-![SEAL 算法流程图（Image source: https://arxiv.org/abs/2506.10943）](/images/rsi_research/image22.png "SEAL 算法流程图（Image source: https://arxiv.org/abs/2506.10943）")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/rsi_research/image21.png" alt="SEAL 框架" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">SEAL 框架（Image source: <a href="https://arxiv.org/abs/2506.10943">https://arxiv.org/abs/2506.10943</a>）</p>
+</div>
+
+
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/rsi_research/image22.png" alt="SEAL 算法流程图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">SEAL 算法流程图（Image source: <a href="https://arxiv.org/abs/2506.10943">https://arxiv.org/abs/2506.10943</a>）</p>
+</div>
+
+
 整体步骤：
 
 1. 从数据集 D 中随机采样一批 N 个任务实例
@@ -539,7 +693,14 @@ Harness 演化改变的是模型周围的非参数系统。要实现完全的自
 
 SIA 的主张：**两个杠杆同时拉**，由一个 Feedback-Agent 在运行时决定下一动是改 harness 还是改权重。
 
-![SIA 框架图（Image source：https://arxiv.org/abs/2605.27276）](/images/rsi_research/image23.png "SIA 框架图（Image source：https://arxiv.org/abs/2605.27276）")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/rsi_research/image23.png" alt="SIA 框架图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">SIA 框架图（Image source: <a href="https://arxiv.org/abs/2605.27276">https://arxiv.org/abs/2605.27276</a>）</p>
+</div>
+
+
 三个 agent：
 
 1. Meta-Agent ：根据任务规格 （Task spec） 和参考实现，生成初代 harness A₁ 。
@@ -568,10 +729,24 @@ SIA 的主张：**两个杠杆同时拉**，由一个 Feedback-Agent 在运行�
 
 在 harness 和模型权重层面联合自我改进
 
-![不同自我改进方式示意图（Image source：https://arxiv.org/abs/2605.09998）](/images/rsi_research/image24.png "不同自我改进方式示意图（Image source：https://arxiv.org/abs/2605.09998）")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/rsi_research/image24.png" alt="不同自我改进方式示意图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">不同自我改进方式示意图（Image source: <a href="https://arxiv.org/abs/2605.09998">https://arxiv.org/abs/2605.09998</a>）</p>
+</div>
+
+
 通过在低奖励轨迹上蒸馏强教师模型标签来共同学习策略模型
 
-![Continual Harness 算法流程（Image source：https://arxiv.org/abs/2605.09998）](/images/rsi_research/image25.png "Continual Harness 算法流程（Image source：https://arxiv.org/abs/2605.09998）")
+
+
+<div style="text-align:center; margin:1em 0;">
+<img src="/images/rsi_research/image25.png" alt="Continual Harness 算法流程" style="display:block; margin:0 auto; max-width:100%; height:auto;">
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">Continual Harness 算法流程（Image source: <a href="https://arxiv.org/abs/2605.09998">https://arxiv.org/abs/2605.09998</a>）</p>
+</div>
+
+
 * 单 Episode：Harness 自改进（θ 冻结）
 
     1. 初始化空壳 harness
