@@ -189,7 +189,7 @@ flowchart TB
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image1.png" alt="DDPO 算法流程图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DDPO 算法流程图<br>Image source: <a href="https://arxiv.org/abs/2305.13301">https://arxiv.org/abs/2305.13301</a></p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DDPO 算法流程图</p>
 </div>
 
 
@@ -233,7 +233,7 @@ $$\nabla_\theta J_{DDPO} = \mathbb{E}\left[\text{clip}\left(\frac{p_\theta(x_{t-
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image2.png" alt="DDPO 代码流程图（采样）" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DDPO 代码流程图（采样）<br>Image source: <a href="https://arxiv.org/abs/2305.13301">https://arxiv.org/abs/2305.13301</a></p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DDPO 代码流程图（采样）</p>
 </div>
 
 
@@ -243,7 +243,7 @@ $$\nabla_\theta J_{DDPO} = \mathbb{E}\left[\text{clip}\left(\frac{p_\theta(x_{t-
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image3.png" alt="DDPO 代码流程图（训练）" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DDPO 代码流程图（训练）<br>Image source: <a href="https://arxiv.org/abs/2305.13301">https://arxiv.org/abs/2305.13301</a></p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">DDPO 代码流程图（训练）</p>
 </div>
 
 
@@ -384,7 +384,7 @@ flow-GRPO 是 DDPO 在 flow-base 模型上的应用，把确定性 ODE 转为 SD
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image5.png" alt="Flow-GRPO 算法流程图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">Flow-GRPO 算法流程图<br>Image source: <a href="https://arxiv.org/abs/2505.05470">https://arxiv.org/abs/2505.05470</a></p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">Flow-GRPO 算法流程图</p>
 </div>
 
 
@@ -492,7 +492,7 @@ $$x_{t+\Delta t} = x_t + \left[v_\theta(x_t, t) + \frac{\sigma_t^2}{2t}\left(x_t
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image9.png" alt="Flow-GRPO 代码流程图（采样）" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">Flow-GRPO 代码流程图（采样）<br>Image source: <a href="https://arxiv.org/abs/2505.05470">https://arxiv.org/abs/2505.05470</a></p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">Flow-GRPO 代码流程图（采样）</p>
 </div>
 
 
@@ -502,7 +502,7 @@ $$x_{t+\Delta t} = x_t + \left[v_\theta(x_t, t) + \frac{\sigma_t^2}{2t}\left(x_t
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image10.png" alt="Flow-GRPO 代码流程图（训练）" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">Flow-GRPO 代码流程图（训练）<br>Image source: <a href="https://arxiv.org/abs/2505.05470">https://arxiv.org/abs/2505.05470</a></p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">Flow-GRPO 代码流程图（训练）</p>
 </div>
 
 
@@ -768,7 +768,7 @@ $$\mathrm{KL} \approx \mathbb{E}_t\left[w(t)\left\|v_\theta(x_t, t, c) - v_{\mat
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image15.png" alt="AWM 代码流程图" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">AWM 代码流程图<br>Image source: <a href="https://arxiv.org/abs/2509.25050">https://arxiv.org/abs/2509.25050</a></p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">AWM 代码流程图</p>
 </div>
 
 
@@ -958,7 +958,7 @@ CFG 的功能可以通过强化学习后训练有效地学习或替代，这与�
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image19.png" alt="NFT 代码流程图（采样）" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">NFT 代码流程图（采样）<br>Image source: <a href="https://arxiv.org/abs/2509.16117">https://arxiv.org/abs/2509.16117</a></p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">NFT 代码流程图（采样）</p>
 </div>
 
 
@@ -968,7 +968,7 @@ CFG 的功能可以通过强化学习后训练有效地学习或替代，这与�
 
 <div style="text-align:center; margin:1em 0;">
 <img src="/images/diffusion_rl/image20.png" alt="NFT 代码流程图（训练）" style="display:block; margin:0 auto; max-width:100%; height:auto;">
-<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">NFT 代码流程图（训练）<br>Image source: <a href="https://arxiv.org/abs/2509.16117">https://arxiv.org/abs/2509.16117</a></p>
+<p style="color:#888; font-size:0.92em; margin:0.25em 0 0;">NFT 代码流程图（训练）</p>
 </div>
 
 
