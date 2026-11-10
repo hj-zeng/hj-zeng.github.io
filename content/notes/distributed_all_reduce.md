@@ -1,8 +1,8 @@
 ---
 title: "Ring all_reduce 算法"
-date: 2026-11-09
+date: 2025-12-10
 draft: false
-weight: 107
+weight: 1500
 tags: ["分布式训练"]
 math: true
 toc: true

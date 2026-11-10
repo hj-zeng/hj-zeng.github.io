@@ -1,8 +1,8 @@
 ---
 title: "slime OPD 支持"
-date: 2026-11-03
+date: 2026-10-12
 draft: false
-weight: 93
+weight: 4500
 tags: ["slime"]
 math: true
 toc: true

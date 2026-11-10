@@ -1,8 +1,8 @@
 ---
 title: "RLHF（基于人类反馈的强化学习）"
-date: 2026-10-29
+date: 2026-01-17
 draft: false
-weight: 82
+weight: 3500
 tags: ["强化学习"]
 math: true
 toc: true

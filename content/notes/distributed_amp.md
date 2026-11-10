@@ -1,8 +1,8 @@
 ---
 title: "混合精度"
-date: 2026-11-09
+date: 2025-12-15
 draft: false
-weight: 109
+weight: 1500
 tags: ["分布式训练"]
 math: true
 toc: true

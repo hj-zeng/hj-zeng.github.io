@@ -1,8 +1,8 @@
 ---
 title: "强化学习基础（RL Basics）"
-date: 2026-10-29
+date: 2025-12-25
 draft: false
-weight: 83
+weight: 3500
 tags: ["强化学习"]
 math: true
 toc: true

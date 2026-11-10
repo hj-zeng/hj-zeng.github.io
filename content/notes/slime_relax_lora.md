@@ -1,8 +1,8 @@
 ---
 title: "Relax LoRA 机制"
-date: 2026-10-23
+date: 2026-10-29
 draft: false
-weight: 86
+weight: 4500
 tags: ["slime"]
 math: false
 toc: true

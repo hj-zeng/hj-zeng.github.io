@@ -1,8 +1,8 @@
 ---
 title: "Actor-Critic 架构（AC / A2C / GAE / TRPO）"
-date: 2026-10-29
+date: 2026-01-06
 draft: false
-weight: 84
+weight: 3500
 tags: ["强化学习"]
 math: true
 toc: true

@@ -1,8 +1,8 @@
 ---
 title: "递归自我改进（RSI）技术路线全梳理"
-date: 2026-10-22
+date: 2026-10-21
 draft: false
-weight: 80
+weight: 6500
 pinned: true
 tags: ["RSI"]
 math: true

@@ -1,8 +1,8 @@
 ---
 title: "DDPM 扩散模型笔记"
-date: 2026-11-03
+date: 2026-01-29
 draft: false
-weight: 99
+weight: 2500
 tags: ["扩散模型"]
 math: true
 toc: true

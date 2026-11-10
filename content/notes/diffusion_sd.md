@@ -1,8 +1,8 @@
 ---
 title: "Stable Diffusion（SD）系列扩散模型"
-date: 2026-11-06
+date: 2026-01-31
 draft: false
-weight: 100
+weight: 2500
 tags: ["扩散模型"]
 math: true
 toc: true

@@ -1,8 +1,8 @@
 ---
 title: "slime MoE 训推不一致处理"
-date: 2026-11-03
+date: 2026-07-11
 draft: false
-weight: 92
+weight: 4500
 tags: ["slime"]
 math: false
 toc: true

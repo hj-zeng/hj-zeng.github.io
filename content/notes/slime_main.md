@@ -1,8 +1,8 @@
 ---
 title: "slime 主流程"
-date: 2026-10-29
+date: 2026-04-18
 draft: false
-weight: 81
+weight: 4500
 tags: ["slime"]
 math: false
 toc: true

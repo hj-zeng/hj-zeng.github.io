@@ -1,8 +1,8 @@
 ---
 title: "slime 的 SGLang 调用（下：RolloutManager 与 SlimeRouter）"
-date: 2026-10-29
+date: 2026-08-23
 draft: false
-weight: 89
+weight: 4500
 tags: ["slime"]
 math: false
 toc: true

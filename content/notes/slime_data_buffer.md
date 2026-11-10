@@ -1,8 +1,8 @@
 ---
 title: "slime data buffer 怎么实现的"
-date: 2026-11-03
+date: 2026-09-05
 draft: false
-weight: 82
+weight: 4500
 tags: ["slime"]
 math: false
 toc: true

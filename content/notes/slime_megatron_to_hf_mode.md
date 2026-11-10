@@ -1,8 +1,8 @@
 ---
 title: "slime megatron -> hf 转换方式: bridge & raw"
-date: 2026-06-06
+date: 2026-06-27
 draft: false
-weight: 88
+weight: 4500
 tags: ["slime"]
 math: false
 toc: true

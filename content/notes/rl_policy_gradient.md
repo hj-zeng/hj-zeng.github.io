@@ -1,8 +1,8 @@
 ---
 title: "策略梯度（Policy Gradient）"
-date: 2026-10-29
+date: 2025-12-31
 draft: false
-weight: 85
+weight: 3500
 tags: ["强化学习"]
 math: true
 toc: true

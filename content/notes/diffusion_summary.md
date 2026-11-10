@@ -1,8 +1,8 @@
 ---
 title: "扩散模型总结"
-date: 2026-11-06
+date: 2026-02-14
 draft: false
-weight: 102
+weight: 2500
 tags: ["扩散模型"]
 math: true
 toc: true

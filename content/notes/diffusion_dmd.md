@@ -1,8 +1,8 @@
 ---
 title: "DMD 系列：一步生成蒸馏（Distribution Matching Distillation）"
-date: 2026-11-06
+date: 2026-02-27
 draft: false
-weight: 101
+weight: 2500
 tags: ["扩散模型"]
 math: true
 toc: true

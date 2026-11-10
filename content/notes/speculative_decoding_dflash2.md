@@ -1,8 +1,8 @@
 ---
 title: "DFlash 2 技术报告"
-date: 2026-11-03
+date: 2026-09-15
 draft: false
-weight: 96
+weight: 5500
 tags: ["投机解码"]
 math: true
 toc: true

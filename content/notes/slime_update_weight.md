@@ -1,8 +1,8 @@
 ---
 title: "slime 权重更新: actor -> rollout"
-date: 2026-06-05
+date: 2026-06-13
 draft: false
-weight: 90
+weight: 4500
 tags: ["slime"]
 math: false
 toc: true

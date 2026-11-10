@@ -1,8 +1,8 @@
 ---
 title: "slime 的 SGLang 调用（上：启动与参数解析）"
-date: 2026-10-29
+date: 2026-08-22
 draft: false
-weight: 87
+weight: 4500
 tags: ["slime"]
 math: false
 toc: true
