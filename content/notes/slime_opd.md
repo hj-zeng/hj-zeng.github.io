@@ -6,7 +6,7 @@ weight: 4500
 tags: ["slime"]
 math: true
 toc: true
-summary: "slime OPD（在线策略蒸馏）支持：KL 散度前向/反向对比、OPD 原理与 token-level 监督、关键参数、两种 Teacher 模式（SGLang/Megatron）、运行示例与相关代码调用链。。子标签：RL、OPD、SGLang、Megatron。"
+summary: "slime OPD（在线策略蒸馏）支持：KL 散度前向/反向对比、OPD 原理与 token-level 监督、关键参数、两种 Teacher 模式（SGLang/Megatron）、运行示例与相关代码调用链。子标签：RL、OPD、SGLang、Megatron。"
 ---
 
 # KL 散度

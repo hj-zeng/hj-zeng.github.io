@@ -6,7 +6,7 @@ weight: 500
 tags: ["论文笔记"]
 math: true
 toc: true
-summary: "ViT 论文（An Image is Worth 16x16 Words）要点总结：patch 化与位置编码、cls token 设计、归纳偏置与 CNN 的对比、关键实验结论与微调细节。。子标签：ViT、Transformer、视觉模型、归纳偏置。"
+summary: "ViT 论文（An Image is Worth 16x16 Words）要点总结：patch 化与位置编码、cls token 设计、归纳偏置与 CNN 的对比、关键实验结论与微调细节。子标签：ViT、Transformer、视觉模型、归纳偏置。"
 ---
 
 Vision Transformer（ViT）是 2020 年提出的突破性视觉模型，其核心创新是将 Transformer 的全局自注意力机制直接应用于图像任务：先将图像分割为固定尺寸的图像块（Patch），把每个块映射为一维嵌入向量并添加位置编码，再送入由多头自注意力和前馈网络组成的标准 Transformer 编码器，最后通过分类头完成视觉任务。

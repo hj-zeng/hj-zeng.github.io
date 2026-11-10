@@ -6,7 +6,7 @@ weight: 3500
 tags: ["强化学习"]
 math: true
 toc: true
-summary: "从 Actor-Critic 基础架构出发，介绍 A2C 的基线与优势函数、GAE 优势估计，以及 TRPO 的置信域与重要性采样；并梳理价值网络损失与 TRPO 的求解流程。。子标签：RL、Actor-Critic、A2C、GAE、TRPO。"
+summary: "从 Actor-Critic 基础架构出发，介绍 A2C 的基线与优势函数、GAE 优势估计，以及 TRPO 的置信域与重要性采样；并梳理价值网络损失与 TRPO 的求解流程。子标签：RL、Actor-Critic、A2C、GAE、TRPO。"
 ---
 
 # 简介

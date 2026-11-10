@@ -6,7 +6,7 @@ weight: 5500
 tags: ["投机解码"]
 math: true
 toc: true
-summary: "DeepSpec 框架解读：训练部分的代码结构、关键概念（block_size/anchor/loss_mask）与 Qwen3DSparkModel 实现、block 并行预测与 flex_attention、验证部分的 eval 结构与回调、损失计算（CE/L1/Confidence 分布式归一化），以及 DFlash/Eagle3/MTP 算法对比。。子标签：DeepSpec、Dspark。"
+summary: "DeepSpec 框架解读：训练部分的代码结构、关键概念（block_size/anchor/loss_mask）与 Qwen3DSparkModel 实现、block 并行预测与 flex_attention、验证部分的 eval 结构与回调、损失计算（CE/L1/Confidence 分布式归一化），以及 DFlash/Eagle3/MTP 算法对比。子标签：DeepSpec、Dspark。"
 ---
 
 # 训练部分

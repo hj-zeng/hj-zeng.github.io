@@ -6,7 +6,7 @@ weight: 2500
 tags: ["强化学习", "扩散模型"]
 math: true
 toc: true
-summary: "强化学习与扩散模型结合的方法总结：LLM RL 与 Diffusion RL 的区别、Diffusion-base / Flow-base 与 RL 的兼容性，以及 DDPO、Diffusion-DPO、DRaFT、flow-GRPO、AWM、DiffusionNFT、UniWorld-V2 等代表性算法的原理与代码逻辑。。子标签：DDPO、Diffusion-DPO、DRaFT、Flow Matching、GRPO、AWM。"
+summary: "强化学习与扩散模型结合的方法总结：LLM RL 与 Diffusion RL 的区别、Diffusion-base / Flow-base 与 RL 的兼容性，以及 DDPO、Diffusion-DPO、DRaFT、flow-GRPO、AWM、DiffusionNFT、UniWorld-V2 等代表性算法的原理与代码逻辑。子标签：DDPO、Diffusion-DPO、DRaFT、Flow Matching、GRPO、AWM。"
 ---
 
 

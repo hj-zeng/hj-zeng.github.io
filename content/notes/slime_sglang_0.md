@@ -6,7 +6,7 @@ weight: 4500
 tags: ["slime"]
 math: false
 toc: true
-summary: "slime 与 SGLang 集成的上篇：SGLang 启动/请求方式、sglang 参数解析与 add_sglang_arguments 注册调用栈、RolloutManager 的启动与调度概览。。子标签：SGLang、Rollout、Router、Ray。"
+summary: "slime 与 SGLang 集成的上篇：SGLang 启动/请求方式、sglang 参数解析与 add_sglang_arguments 注册调用栈、RolloutManager 的启动与调度概览。子标签：SGLang、Rollout、Router、Ray。"
 ---
 
 # sglang 的启动和请求方式

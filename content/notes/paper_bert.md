@@ -6,7 +6,7 @@ weight: 500
 tags: ["论文笔记"]
 math: true
 toc: true
-summary: "BERT 论文（Pre-training of Deep Bidirectional Transformers for Language Understanding）要点：双向编码器架构、MLM + NSP 预训练任务、80/10/10 掩码策略、预训练与微调的掩码不一致及其缓解、参数规模计算与下游任务微调。。子标签：BERT、Transformer、预训练、MLM、NSP。"
+summary: "BERT 论文（Pre-training of Deep Bidirectional Transformers for Language Understanding）要点：双向编码器架构、MLM + NSP 预训练任务、80/10/10 掩码策略、预训练与微调的掩码不一致及其缓解、参数规模计算与下游任务微调。子标签：BERT、Transformer、预训练、MLM、NSP。"
 ---
 
 BERT 是谷歌提出的基于双向 Transformer 编码器的预训练语言模型，通过掩码语言模型（MLM）和下一句预测（NSP）两大预训练任务，在大规模无标注文本上学习通用的上下文语义表征。预训练阶段采用 80/10/10 的软掩码策略缓解预训练-微调的掩码不一致问题；微调阶段可通过接入轻量级任务头快速适配分类、问答、NER 等下游任务。其双向建模能力突破了传统单向语言模型的局限，成为自然语言处理领域的里程碑模型。

@@ -6,7 +6,7 @@ weight: 2500
 tags: ["扩散模型"]
 math: true
 toc: true
-summary: "DMD 系列一步生成蒸馏学习笔记：DMD 以 KL 散度匹配教师与学生分布并辅以回归损失实现单步生成；DMD2 用双时间戳更新与 GAN loss 取代回归损失；Decoupled DMD 将目标拆解为 CA（CFG Augmentation）与 DM（Distribution Matching），并揭示 re-noising timestep 对训练的影响。。子标签：DMD、蒸馏。"
+summary: "DMD 系列一步生成蒸馏学习笔记：DMD 以 KL 散度匹配教师与学生分布并辅以回归损失实现单步生成；DMD2 用双时间戳更新与 GAN loss 取代回归损失；Decoupled DMD 将目标拆解为 CA（CFG Augmentation）与 DM（Distribution Matching），并揭示 re-noising timestep 对训练的影响。子标签：DMD、蒸馏。"
 ---
 
 # DMD 系列：一步生成蒸馏

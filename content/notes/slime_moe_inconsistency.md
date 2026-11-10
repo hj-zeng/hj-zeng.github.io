@@ -6,7 +6,7 @@ weight: 4500
 tags: ["slime"]
 math: false
 toc: true
-summary: "slime MoE 训推不一致处理：路由决策与专家计算两类不一致根因、R2/R3 路由重放算法、RoutingReplay 类与 hook 注入、以及推理路由的获取与重放调用链。。子标签：RL、MoE、SGLang、Megatron。"
+summary: "slime MoE 训推不一致处理：路由决策与专家计算两类不一致根因、R2/R3 路由重放算法、RoutingReplay 类与 hook 注入、以及推理路由的获取与重放调用链。子标签：RL、MoE、SGLang、Megatron。"
 ---
 
 # MoE 训推不一致

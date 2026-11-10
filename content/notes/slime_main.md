@@ -6,7 +6,7 @@ weight: 4500
 tags: ["slime"]
 math: false
 toc: true
-summary: "slime 训练主流程梳理：placement/rollout/training 初始化、训练循环与权重同步、offload 流程，以及权重更新时的 megatron→hf→IPC/SGLang 通信链路。。子标签：RL、Ray、SGLang、Megatron。"
+summary: "slime 训练主流程梳理：placement/rollout/training 初始化、训练循环与权重同步、offload 流程，以及权重更新时的 megatron→hf→IPC/SGLang 通信链路。子标签：RL、Ray、SGLang、Megatron。"
 ---
 
 

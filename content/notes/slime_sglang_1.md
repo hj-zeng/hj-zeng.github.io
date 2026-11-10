@@ -6,7 +6,7 @@ weight: 4500
 tags: ["slime"]
 math: false
 toc: true
-summary: "slime 与 SGLang 集成的下篇：RolloutManager 的初始化方法与 generate 流程、动态采样 gbs 计算，以及 SlimeRouter 的负载均衡、路由匹配与 proxy 代理实现。。子标签：SGLang、Rollout、Router、Ray。"
+summary: "slime 与 SGLang 集成的下篇：RolloutManager 的初始化方法与 generate 流程、动态采样 gbs 计算，以及 SlimeRouter 的负载均衡、路由匹配与 proxy 代理实现。子标签：SGLang、Rollout、Router、Ray。"
 ---
 
 # RolloutManager

@@ -6,7 +6,7 @@ weight: 4500
 tags: ["slime"]
 math: false
 toc: true
-summary: "slime 权重更新两类 UpdateWeightFromDistributed / UpdateWeightFromTensor 的实现逻辑。。子标签：RL、权重更新。"
+summary: "slime 权重更新两类 UpdateWeightFromDistributed / UpdateWeightFromTensor 的实现逻辑。子标签：RL、权重更新。"
 ---
 
 # 权重更新函数调用

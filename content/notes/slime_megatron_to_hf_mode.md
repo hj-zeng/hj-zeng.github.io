@@ -6,7 +6,7 @@ weight: 4500
 tags: ["slime"]
 math: false
 toc: true
-summary: "slime 中将 megatron 权重转为 hf 权重时 bridge 与 raw 两种模式区别梳理。。子标签：RL、权重转换。"
+summary: "slime 中将 megatron 权重转为 hf 权重时 bridge 与 raw 两种模式区别梳理。子标签：RL、权重转换。"
 ---
 
 # slime 权重转换方式
