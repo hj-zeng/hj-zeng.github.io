@@ -3,10 +3,10 @@ title: "slime 训推不一致处理"
 date: 2026-11-03
 draft: false
 weight: 91
-tags: ["slime", "RL", "PPO", "SGLang"]
+tags: ["slime"]
 math: true
 toc: true
-summary: "slime 训推不一致处理：TIS/MIS 重要性采样修正与三策略解耦、train_rollout_logprob_abs_diff 指标监控、keep_old_actor 三快照队列与异步训练时序、相关参数与 TIS Level/Mode 说明。"
+summary: "slime 训推不一致处理：TIS/MIS 重要性采样修正与三策略解耦、train_rollout_logprob_abs_diff 指标监控、keep_old_actor 三快照队列与异步训练时序、相关参数与 TIS Level/Mode 说明。。子标签：RL、PPO、SGLang。"
 ---
 
 **总结**

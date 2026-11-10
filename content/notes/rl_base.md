@@ -3,10 +3,10 @@ title: "强化学习基础（RL Basics）"
 date: 2026-10-29
 draft: false
 weight: 83
-tags: ["RL", "MDP", "Bellman", "Monte Carlo", "TD", "Q-learning", "DQN"]
+tags: ["强化学习"]
 math: true
 toc: true
-summary: "强化学习入门笔记：从智能体—环境、同策略/异策略、在线/离线等基础概念，到马尔可夫决策过程、价值函数与贝尔曼方程，再到蒙特卡洛、TD、Q-learning、DQN 等经典算法。"
+summary: "强化学习入门笔记：从智能体—环境、同策略/异策略、在线/离线等基础概念，到马尔可夫决策过程、价值函数与贝尔曼方程，再到蒙特卡洛、TD、Q-learning、DQN 等经典算法。。子标签：RL、MDP、Bellman、Monte Carlo、TD、Q-learning、DQN。"
 ---
 
 # 强化学习

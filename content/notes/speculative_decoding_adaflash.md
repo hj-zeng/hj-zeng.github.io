@@ -3,10 +3,10 @@ title: "adaflash 论文与代码解读"
 date: 2026-11-03
 draft: false
 weight: 97
-tags: ["投机解码", "ADAFLASH", "OPD"]
+tags: ["投机解码"]
 math: true
 toc: true
-summary: "ADAFLASH 论文总结：扩散草稿模型双向注意力带来的领域/词元层面高方差，同策略蒸馏（OPD）与自适应长度头两个组件、异步训练—推理基础设施，以及 8 基准 × 3 模型上的实验结论。"
+summary: "ADAFLASH 论文总结：扩散草稿模型双向注意力带来的领域/词元层面高方差，同策略蒸馏（OPD）与自适应长度头两个组件、异步训练—推理基础设施，以及 8 基准 × 3 模型上的实验结论。。子标签：ADAFLASH、OPD。"
 ---
 
 

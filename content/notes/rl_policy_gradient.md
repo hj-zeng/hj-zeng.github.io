@@ -3,10 +3,10 @@ title: "策略梯度（Policy Gradient）"
 date: 2026-10-29
 draft: false
 weight: 85
-tags: ["RL", "Policy Gradient", "REINFORCE", "Actor-Critic"]
+tags: ["强化学习"]
 math: true
 toc: true
-summary: "策略梯度方法总览：从目标函数（预期回报）推导梯度公式，对比监督学习的梯度下降与强化学习的梯度上升，梳理求解流程与工程实现，并介绍 REINFORCE 与 Actor-Critic 两类衍生算法。"
+summary: "策略梯度方法总览：从目标函数（预期回报）推导梯度公式，对比监督学习的梯度下降与强化学习的梯度上升，梳理求解流程与工程实现，并介绍 REINFORCE 与 Actor-Critic 两类衍生算法。。子标签：RL、Policy Gradient、REINFORCE、Actor-Critic。"
 ---
 
 # 简介

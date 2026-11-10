@@ -3,10 +3,10 @@ title: "RLHF（基于人类反馈的强化学习）"
 date: 2026-10-29
 draft: false
 weight: 82
-tags: ["RL", "RLHF", "PPO", "GRPO", "RLAIF", "RLVR"]
+tags: ["强化学习"]
 math: true
 toc: true
-summary: "RLHF 全流程笔记：背景与动机、奖励模型设计与训练、PPO 四模型联合训练（含 KL 奖励/Loss 两种约束）、奖励欺骗与拒绝采样微调，以及与 RLAIF、RLVR、RBR、GRPO（含 PPO/GRPO 对比）等衍生方法。"
+summary: "RLHF 全流程笔记：背景与动机、奖励模型设计与训练、PPO 四模型联合训练（含 KL 奖励/Loss 两种约束）、奖励欺骗与拒绝采样微调，以及与 RLAIF、RLVR、RBR、GRPO（含 PPO/GRPO 对比）等衍生方法。。子标签：RL、RLHF、PPO、GRPO、RLAIF、RLVR。"
 ---
 
 # RLHF

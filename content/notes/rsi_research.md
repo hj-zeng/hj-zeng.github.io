@@ -4,10 +4,10 @@ date: 2026-10-22
 draft: false
 weight: 80
 pinned: true
-tags: ["RSI", "Self-Improving", "Agent"]
+tags: ["强化学习"]
 math: true
 toc: true
-summary: "从基本概念、发展路径到算法/任务层、Harness 层、模型权重层的各类 RSI 工作梳理，附主要流程、关键设计与工作分类总结。"
+summary: "从基本概念、发展路径到算法/任务层、Harness 层、模型权重层的各类 RSI 工作梳理，附主要流程、关键设计与工作分类总结。。子标签：RSI、Self-Improving、Agent。"
 ---
 
 # RSI 基本概念

@@ -3,10 +3,10 @@ title: "训练全流程概述"
 date: 2026-11-09
 draft: false
 weight: 106
-tags: ["预训练", "SFT", "LoRA", "DPO", "RLHF", "RL"]
+tags: ["强化学习"]
 math: true
 toc: true
-summary: "训练全流程概述：预训练（LLM 自回归与扩散模型）、SFT（全参数 / 部分参数微调与 LoRA）、DPO / RL 偏好对齐的原理、目标与关键公式。"
+summary: "训练全流程概述：预训练（LLM 自回归与扩散模型）、SFT（全参数 / 部分参数微调与 LoRA）、DPO / RL 偏好对齐的原理、目标与关键公式。。子标签：预训练、SFT、LoRA、DPO、RLHF、RL。"
 ---
 
 本篇概述训练全流程，流程分为：

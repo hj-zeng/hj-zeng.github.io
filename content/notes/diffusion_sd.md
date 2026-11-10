@@ -3,10 +3,10 @@ title: "Stable Diffusion（SD）系列扩散模型"
 date: 2026-11-06
 draft: false
 weight: 100
-tags: ["扩散模型", "Stable Diffusion", "LDM", "SDXL", "生成模型"]
+tags: ["扩散模型"]
 math: true
 toc: true
-summary: "Stable Diffusion 系列扩散模型学习笔记：LDM 潜空间扩散、SD 版本演进、Classifier Guidance 与 Classifier-Free Guidance 条件控制、cross-attention 文本注入、SDXL 改进、SD3.0 的 Rectified Flow 与 MMDiT、FLUX 工程优化与 RoPE、SDXL Turbo 对抗蒸馏。"
+summary: "Stable Diffusion 系列扩散模型学习笔记：LDM 潜空间扩散、SD 版本演进、Classifier Guidance 与 Classifier-Free Guidance 条件控制、cross-attention 文本注入、SDXL 改进、SD3.0 的 Rectified Flow 与 MMDiT、FLUX 工程优化与 RoPE、SDXL Turbo 对抗蒸馏。。子标签：Stable Diffusion、LDM、SDXL、生成模型。"
 ---
 
 # SD 系列工作解读

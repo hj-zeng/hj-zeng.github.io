@@ -3,10 +3,10 @@ title: "slime data buffer 怎么实现的"
 date: 2026-11-03
 draft: false
 weight: 82
-tags: ["slime", "Rollout", "SGLang", "Ray"]
+tags: ["slime"]
 math: false
 toc: true
-summary: "slime data buffer 实现梳理：data_source 定义（RolloutDataSource / RolloutDataSourceWithBuffer）、rollout 侧数据产生与 add_samples 回写、以及训练侧消费数据的完整链路。"
+summary: "slime data buffer 实现梳理：data_source 定义（RolloutDataSource / RolloutDataSourceWithBuffer）、rollout 侧数据产生与 add_samples 回写、以及训练侧消费数据的完整链路。。子标签：Rollout、SGLang、Ray。"
 ---
 
 

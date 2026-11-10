@@ -3,10 +3,10 @@ title: "DDPM 扩散模型笔记"
 date: 2026-11-03
 draft: false
 weight: 99
-tags: ["扩散模型", "DDPM", "生成模型"]
+tags: ["扩散模型"]
 math: true
 toc: true
-summary: "DDPM 扩散模型学习笔记：前向加噪与重参数化、反向去噪与贝叶斯推导、损失函数、DDPM 改进方法（DDIM / Improved-DDPM / CFG / Latent Diffusion / Reward Guidance）、为什么需要 1000 步、DDIM 核心公式，以及代码分析（网络结构 / 训练与推理 / Condition Diffusion 与 CFG）。"
+summary: "DDPM 扩散模型学习笔记：前向加噪与重参数化、反向去噪与贝叶斯推导、损失函数、DDPM 改进方法（DDIM / Improved-DDPM / CFG / Latent Diffusion / Reward Guidance）、为什么需要 1000 步、DDIM 核心公式，以及代码分析（网络结构 / 训练与推理 / Condition Diffusion 与 CFG）。。子标签：DDPM、生成模型。"
 ---
 
 # Diffusion Model

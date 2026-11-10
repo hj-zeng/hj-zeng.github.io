@@ -3,10 +3,10 @@ title: "slime 的 SGLang 调用（上：启动与参数解析）"
 date: 2026-10-29
 draft: false
 weight: 87
-tags: ["slime", "SGLang", "Rollout", "Router", "Ray"]
+tags: ["slime"]
 math: false
 toc: true
-summary: "slime 与 SGLang 集成的上篇：SGLang 启动/请求方式、sglang 参数解析与 add_sglang_arguments 注册调用栈、RolloutManager 的启动与调度概览。"
+summary: "slime 与 SGLang 集成的上篇：SGLang 启动/请求方式、sglang 参数解析与 add_sglang_arguments 注册调用栈、RolloutManager 的启动与调度概览。。子标签：SGLang、Rollout、Router、Ray。"
 ---
 
 # sglang 的启动和请求方式

@@ -3,10 +3,10 @@ title: "DSpark 论文解读"
 date: 2026-11-03
 draft: false
 weight: 95
-tags: ["投机解码", "DSpark", "LLM"]
+tags: ["投机解码"]
 math: true
 toc: true
-summary: "DSpark 论文解读：投机解码背景与 DFlash 改进、三个加速杠杆、半自回归生成（Markov/RNN 头）、置信度头 + 硬件感知前缀调度的高效验证、训练损失与实验分析。"
+summary: "DSpark 论文解读：投机解码背景与 DFlash 改进、三个加速杠杆、半自回归生成（Markov/RNN 头）、置信度头 + 硬件感知前缀调度的高效验证、训练损失与实验分析。。子标签：DSpark、LLM。"
 ---
 
 ## 背景

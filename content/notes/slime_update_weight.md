@@ -3,10 +3,10 @@ title: "slime 权重更新: actor -> rollout"
 date: 2026-06-05
 draft: false
 weight: 90
-tags: ["RL", "slime", "权重更新"]
+tags: ["slime"]
 math: false
 toc: true
-summary: "slime 权重更新两类 UpdateWeightFromDistributed / UpdateWeightFromTensor 的实现逻辑。"
+summary: "slime 权重更新两类 UpdateWeightFromDistributed / UpdateWeightFromTensor 的实现逻辑。。子标签：RL、权重更新。"
 ---
 
 # 权重更新函数调用

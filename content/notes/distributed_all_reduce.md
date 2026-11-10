@@ -3,10 +3,10 @@ title: "Ring all_reduce 算法"
 date: 2026-11-09
 draft: false
 weight: 107
-tags: ["分布式训练", "AllReduce", "通信原语", "Ring AllReduce"]
+tags: ["分布式训练"]
 math: true
 toc: true
-summary: "Ring AllReduce 算法笔记：通信原语、传统 AllReduce 的瓶颈、reduce_scatter + all_gather 两阶段原理（含 shift）、索引公式与通信量分析。"
+summary: "Ring AllReduce 算法笔记：通信原语、传统 AllReduce 的瓶颈、reduce_scatter + all_gather 两阶段原理（含 shift）、索引公式与通信量分析。。子标签：AllReduce、通信原语、Ring AllReduce。"
 ---
 
 # 通信原语

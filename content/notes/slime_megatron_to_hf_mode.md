@@ -3,10 +3,10 @@ title: "slime megatron -> hf 转换方式: bridge & raw"
 date: 2026-06-06
 draft: false
 weight: 88
-tags: ["RL", "slime", "权重转换"]
+tags: ["slime"]
 math: false
 toc: true
-summary: "slime 中将 megatron 权重转为 hf 权重时 bridge 与 raw 两种模式区别梳理。"
+summary: "slime 中将 megatron 权重转为 hf 权重时 bridge 与 raw 两种模式区别梳理。。子标签：RL、权重转换。"
 ---
 
 # slime 权重转换方式

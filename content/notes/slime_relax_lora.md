@@ -3,10 +3,10 @@ title: "Relax LoRA 机制"
 date: 2026-10-23
 draft: false
 weight: 86
-tags: ["RL", "relax", "LoRA"]
+tags: ["slime"]
 math: false
 toc: true
-summary: "relax 框架 LoRA 训练/推理权重同步机制：PEFT 包装、merge-mode / adapter-mode 两种 rollout 适配方式，以及各 模式 × 部署 路径下的数据流。"
+summary: "relax 框架 LoRA 训练/推理权重同步机制：PEFT 包装、merge-mode / adapter-mode 两种 rollout 适配方式，以及各 模式 × 部署 路径下的数据流。。子标签：RL、relax、LoRA。"
 ---
 
 

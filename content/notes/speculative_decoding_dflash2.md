@@ -3,10 +3,10 @@ title: "DFlash 2 技术报告"
 date: 2026-11-03
 draft: false
 weight: 96
-tags: ["投机解码", "DFlash", "LLM"]
+tags: ["投机解码"]
 math: true
 toc: true
-summary: "DFlash 2 技术报告解读：正确的 token 一直在 top-k 里、轻量级路径选择器（selector）、suffix decay 是局部问题与轻量级局部卷积、完整对比与发布信息。"
+summary: "DFlash 2 技术报告解读：正确的 token 一直在 top-k 里、轻量级路径选择器（selector）、suffix decay 是局部问题与轻量级局部卷积、完整对比与发布信息。。子标签：DFlash、LLM。"
 ---
 
 # DFlash 2：保持 Drafting 并行
