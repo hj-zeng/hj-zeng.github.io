@@ -45,11 +45,11 @@
 {{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true"  }}
 {{- end }}
 
-{{- /* 自定义排序：pinned 优先，组内按 weight 升序；其余按 weight 升序 */}}
+{{- /* 自定义排序：pinned 优先，组内按 weight 降序；其余按 weight 降序 */}}
 {{- $pinned := where $pages "Params.pinned" true }}
 {{- $rest := where $pages "Params.pinned" "!=" true }}
-{{- $pinned = sort $pinned "Params.weight" "asc" }}
-{{- $rest = sort $rest "Params.weight" "asc" }}
+{{- $pinned = sort $pinned "Params.weight" "desc" }}
+{{- $rest = sort $rest "Params.weight" "desc" }}
 {{- $pages = union $pinned $rest }}
 
 {{- $paginator := .Paginate $pages }}
